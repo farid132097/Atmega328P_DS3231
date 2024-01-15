@@ -3,29 +3,29 @@ main.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000028  00800100  00000e00  00000e94  2**0
+  0 .data         00000028  00800100  00000e14  00000ea8  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000e00  00000000  00000000  00000094  2**1
+  1 .text         00000e14  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          0000002f  00800128  00800128  00000ebc  2**0
+  2 .bss          0000002f  00800128  00800128  00000ed0  2**0
                   ALLOC
-  3 .debug_aranges 00000080  00000000  00000000  00000ebc  2**0
+  3 .debug_aranges 00000080  00000000  00000000  00000ed0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_pubnames 0000088b  00000000  00000000  00000f3c  2**0
+  4 .debug_pubnames 0000088b  00000000  00000000  00000f50  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00001cff  00000000  00000000  000017c7  2**0
+  5 .debug_info   00001d37  00000000  00000000  000017db  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 00000693  00000000  00000000  000034c6  2**0
+  6 .debug_abbrev 00000693  00000000  00000000  00003512  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00001560  00000000  00000000  00003b59  2**0
+  7 .debug_line   00001579  00000000  00000000  00003ba5  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000630  00000000  00000000  000050bc  2**2
+  8 .debug_frame  00000630  00000000  00000000  00005120  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    0000085f  00000000  00000000  000056ec  2**0
+  9 .debug_str    00000876  00000000  00000000  00005750  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    00000c7d  00000000  00000000  00005f4b  2**0
+ 10 .debug_loc    00000cf8  00000000  00000000  00005fc6  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000180  00000000  00000000  00006bc8  2**0
+ 11 .debug_ranges 00000180  00000000  00000000  00006cbe  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -70,7 +70,7 @@ Disassembly of section .text:
   74:	11 e0       	ldi	r17, 0x01	; 1
   76:	a0 e0       	ldi	r26, 0x00	; 0
   78:	b1 e0       	ldi	r27, 0x01	; 1
-  7a:	e0 e0       	ldi	r30, 0x00	; 0
+  7a:	e4 e1       	ldi	r30, 0x14	; 20
   7c:	fe e0       	ldi	r31, 0x0E	; 14
   7e:	02 c0       	rjmp	.+4      	; 0x84 <.do_copy_data_start>
 
@@ -97,7 +97,7 @@ Disassembly of section .text:
   96:	b1 07       	cpc	r27, r17
   98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
   9a:	0e 94 53 00 	call	0xa6	; 0xa6 <main>
-  9e:	0c 94 fe 06 	jmp	0xdfc	; 0xdfc <_exit>
+  9e:	0c 94 08 07 	jmp	0xe10	; 0xe10 <_exit>
 
 000000a2 <__bad_interrupt>:
   a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -118,7 +118,7 @@ int main(void){
   ac:	5c 98       	cbi	0x0b, 4	; 11
   
   RTC_Init();
-  ae:	0e 94 cd 06 	call	0xd9a	; 0xd9a <RTC_Init>
+  ae:	0e 94 d7 06 	call	0xdae	; 0xdae <RTC_Init>
   debug_init();
   b2:	0e 94 9d 05 	call	0xb3a	; 0xb3a <debug_init>
   debug_tx_text_nl("Debug Started");
@@ -2052,7 +2052,7 @@ void debug_determine_digit_numbers(uint32_t num){
  882:	30 e0       	ldi	r19, 0x00	; 0
  884:	40 e0       	ldi	r20, 0x00	; 0
  886:	50 e0       	ldi	r21, 0x00	; 0
- 888:	0e 94 dc 06 	call	0xdb8	; 0xdb8 <__udivmodsi4>
+ 888:	0e 94 e6 06 	call	0xdcc	; 0xdcc <__udivmodsi4>
  88c:	f8 01       	movw	r30, r16
  88e:	64 a3       	std	Z+36, r22	; 0x24
       num/=10;
@@ -2062,7 +2062,7 @@ void debug_determine_digit_numbers(uint32_t num){
  896:	30 e0       	ldi	r19, 0x00	; 0
  898:	40 e0       	ldi	r20, 0x00	; 0
  89a:	50 e0       	ldi	r21, 0x00	; 0
- 89c:	0e 94 dc 06 	call	0xdb8	; 0xdb8 <__udivmodsi4>
+ 89c:	0e 94 e6 06 	call	0xdcc	; 0xdcc <__udivmodsi4>
  8a0:	c9 01       	movw	r24, r18
  8a2:	da 01       	movw	r26, r20
  8a4:	6c 01       	movw	r12, r24
@@ -2804,7 +2804,7 @@ uint8_t RTC_Get_Hr(void){
   tmp0=I2C_Read_Register(0x02);
  c32:	82 e0       	ldi	r24, 0x02	; 2
  c34:	0e 94 cc 01 	call	0x398	; 0x398 <I2C_Read_Register>
-  if(tmp0 & (1<<6)){               //12H
+  if(tmp0 & (1<<6)){           //12H
  c38:	28 2f       	mov	r18, r24
  c3a:	30 e0       	ldi	r19, 0x00	; 0
  c3c:	98 2f       	mov	r25, r24
@@ -2827,7 +2827,7 @@ uint8_t RTC_Get_Hr(void){
 	hr+= (tmp0 & 0x0F);
  c5a:	89 0f       	add	r24, r25
  c5c:	08 95       	ret
-  }else{                           //24H
+  }else{                       //24H
     hr = (tmp0 & 0x30)>>4;
     hr*= 10;
  c5e:	20 73       	andi	r18, 0x30	; 48
@@ -2853,7 +2853,7 @@ uint8_t RTC_Get_Hr(void){
   RTC_Set_Time( hr, min, sec);
 }
   
-uint8_t RTC_Get_AmPm(void){        //0:AM, 1:PM
+uint8_t RTC_Get_AmPm(void){  //0:AM, 1:PM
   uint8_t tmp0=I2C_Read_Register(0x02);
  c78:	82 e0       	ldi	r24, 0x02	; 2
  c7a:	0e 94 cc 01 	call	0x398	; 0x398 <I2C_Read_Register>
@@ -2885,72 +2885,75 @@ void RTC_Set_Time(uint8_t hr, uint8_t min, uint8_t sec){
  c94:	18 2f       	mov	r17, r24
  c96:	06 2f       	mov	r16, r22
  c98:	f4 2e       	mov	r15, r20
-  uint8_t tmp0=0,tmp1=0,tmp2=0;
+  uint8_t tmp0=0,tmp1=0,tmp2=0, error=0;
+  uint8_t hr_reg=0, min_reg=0, sec_reg=0;
   tmp0=I2C_Read_Register(0x02);
  c9a:	82 e0       	ldi	r24, 0x02	; 2
  c9c:	0e 94 cc 01 	call	0x398	; 0x398 <I2C_Read_Register>
   tmp0&=0x60;
- ca0:	38 2f       	mov	r19, r24
- ca2:	30 76       	andi	r19, 0x60	; 96
+ ca0:	28 2f       	mov	r18, r24
+ ca2:	20 76       	andi	r18, 0x60	; 96
   tmp1=hr/10;
  ca4:	81 2f       	mov	r24, r17
  ca6:	6a e0       	ldi	r22, 0x0A	; 10
- ca8:	0e 94 d0 06 	call	0xda0	; 0xda0 <__udivmodqi4>
- cac:	28 2f       	mov	r18, r24
+ ca8:	0e 94 da 06 	call	0xdb4	; 0xdb4 <__udivmodqi4>
+ cac:	38 2f       	mov	r19, r24
   tmp2=hr%10;
  cae:	81 2f       	mov	r24, r17
- cb0:	0e 94 d0 06 	call	0xda0	; 0xda0 <__udivmodqi4>
-  if(tmp0 & (1<<6)){                    //12H Mode
- cb4:	36 ff       	sbrs	r19, 6
- cb6:	09 c0       	rjmp	.+18     	; 0xcca <RTC_Set_Time+0x3c>
+ cb0:	0e 94 da 06 	call	0xdb4	; 0xdb4 <__udivmodqi4>
+  if(tmp0 & (1<<6)){          //12H
+ cb4:	26 ff       	sbrs	r18, 6
+ cb6:	0b c0       	rjmp	.+22     	; 0xcce <RTC_Set_Time+0x40>
     if(hr<=12){
  cb8:	1d 30       	cpi	r17, 0x0D	; 13
- cba:	70 f4       	brcc	.+28     	; 0xcd8 <RTC_Set_Time+0x4a>
-	  I2C_Write_Register(0x02,tmp0|(tmp1<<4)|tmp2);
- cbc:	39 2b       	or	r19, r25
- cbe:	22 95       	swap	r18
- cc0:	20 7f       	andi	r18, 0xF0	; 240
- cc2:	32 2b       	or	r19, r18
- cc4:	82 e0       	ldi	r24, 0x02	; 2
- cc6:	63 2f       	mov	r22, r19
- cc8:	05 c0       	rjmp	.+10     	; 0xcd4 <RTC_Set_Time+0x46>
+ cba:	18 f0       	brcs	.+6      	; 0xcc2 <RTC_Set_Time+0x34>
+ cbc:	51 e0       	ldi	r21, 0x01	; 1
+ cbe:	40 e0       	ldi	r20, 0x00	; 0
+ cc0:	0b c0       	rjmp	.+22     	; 0xcd8 <RTC_Set_Time+0x4a>
+	  hr_reg=tmp0|(tmp1<<4)|tmp2;
+ cc2:	29 2b       	or	r18, r25
+ cc4:	43 2f       	mov	r20, r19
+ cc6:	42 95       	swap	r20
+ cc8:	40 7f       	andi	r20, 0xF0	; 240
+ cca:	42 2b       	or	r20, r18
+ ccc:	04 c0       	rjmp	.+8      	; 0xcd6 <RTC_Set_Time+0x48>
 	}else{
-	  //handle error
+	  error=0x01;
 	}
-  }else{                               //24H 
+  }else{                      //24H 
     tmp0&=0x40;
-	I2C_Write_Register(0x02,(tmp1<<4)|tmp2);
- cca:	22 95       	swap	r18
- ccc:	20 7f       	andi	r18, 0xF0	; 240
- cce:	29 2b       	or	r18, r25
- cd0:	82 e0       	ldi	r24, 0x02	; 2
- cd2:	62 2f       	mov	r22, r18
- cd4:	0e 94 08 02 	call	0x410	; 0x410 <I2C_Write_Register>
+	hr_reg=(tmp1<<4)|tmp2;
+ cce:	43 2f       	mov	r20, r19
+ cd0:	42 95       	swap	r20
+ cd2:	40 7f       	andi	r20, 0xF0	; 240
+ cd4:	49 2b       	or	r20, r25
+ cd6:	50 e0       	ldi	r21, 0x00	; 0
   }
   
   tmp1=min/10;
   tmp2=min%10;
   if(min<=59){
  cd8:	0c 33       	cpi	r16, 0x3C	; 60
- cda:	98 f4       	brcc	.+38     	; 0xd02 <RTC_Set_Time+0x74>
-    I2C_Write_Register(0x01,(tmp1<<4)|tmp2);
- cdc:	80 2f       	mov	r24, r16
- cde:	6a e0       	ldi	r22, 0x0A	; 10
- ce0:	0e 94 d0 06 	call	0xda0	; 0xda0 <__udivmodqi4>
- ce4:	28 2f       	mov	r18, r24
- ce6:	30 e0       	ldi	r19, 0x00	; 0
- ce8:	f4 e0       	ldi	r31, 0x04	; 4
- cea:	22 0f       	add	r18, r18
- cec:	33 1f       	adc	r19, r19
- cee:	fa 95       	dec	r31
- cf0:	e1 f7       	brne	.-8      	; 0xcea <RTC_Set_Time+0x5c>
- cf2:	80 2f       	mov	r24, r16
- cf4:	0e 94 d0 06 	call	0xda0	; 0xda0 <__udivmodqi4>
- cf8:	92 2b       	or	r25, r18
- cfa:	81 e0       	ldi	r24, 0x01	; 1
- cfc:	69 2f       	mov	r22, r25
- cfe:	0e 94 08 02 	call	0x410	; 0x410 <I2C_Write_Register>
-    //handle error
+ cda:	18 f0       	brcs	.+6      	; 0xce2 <RTC_Set_Time+0x54>
+ cdc:	52 e0       	ldi	r21, 0x02	; 2
+ cde:	10 e0       	ldi	r17, 0x00	; 0
+ ce0:	10 c0       	rjmp	.+32     	; 0xd02 <RTC_Set_Time+0x74>
+    min_reg=(tmp1<<4)|tmp2;
+ ce2:	80 2f       	mov	r24, r16
+ ce4:	6a e0       	ldi	r22, 0x0A	; 10
+ ce6:	0e 94 da 06 	call	0xdb4	; 0xdb4 <__udivmodqi4>
+ cea:	28 2f       	mov	r18, r24
+ cec:	30 e0       	ldi	r19, 0x00	; 0
+ cee:	f4 e0       	ldi	r31, 0x04	; 4
+ cf0:	22 0f       	add	r18, r18
+ cf2:	33 1f       	adc	r19, r19
+ cf4:	fa 95       	dec	r31
+ cf6:	e1 f7       	brne	.-8      	; 0xcf0 <RTC_Set_Time+0x62>
+ cf8:	80 2f       	mov	r24, r16
+ cfa:	0e 94 da 06 	call	0xdb4	; 0xdb4 <__udivmodqi4>
+ cfe:	19 2f       	mov	r17, r25
+ d00:	12 2b       	or	r17, r18
+    error=0x02;
   }
   
   tmp1=sec/10;
@@ -2958,223 +2961,237 @@ void RTC_Set_Time(uint8_t hr, uint8_t min, uint8_t sec){
   if(sec<=59){
  d02:	8b e3       	ldi	r24, 0x3B	; 59
  d04:	8f 15       	cp	r24, r15
- d06:	98 f0       	brcs	.+38     	; 0xd2e <RTC_Set_Time+0xa0>
-    I2C_Write_Register(0x00,(tmp1<<4)|tmp2);
- d08:	8f 2d       	mov	r24, r15
- d0a:	6a e0       	ldi	r22, 0x0A	; 10
- d0c:	0e 94 d0 06 	call	0xda0	; 0xda0 <__udivmodqi4>
- d10:	28 2f       	mov	r18, r24
- d12:	30 e0       	ldi	r19, 0x00	; 0
- d14:	e4 e0       	ldi	r30, 0x04	; 4
- d16:	22 0f       	add	r18, r18
- d18:	33 1f       	adc	r19, r19
- d1a:	ea 95       	dec	r30
- d1c:	e1 f7       	brne	.-8      	; 0xd16 <RTC_Set_Time+0x88>
- d1e:	8f 2d       	mov	r24, r15
- d20:	0e 94 d0 06 	call	0xda0	; 0xda0 <__udivmodqi4>
- d24:	92 2b       	or	r25, r18
- d26:	80 e0       	ldi	r24, 0x00	; 0
- d28:	69 2f       	mov	r22, r25
- d2a:	0e 94 08 02 	call	0x410	; 0x410 <I2C_Write_Register>
+ d06:	e8 f0       	brcs	.+58     	; 0xd42 <RTC_Set_Time+0xb4>
+    sec_reg=(tmp1<<4)|tmp2;
   }else{
-    //handle error
+    error=0x03;
+  }
+  
+  if(error==0){
+ d08:	55 23       	and	r21, r21
+ d0a:	d9 f4       	brne	.+54     	; 0xd42 <RTC_Set_Time+0xb4>
+    I2C_Write_Register(0x02,hr_reg);
+ d0c:	82 e0       	ldi	r24, 0x02	; 2
+ d0e:	64 2f       	mov	r22, r20
+ d10:	0e 94 08 02 	call	0x410	; 0x410 <I2C_Write_Register>
+	I2C_Write_Register(0x01,min_reg);
+ d14:	81 e0       	ldi	r24, 0x01	; 1
+ d16:	61 2f       	mov	r22, r17
+ d18:	0e 94 08 02 	call	0x410	; 0x410 <I2C_Write_Register>
+	I2C_Write_Register(0x00,sec_reg);
+ d1c:	8f 2d       	mov	r24, r15
+ d1e:	6a e0       	ldi	r22, 0x0A	; 10
+ d20:	0e 94 da 06 	call	0xdb4	; 0xdb4 <__udivmodqi4>
+ d24:	28 2f       	mov	r18, r24
+ d26:	30 e0       	ldi	r19, 0x00	; 0
+ d28:	e4 e0       	ldi	r30, 0x04	; 4
+ d2a:	22 0f       	add	r18, r18
+ d2c:	33 1f       	adc	r19, r19
+ d2e:	ea 95       	dec	r30
+ d30:	e1 f7       	brne	.-8      	; 0xd2a <RTC_Set_Time+0x9c>
+ d32:	8f 2d       	mov	r24, r15
+ d34:	0e 94 da 06 	call	0xdb4	; 0xdb4 <__udivmodqi4>
+ d38:	92 2b       	or	r25, r18
+ d3a:	80 e0       	ldi	r24, 0x00	; 0
+ d3c:	69 2f       	mov	r22, r25
+ d3e:	0e 94 08 02 	call	0x410	; 0x410 <I2C_Write_Register>
   }
 }
- d2e:	1f 91       	pop	r17
- d30:	0f 91       	pop	r16
- d32:	ff 90       	pop	r15
- d34:	08 95       	ret
+ d42:	1f 91       	pop	r17
+ d44:	0f 91       	pop	r16
+ d46:	ff 90       	pop	r15
+ d48:	08 95       	ret
 
-00000d36 <RTC_Set_12H_PM>:
+00000d4a <RTC_Set_12H_PM>:
 void RTC_Set_12H_AM(void){
   I2C_Write_Register(0x02,0b01000000);
 }
 
 void RTC_Set_12H_PM(void){
   I2C_Write_Register(0x02,0b01100000);
- d36:	82 e0       	ldi	r24, 0x02	; 2
- d38:	60 e6       	ldi	r22, 0x60	; 96
- d3a:	0e 94 08 02 	call	0x410	; 0x410 <I2C_Write_Register>
+ d4a:	82 e0       	ldi	r24, 0x02	; 2
+ d4c:	60 e6       	ldi	r22, 0x60	; 96
+ d4e:	0e 94 08 02 	call	0x410	; 0x410 <I2C_Write_Register>
 }
- d3e:	08 95       	ret
+ d52:	08 95       	ret
 
-00000d40 <RTC_Set_12H_AM>:
+00000d54 <RTC_Set_12H_AM>:
 void RTC_Set_24H(void){
   I2C_Write_Register(0x02,0b00000000);
 }
 
 void RTC_Set_12H_AM(void){
   I2C_Write_Register(0x02,0b01000000);
- d40:	82 e0       	ldi	r24, 0x02	; 2
- d42:	60 e4       	ldi	r22, 0x40	; 64
- d44:	0e 94 08 02 	call	0x410	; 0x410 <I2C_Write_Register>
+ d54:	82 e0       	ldi	r24, 0x02	; 2
+ d56:	60 e4       	ldi	r22, 0x40	; 64
+ d58:	0e 94 08 02 	call	0x410	; 0x410 <I2C_Write_Register>
 }
- d48:	08 95       	ret
+ d5c:	08 95       	ret
 
-00000d4a <RTC_Set_24H>:
+00000d5e <RTC_Set_24H>:
 void RTC_Init(void){
   I2C_Init();  
 }
 
 void RTC_Set_24H(void){
   I2C_Write_Register(0x02,0b00000000);
- d4a:	82 e0       	ldi	r24, 0x02	; 2
- d4c:	60 e0       	ldi	r22, 0x00	; 0
- d4e:	0e 94 08 02 	call	0x410	; 0x410 <I2C_Write_Register>
+ d5e:	82 e0       	ldi	r24, 0x02	; 2
+ d60:	60 e0       	ldi	r22, 0x00	; 0
+ d62:	0e 94 08 02 	call	0x410	; 0x410 <I2C_Write_Register>
 }
- d52:	08 95       	ret
+ d66:	08 95       	ret
 
-00000d54 <RTC_Set_Time_With_Format>:
-  }else{
-    //handle error
+00000d68 <RTC_Set_Time_With_Format>:
+	I2C_Write_Register(0x01,min_reg);
+	I2C_Write_Register(0x00,sec_reg);
   }
 }
 
 void RTC_Set_Time_With_Format(uint8_t hr, uint8_t min, uint8_t sec, uint8_t hr_con, uint8_t AmPm){
- d54:	ef 92       	push	r14
- d56:	ff 92       	push	r15
- d58:	0f 93       	push	r16
- d5a:	1f 93       	push	r17
- d5c:	18 2f       	mov	r17, r24
- d5e:	f6 2e       	mov	r15, r22
- d60:	e4 2e       	mov	r14, r20
+ d68:	ef 92       	push	r14
+ d6a:	ff 92       	push	r15
+ d6c:	0f 93       	push	r16
+ d6e:	1f 93       	push	r17
+ d70:	18 2f       	mov	r17, r24
+ d72:	f6 2e       	mov	r15, r22
+ d74:	e4 2e       	mov	r14, r20
   if(hr_con==0){
- d62:	22 23       	and	r18, r18
- d64:	19 f4       	brne	.+6      	; 0xd6c <RTC_Set_Time_With_Format+0x18>
+ d76:	22 23       	and	r18, r18
+ d78:	19 f4       	brne	.+6      	; 0xd80 <RTC_Set_Time_With_Format+0x18>
 void RTC_Init(void){
   I2C_Init();  
 }
 
 void RTC_Set_24H(void){
   I2C_Write_Register(0x02,0b00000000);
- d66:	82 e0       	ldi	r24, 0x02	; 2
- d68:	60 e0       	ldi	r22, 0x00	; 0
- d6a:	0b c0       	rjmp	.+22     	; 0xd82 <RTC_Set_Time_With_Format+0x2e>
+ d7a:	82 e0       	ldi	r24, 0x02	; 2
+ d7c:	60 e0       	ldi	r22, 0x00	; 0
+ d7e:	0b c0       	rjmp	.+22     	; 0xd96 <RTC_Set_Time_With_Format+0x2e>
 }
 
 void RTC_Set_Time_With_Format(uint8_t hr, uint8_t min, uint8_t sec, uint8_t hr_con, uint8_t AmPm){
   if(hr_con==0){
     RTC_Set_24H();
   }else if(hr_con==1){
- d6c:	21 30       	cpi	r18, 0x01	; 1
- d6e:	59 f4       	brne	.+22     	; 0xd86 <RTC_Set_Time_With_Format+0x32>
+ d80:	21 30       	cpi	r18, 0x01	; 1
+ d82:	59 f4       	brne	.+22     	; 0xd9a <RTC_Set_Time_With_Format+0x32>
     if(AmPm==0){
- d70:	00 23       	and	r16, r16
- d72:	19 f4       	brne	.+6      	; 0xd7a <RTC_Set_Time_With_Format+0x26>
+ d84:	00 23       	and	r16, r16
+ d86:	19 f4       	brne	.+6      	; 0xd8e <RTC_Set_Time_With_Format+0x26>
 void RTC_Set_24H(void){
   I2C_Write_Register(0x02,0b00000000);
 }
 
 void RTC_Set_12H_AM(void){
   I2C_Write_Register(0x02,0b01000000);
- d74:	82 e0       	ldi	r24, 0x02	; 2
- d76:	60 e4       	ldi	r22, 0x40	; 64
- d78:	04 c0       	rjmp	.+8      	; 0xd82 <RTC_Set_Time_With_Format+0x2e>
+ d88:	82 e0       	ldi	r24, 0x02	; 2
+ d8a:	60 e4       	ldi	r22, 0x40	; 64
+ d8c:	04 c0       	rjmp	.+8      	; 0xd96 <RTC_Set_Time_With_Format+0x2e>
   if(hr_con==0){
     RTC_Set_24H();
   }else if(hr_con==1){
     if(AmPm==0){
 	  RTC_Set_12H_AM();
 	}else if(AmPm==1){
- d7a:	01 30       	cpi	r16, 0x01	; 1
- d7c:	21 f4       	brne	.+8      	; 0xd86 <RTC_Set_Time_With_Format+0x32>
+ d8e:	01 30       	cpi	r16, 0x01	; 1
+ d90:	21 f4       	brne	.+8      	; 0xd9a <RTC_Set_Time_With_Format+0x32>
 void RTC_Set_12H_AM(void){
   I2C_Write_Register(0x02,0b01000000);
 }
 
 void RTC_Set_12H_PM(void){
   I2C_Write_Register(0x02,0b01100000);
- d7e:	82 e0       	ldi	r24, 0x02	; 2
- d80:	60 e6       	ldi	r22, 0x60	; 96
- d82:	0e 94 08 02 	call	0x410	; 0x410 <I2C_Write_Register>
+ d92:	82 e0       	ldi	r24, 0x02	; 2
+ d94:	60 e6       	ldi	r22, 0x60	; 96
+ d96:	0e 94 08 02 	call	0x410	; 0x410 <I2C_Write_Register>
 	  RTC_Set_12H_AM();
 	}else if(AmPm==1){
 	  RTC_Set_12H_PM();
 	}
   }
   RTC_Set_Time( hr, min, sec);
- d86:	81 2f       	mov	r24, r17
- d88:	6f 2d       	mov	r22, r15
- d8a:	4e 2d       	mov	r20, r14
- d8c:	0e 94 47 06 	call	0xc8e	; 0xc8e <RTC_Set_Time>
+ d9a:	81 2f       	mov	r24, r17
+ d9c:	6f 2d       	mov	r22, r15
+ d9e:	4e 2d       	mov	r20, r14
+ da0:	0e 94 47 06 	call	0xc8e	; 0xc8e <RTC_Set_Time>
 }
- d90:	1f 91       	pop	r17
- d92:	0f 91       	pop	r16
- d94:	ff 90       	pop	r15
- d96:	ef 90       	pop	r14
- d98:	08 95       	ret
+ da4:	1f 91       	pop	r17
+ da6:	0f 91       	pop	r16
+ da8:	ff 90       	pop	r15
+ daa:	ef 90       	pop	r14
+ dac:	08 95       	ret
 
-00000d9a <RTC_Init>:
+00000dae <RTC_Init>:
 #include "rtc.h"
 
 
 
 void RTC_Init(void){
   I2C_Init();  
- d9a:	0e 94 23 02 	call	0x446	; 0x446 <I2C_Init>
+ dae:	0e 94 23 02 	call	0x446	; 0x446 <I2C_Init>
 }
- d9e:	08 95       	ret
+ db2:	08 95       	ret
 
-00000da0 <__udivmodqi4>:
- da0:	99 1b       	sub	r25, r25
- da2:	79 e0       	ldi	r23, 0x09	; 9
- da4:	04 c0       	rjmp	.+8      	; 0xdae <__udivmodqi4_ep>
+00000db4 <__udivmodqi4>:
+ db4:	99 1b       	sub	r25, r25
+ db6:	79 e0       	ldi	r23, 0x09	; 9
+ db8:	04 c0       	rjmp	.+8      	; 0xdc2 <__udivmodqi4_ep>
 
-00000da6 <__udivmodqi4_loop>:
- da6:	99 1f       	adc	r25, r25
- da8:	96 17       	cp	r25, r22
- daa:	08 f0       	brcs	.+2      	; 0xdae <__udivmodqi4_ep>
- dac:	96 1b       	sub	r25, r22
+00000dba <__udivmodqi4_loop>:
+ dba:	99 1f       	adc	r25, r25
+ dbc:	96 17       	cp	r25, r22
+ dbe:	08 f0       	brcs	.+2      	; 0xdc2 <__udivmodqi4_ep>
+ dc0:	96 1b       	sub	r25, r22
 
-00000dae <__udivmodqi4_ep>:
- dae:	88 1f       	adc	r24, r24
- db0:	7a 95       	dec	r23
- db2:	c9 f7       	brne	.-14     	; 0xda6 <__udivmodqi4_loop>
- db4:	80 95       	com	r24
- db6:	08 95       	ret
+00000dc2 <__udivmodqi4_ep>:
+ dc2:	88 1f       	adc	r24, r24
+ dc4:	7a 95       	dec	r23
+ dc6:	c9 f7       	brne	.-14     	; 0xdba <__udivmodqi4_loop>
+ dc8:	80 95       	com	r24
+ dca:	08 95       	ret
 
-00000db8 <__udivmodsi4>:
- db8:	a1 e2       	ldi	r26, 0x21	; 33
- dba:	1a 2e       	mov	r1, r26
- dbc:	aa 1b       	sub	r26, r26
- dbe:	bb 1b       	sub	r27, r27
- dc0:	fd 01       	movw	r30, r26
- dc2:	0d c0       	rjmp	.+26     	; 0xdde <__udivmodsi4_ep>
+00000dcc <__udivmodsi4>:
+ dcc:	a1 e2       	ldi	r26, 0x21	; 33
+ dce:	1a 2e       	mov	r1, r26
+ dd0:	aa 1b       	sub	r26, r26
+ dd2:	bb 1b       	sub	r27, r27
+ dd4:	fd 01       	movw	r30, r26
+ dd6:	0d c0       	rjmp	.+26     	; 0xdf2 <__udivmodsi4_ep>
 
-00000dc4 <__udivmodsi4_loop>:
- dc4:	aa 1f       	adc	r26, r26
- dc6:	bb 1f       	adc	r27, r27
- dc8:	ee 1f       	adc	r30, r30
- dca:	ff 1f       	adc	r31, r31
- dcc:	a2 17       	cp	r26, r18
- dce:	b3 07       	cpc	r27, r19
- dd0:	e4 07       	cpc	r30, r20
- dd2:	f5 07       	cpc	r31, r21
- dd4:	20 f0       	brcs	.+8      	; 0xdde <__udivmodsi4_ep>
- dd6:	a2 1b       	sub	r26, r18
- dd8:	b3 0b       	sbc	r27, r19
- dda:	e4 0b       	sbc	r30, r20
- ddc:	f5 0b       	sbc	r31, r21
+00000dd8 <__udivmodsi4_loop>:
+ dd8:	aa 1f       	adc	r26, r26
+ dda:	bb 1f       	adc	r27, r27
+ ddc:	ee 1f       	adc	r30, r30
+ dde:	ff 1f       	adc	r31, r31
+ de0:	a2 17       	cp	r26, r18
+ de2:	b3 07       	cpc	r27, r19
+ de4:	e4 07       	cpc	r30, r20
+ de6:	f5 07       	cpc	r31, r21
+ de8:	20 f0       	brcs	.+8      	; 0xdf2 <__udivmodsi4_ep>
+ dea:	a2 1b       	sub	r26, r18
+ dec:	b3 0b       	sbc	r27, r19
+ dee:	e4 0b       	sbc	r30, r20
+ df0:	f5 0b       	sbc	r31, r21
 
-00000dde <__udivmodsi4_ep>:
- dde:	66 1f       	adc	r22, r22
- de0:	77 1f       	adc	r23, r23
- de2:	88 1f       	adc	r24, r24
- de4:	99 1f       	adc	r25, r25
- de6:	1a 94       	dec	r1
- de8:	69 f7       	brne	.-38     	; 0xdc4 <__udivmodsi4_loop>
- dea:	60 95       	com	r22
- dec:	70 95       	com	r23
- dee:	80 95       	com	r24
- df0:	90 95       	com	r25
- df2:	9b 01       	movw	r18, r22
- df4:	ac 01       	movw	r20, r24
- df6:	bd 01       	movw	r22, r26
- df8:	cf 01       	movw	r24, r30
- dfa:	08 95       	ret
+00000df2 <__udivmodsi4_ep>:
+ df2:	66 1f       	adc	r22, r22
+ df4:	77 1f       	adc	r23, r23
+ df6:	88 1f       	adc	r24, r24
+ df8:	99 1f       	adc	r25, r25
+ dfa:	1a 94       	dec	r1
+ dfc:	69 f7       	brne	.-38     	; 0xdd8 <__udivmodsi4_loop>
+ dfe:	60 95       	com	r22
+ e00:	70 95       	com	r23
+ e02:	80 95       	com	r24
+ e04:	90 95       	com	r25
+ e06:	9b 01       	movw	r18, r22
+ e08:	ac 01       	movw	r20, r24
+ e0a:	bd 01       	movw	r22, r26
+ e0c:	cf 01       	movw	r24, r30
+ e0e:	08 95       	ret
 
-00000dfc <_exit>:
- dfc:	f8 94       	cli
+00000e10 <_exit>:
+ e10:	f8 94       	cli
 
-00000dfe <__stop_program>:
- dfe:	ff cf       	rjmp	.-2      	; 0xdfe <__stop_program>
+00000e12 <__stop_program>:
+ e12:	ff cf       	rjmp	.-2      	; 0xe12 <__stop_program>
