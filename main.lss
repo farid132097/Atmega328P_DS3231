@@ -2770,7 +2770,7 @@ uint8_t RTC_Get_AmPm(void){  //0:AM, 1:PM
 00000c02 <RTC_Read>:
 
 
-//////////////////sync your functions start//////////////////
+//edit below functions for compatibility with other devices//
 
 uint8_t RTC_Read(uint8_t addr){
   return I2C_Read_Register(addr);
@@ -2781,7 +2781,7 @@ uint8_t RTC_Read(uint8_t addr){
 00000c08 <RTC_Get_Sec>:
 
 
-//////////////////sync your functions start//////////////////
+//edit below functions for compatibility with other devices//
 
 uint8_t RTC_Read(uint8_t addr){
   return I2C_Read_Register(addr);
@@ -2833,7 +2833,7 @@ uint8_t RTC_Get_Sec(void){
 00000c40 <RTC_Get_Min>:
 
 
-//////////////////sync your functions start//////////////////
+//edit below functions for compatibility with other devices//
 
 uint8_t RTC_Read(uint8_t addr){
   return I2C_Read_Register(addr);
@@ -2885,7 +2885,7 @@ uint8_t RTC_Get_Min(void){
 00000c78 <RTC_Get_Hr>:
 
 
-//////////////////sync your functions start//////////////////
+//edit below functions for compatibility with other devices//
 
 uint8_t RTC_Read(uint8_t addr){
   return I2C_Read_Register(addr);
@@ -2999,7 +2999,7 @@ void RTC_Set_Time(uint8_t hr, uint8_t min, uint8_t sec){
  ce2:	f4 2e       	mov	r15, r20
 
 
-//////////////////sync your functions start//////////////////
+//edit below functions for compatibility with other devices//
 
 uint8_t RTC_Read(uint8_t addr){
   return I2C_Read_Register(addr);

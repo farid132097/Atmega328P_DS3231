@@ -8,7 +8,7 @@
 uint8_t RTC_Error=0;
 
 
-//////////////////sync your functions start//////////////////
+//edit below functions for compatibility with other devices//
 
 uint8_t RTC_Read(uint8_t addr){
   return I2C_Read_Register(addr);
@@ -18,7 +18,7 @@ void RTC_Write(uint8_t addr, uint8_t data){
   I2C_Write_Register(addr,data);
 }
 
-////////////////////sync functions end/////////////////////
+/////////////////////////////////////////////////////////////
 
 
 
