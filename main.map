@@ -131,7 +131,7 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0xe54
+.text           0x00000000      0xe60
  *(.vectors)
  .vectors       0x00000000       0x68 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
                 0x00000000                __vectors
@@ -299,37 +299,39 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                 0x00000bc6                __vector_16
                 0x000008c8                debug_tx_number_digits
                 0x00000514                debug_rx_get
- .text          0x00000be6      0x20e rtc.o
-                0x00000c24                RTC_Get_Min
-                0x00000d94                RTC_Set_12H_AM
-                0x00000c5c                RTC_Get_Hr
+ .text          0x00000be6      0x21a rtc.o
+                0x00000cd2                RTC_Write
+                0x00000c40                RTC_Get_Min
+                0x00000da6                RTC_Set_12H_AM
+                0x00000c78                RTC_Get_Hr
+                0x00000c02                RTC_Read
                 0x00000be6                RTC_Get_Error
-                0x00000dee                RTC_Init
-                0x00000d8a                RTC_Set_12H_PM
-                0x00000bec                RTC_Get_Sec
-                0x00000d9e                RTC_Set_24H
-                0x00000da8                RTC_Set_Time_With_Format
-                0x00000cc6                RTC_Set_Time
-                0x00000cb0                RTC_Get_AmPm
- .text          0x00000df4        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodqi4.o)
- .text          0x00000df4        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
- .text          0x00000df4        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text          0x00000df4        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
- .text          0x00000df4        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
-                0x00000df4                . = ALIGN (0x2)
+                0x00000ccc                RTC_Init
+                0x00000d9c                RTC_Set_12H_PM
+                0x00000c08                RTC_Get_Sec
+                0x00000db0                RTC_Set_24H
+                0x00000dba                RTC_Set_Time_With_Format
+                0x00000cd8                RTC_Set_Time
+                0x00000bec                RTC_Get_AmPm
+ .text          0x00000e00        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodqi4.o)
+ .text          0x00000e00        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+ .text          0x00000e00        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text          0x00000e00        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text          0x00000e00        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                0x00000e00                . = ALIGN (0x2)
  *(.text.*)
- .text.libgcc   0x00000df4       0x18 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodqi4.o)
-                0x00000df4                __udivmodqi4
- .text.libgcc   0x00000e0c       0x44 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
-                0x00000e0c                __udivmodsi4
- .text.libgcc   0x00000e50        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x00000e50        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
- .text.libgcc   0x00000e50        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
-                0x00000e50                . = ALIGN (0x2)
+ .text.libgcc   0x00000e00       0x18 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodqi4.o)
+                0x00000e00                __udivmodqi4
+ .text.libgcc   0x00000e18       0x44 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                0x00000e18                __udivmodsi4
+ .text.libgcc   0x00000e5c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x00000e5c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x00000e5c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                0x00000e5c                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000e50        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x00000e50                exit
-                0x00000e50                _exit
+ .fini9         0x00000e5c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x00000e5c                exit
+                0x00000e5c                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -348,11 +350,11 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000e50        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000e5c        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000e54                _etext = .
+                0x00000e60                _etext = .
 
-.data           0x00800100       0x28 load address 0x00000e54
+.data           0x00800100       0x28 load address 0x00000e60
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800100        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
@@ -397,8 +399,8 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  COMMON         0x0080012b       0x2d debug.o
                 0x0080012b                debug
                 0x00800158                PROVIDE (__bss_end, .)
-                0x00000e54                __data_load_start = LOADADDR (.data)
-                0x00000e7c                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000e60                __data_load_start = LOADADDR (.data)
+                0x00000e88                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800158        0x0
                 0x00800158                PROVIDE (__noinit_start, .)
@@ -468,7 +470,7 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                 0x00000060       0x20 rtc.o
 
 .debug_pubnames
-                0x00000000      0x8ab
+                0x00000000      0x8c6
  *(.debug_pubnames)
  .debug_pubnames
                 0x00000000       0x1b main.o
@@ -477,38 +479,38 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  .debug_pubnames
                 0x00000260      0x568 debug.o
  .debug_pubnames
-                0x000007c8       0xe3 rtc.o
+                0x000007c8       0xfe rtc.o
 
-.debug_info     0x00000000     0x1d9e
+.debug_info     0x00000000     0x1fbd
  *(.debug_info)
  .debug_info    0x00000000      0x10d main.o
  .debug_info    0x0000010d      0xd01 i2c.o
  .debug_info    0x00000e0e      0xc54 debug.o
- .debug_info    0x00001a62      0x33c rtc.o
+ .debug_info    0x00001a62      0x55b rtc.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev   0x00000000      0x6a4
+.debug_abbrev   0x00000000      0x6f0
  *(.debug_abbrev)
  .debug_abbrev  0x00000000       0xb2 main.o
  .debug_abbrev  0x000000b2      0x258 i2c.o
  .debug_abbrev  0x0000030a      0x288 debug.o
- .debug_abbrev  0x00000592      0x112 rtc.o
+ .debug_abbrev  0x00000592      0x15e rtc.o
 
-.debug_line     0x00000000     0x15d4
+.debug_line     0x00000000     0x160b
  *(.debug_line)
  .debug_line    0x00000000      0x164 main.o
  .debug_line    0x00000164      0x716 i2c.o
  .debug_line    0x0000087a      0xa9c debug.o
- .debug_line    0x00001316      0x2be rtc.o
+ .debug_line    0x00001316      0x2f5 rtc.o
 
-.debug_frame    0x00000000      0x640
+.debug_frame    0x00000000      0x660
  *(.debug_frame)
  .debug_frame   0x00000000       0x20 main.o
  .debug_frame   0x00000020      0x1c0 i2c.o
  .debug_frame   0x000001e0      0x3a0 debug.o
- .debug_frame   0x00000580       0xc0 rtc.o
+ .debug_frame   0x00000580       0xe0 rtc.o
 
-.debug_str      0x00000000      0x88e
+.debug_str      0x00000000      0x8a6
  *(.debug_str)
  .debug_str     0x00000000       0xca main.o
                                  0xfe (size before relaxing)
@@ -516,15 +518,15 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                                 0x308 (size before relaxing)
  .debug_str     0x000002da      0x4e0 debug.o
                                 0x5ba (size before relaxing)
- .debug_str     0x000007ba       0xd4 rtc.o
-                                0x196 (size before relaxing)
+ .debug_str     0x000007ba       0xec rtc.o
+                                0x1b3 (size before relaxing)
 
-.debug_loc      0x00000000      0xd72
+.debug_loc      0x00000000      0xdab
  *(.debug_loc)
  .debug_loc     0x00000000       0x50 main.o
  .debug_loc     0x00000050      0x2f3 i2c.o
  .debug_loc     0x00000343      0x767 debug.o
- .debug_loc     0x00000aaa      0x2c8 rtc.o
+ .debug_loc     0x00000aaa      0x301 rtc.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -584,11 +586,13 @@ RTC_Get_Sec                                       rtc.o
                                                   main.o
 RTC_Init                                          rtc.o
                                                   main.o
+RTC_Read                                          rtc.o
 RTC_Set_12H_AM                                    rtc.o
 RTC_Set_12H_PM                                    rtc.o
 RTC_Set_24H                                       rtc.o
 RTC_Set_Time                                      rtc.o
 RTC_Set_Time_With_Format                          rtc.o
+RTC_Write                                         rtc.o
 TIM0_BAUD_19200                                   debug.o
 TIM0_BAUD_38400                                   debug.o
 TIM0_BAUD_9600                                    debug.o

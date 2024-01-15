@@ -7,26 +7,44 @@
 
 uint8_t RTC_Error=0;
 
+
+//////////////////sync your functions start//////////////////
+
+uint8_t RTC_Read(uint8_t addr){
+  return I2C_Read_Register(addr);
+}
+
+void RTC_Write(uint8_t addr, uint8_t data){
+  I2C_Write_Register(addr,data);
+}
+
+////////////////////sync functions end/////////////////////
+
+
+
+
+
+
 void RTC_Init(void){
   I2C_Init();  
 }
 
 void RTC_Set_24H(void){
-  I2C_Write_Register(0x02,0b00000000);
+  RTC_Write(0x02,0b00000000);
 }
 
 void RTC_Set_12H_AM(void){
-  I2C_Write_Register(0x02,0b01000000);
+  RTC_Write(0x02,0b01000000);
 }
 
 void RTC_Set_12H_PM(void){
-  I2C_Write_Register(0x02,0b01100000);
+  RTC_Write(0x02,0b01100000);
 }
 
 void RTC_Set_Time(uint8_t hr, uint8_t min, uint8_t sec){
   uint8_t tmp0=0,tmp1=0,tmp2=0, error=0;
   uint8_t hr_reg=0, min_reg=0, sec_reg=0;
-  tmp0=I2C_Read_Register(0x02);
+  tmp0=RTC_Read(0x02);
   tmp0&=0x60;
   tmp1=hr/10;
   tmp2=hr%10;
@@ -58,9 +76,9 @@ void RTC_Set_Time(uint8_t hr, uint8_t min, uint8_t sec){
   }
   
   if(error==0){
-    I2C_Write_Register(0x02,hr_reg);
-	I2C_Write_Register(0x01,min_reg);
-	I2C_Write_Register(0x00,sec_reg);
+    RTC_Write(0x02,hr_reg);
+	RTC_Write(0x01,min_reg);
+	RTC_Write(0x00,sec_reg);
   }
   
   #ifdef ENABLE_ERROR_HANDLER
@@ -92,7 +110,7 @@ uint8_t RTC_Get_AmPm(void){  //0:AM, 1:PM
 
 uint8_t RTC_Get_Hr(void){
   uint8_t tmp0=0, hr=0, error=0;
-  tmp0=I2C_Read_Register(0x02);
+  tmp0=RTC_Read(0x02);
   if(tmp0 & (1<<6)){           //12H
     hr = ((tmp0 & (1<<4))>>4);
 	hr*= 10;
@@ -116,7 +134,7 @@ uint8_t RTC_Get_Hr(void){
 
 uint8_t RTC_Get_Min(void){
   uint8_t tmp0=0, min=0, error=0;
-  tmp0=I2C_Read_Register(0x01);
+  tmp0=RTC_Read(0x01);
   min = ((tmp0 & 0x70)>>4);
   min*= 10;
   min+= (tmp0 & 0x0F);
@@ -134,7 +152,7 @@ uint8_t RTC_Get_Min(void){
 
 uint8_t RTC_Get_Sec(void){
   uint8_t tmp0=0, sec=0, error=0;
-  tmp0=I2C_Read_Register(0x00);
+  tmp0=RTC_Read(0x00);
   sec = ((tmp0 & 0x70)>>4);
   sec*= 10;
   sec+= (tmp0 & 0x0F);

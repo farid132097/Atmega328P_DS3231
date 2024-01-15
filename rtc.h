@@ -1,5 +1,10 @@
 
 
+////////////Added for compatibility with other devices////////
+uint8_t  RTC_Read(uint8_t addr);
+void     RTC_Write(uint8_t addr, uint8_t data);
+//////////////////////////////////////////////////////////////
+
 void     RTC_Init(void);
 void     RTC_Set_24H(void);
 void     RTC_Set_12H_AM(void);
