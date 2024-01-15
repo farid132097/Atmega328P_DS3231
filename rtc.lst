@@ -1,0 +1,348 @@
+   1               		.file	"rtc.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	RTC_Get_Sec
+  18               	RTC_Get_Sec:
+  19               	.LFB14:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 80E0      		ldi r24,lo8(0)
+  25 0002 0E94 0000 		call I2C_Read_Register
+  26               	.LM3:
+  27 0006 282F      		mov r18,r24
+  28               	.LVL0:
+  29 0008 30E0      		ldi r19,lo8(0)
+  30               	.LVL1:
+  31 000a 2077      		andi r18,lo8(112)
+  32 000c 3070      		andi r19,hi8(112)
+  33               	.LVL2:
+  34 000e 94E0      		ldi r25,4
+  35 0010 3595      	1:	asr r19
+  36 0012 2795      		ror r18
+  37 0014 9A95      		dec r25
+  38 0016 01F4      		brne 1b
+  39               	.LVL3:
+  40 0018 9AE0      		ldi r25,lo8(10)
+  41 001a 929F      		mul r25,r18
+  42 001c 902D      		mov r25,r0
+  43 001e 1124      		clr r1
+  44               	.LVL4:
+  45 0020 8F70      		andi r24,lo8(15)
+  46               	.LVL5:
+  47               	.LM4:
+  48 0022 890F      		add r24,r25
+  49               	.LVL6:
+  50               	/* epilogue start */
+  51 0024 0895      		ret
+  52               	.LFE14:
+  54               	.global	RTC_Get_Min
+  56               	RTC_Get_Min:
+  57               	.LFB13:
+  58               	.LM5:
+  59               	/* prologue: function */
+  60               	/* frame size = 0 */
+  61               	.LM6:
+  62 0026 81E0      		ldi r24,lo8(1)
+  63 0028 0E94 0000 		call I2C_Read_Register
+  64               	.LM7:
+  65 002c 282F      		mov r18,r24
+  66               	.LVL7:
+  67 002e 30E0      		ldi r19,lo8(0)
+  68               	.LVL8:
+  69 0030 2077      		andi r18,lo8(112)
+  70 0032 3070      		andi r19,hi8(112)
+  71               	.LVL9:
+  72 0034 44E0      		ldi r20,4
+  73 0036 3595      	1:	asr r19
+  74 0038 2795      		ror r18
+  75 003a 4A95      		dec r20
+  76 003c 01F4      		brne 1b
+  77               	.LVL10:
+  78 003e 9AE0      		ldi r25,lo8(10)
+  79 0040 929F      		mul r25,r18
+  80 0042 902D      		mov r25,r0
+  81 0044 1124      		clr r1
+  82               	.LVL11:
+  83 0046 8F70      		andi r24,lo8(15)
+  84               	.LVL12:
+  85               	.LM8:
+  86 0048 890F      		add r24,r25
+  87               	.LVL13:
+  88               	/* epilogue start */
+  89 004a 0895      		ret
+  90               	.LFE13:
+  92               	.global	RTC_Get_Hr
+  94               	RTC_Get_Hr:
+  95               	.LFB12:
+  96               	.LM9:
+  97               	/* prologue: function */
+  98               	/* frame size = 0 */
+  99               	.LM10:
+ 100 004c 82E0      		ldi r24,lo8(2)
+ 101 004e 0E94 0000 		call I2C_Read_Register
+ 102               	.LM11:
+ 103 0052 282F      		mov r18,r24
+ 104               	.LVL14:
+ 105 0054 30E0      		ldi r19,lo8(0)
+ 106 0056 982F      		mov r25,r24
+ 107 0058 9F70      		andi r25,lo8(15)
+ 108 005a 86FF      		sbrs r24,6
+ 109 005c 00C0      		rjmp .L6
+ 110               	.LVL15:
+ 111               	.LM12:
+ 112 005e 2071      		andi r18,lo8(16)
+ 113 0060 3070      		andi r19,hi8(16)
+ 114 0062 64E0      		ldi r22,4
+ 115 0064 3595      	1:	asr r19
+ 116 0066 2795      		ror r18
+ 117 0068 6A95      		dec r22
+ 118 006a 01F4      		brne 1b
+ 119 006c 8AE0      		ldi r24,lo8(10)
+ 120 006e 829F      		mul r24,r18
+ 121 0070 802D      		mov r24,r0
+ 122 0072 1124      		clr r1
+ 123               	.LVL16:
+ 124               	.LM13:
+ 125 0074 890F      		add r24,r25
+ 126 0076 0895      		ret
+ 127               	.LVL17:
+ 128               	.L6:
+ 129               	.LM14:
+ 130 0078 2073      		andi r18,lo8(48)
+ 131 007a 3070      		andi r19,hi8(48)
+ 132 007c 54E0      		ldi r21,4
+ 133 007e 3595      	1:	asr r19
+ 134 0080 2795      		ror r18
+ 135 0082 5A95      		dec r21
+ 136 0084 01F4      		brne 1b
+ 137 0086 8AE0      		ldi r24,lo8(10)
+ 138 0088 829F      		mul r24,r18
+ 139 008a 802D      		mov r24,r0
+ 140 008c 1124      		clr r1
+ 141               	.LVL18:
+ 142               	.LM15:
+ 143 008e 890F      		add r24,r25
+ 144               	.LVL19:
+ 145               	.LM16:
+ 146 0090 0895      		ret
+ 147               	.LFE12:
+ 149               	.global	RTC_Get_AmPm
+ 151               	RTC_Get_AmPm:
+ 152               	.LFB11:
+ 153               	.LM17:
+ 154               	/* prologue: function */
+ 155               	/* frame size = 0 */
+ 156               	.LM18:
+ 157 0092 82E0      		ldi r24,lo8(2)
+ 158 0094 0E94 0000 		call I2C_Read_Register
+ 159 0098 90E0      		ldi r25,lo8(0)
+ 160               	.LVL20:
+ 161 009a 75E0      		ldi r23,5
+ 162 009c 9695      	1:	lsr r25
+ 163 009e 8795      		ror r24
+ 164 00a0 7A95      		dec r23
+ 165 00a2 01F4      		brne 1b
+ 166               	.LVL21:
+ 167               	.LM19:
+ 168 00a4 8170      		andi r24,lo8(1)
+ 169               	.LVL22:
+ 170               	/* epilogue start */
+ 171 00a6 0895      		ret
+ 172               	.LFE11:
+ 174               	.global	RTC_Set_Time
+ 176               	RTC_Set_Time:
+ 177               	.LFB10:
+ 178               	.LM20:
+ 179               	.LVL23:
+ 180 00a8 FF92      		push r15
+ 181 00aa 0F93      		push r16
+ 182 00ac 1F93      		push r17
+ 183               	/* prologue: function */
+ 184               	/* frame size = 0 */
+ 185 00ae 182F      		mov r17,r24
+ 186 00b0 062F      		mov r16,r22
+ 187 00b2 F42E      		mov r15,r20
+ 188               	.LM21:
+ 189 00b4 82E0      		ldi r24,lo8(2)
+ 190               	.LVL24:
+ 191 00b6 0E94 0000 		call I2C_Read_Register
+ 192               	.LVL25:
+ 193               	.LM22:
+ 194 00ba 382F      		mov r19,r24
+ 195               	.LVL26:
+ 196 00bc 3076      		andi r19,lo8(96)
+ 197               	.LM23:
+ 198 00be 812F      		mov r24,r17
+ 199 00c0 6AE0      		ldi r22,lo8(10)
+ 200 00c2 0E94 0000 		call __udivmodqi4
+ 201 00c6 282F      		mov r18,r24
+ 202               	.LM24:
+ 203 00c8 812F      		mov r24,r17
+ 204 00ca 0E94 0000 		call __udivmodqi4
+ 205               	.LM25:
+ 206 00ce 36FF      		sbrs r19,6
+ 207 00d0 00C0      		rjmp .L12
+ 208               	.LM26:
+ 209 00d2 1D30      		cpi r17,lo8(13)
+ 210 00d4 00F4      		brsh .L13
+ 211               	.LM27:
+ 212 00d6 392B      		or r19,r25
+ 213 00d8 2295      		swap r18
+ 214 00da 207F      		andi r18,lo8(-16)
+ 215 00dc 322B      		or r19,r18
+ 216 00de 82E0      		ldi r24,lo8(2)
+ 217 00e0 632F      		mov r22,r19
+ 218 00e2 00C0      		rjmp .L17
+ 219               	.L12:
+ 220               	.LM28:
+ 221 00e4 2295      		swap r18
+ 222 00e6 207F      		andi r18,lo8(-16)
+ 223 00e8 292B      		or r18,r25
+ 224 00ea 82E0      		ldi r24,lo8(2)
+ 225 00ec 622F      		mov r22,r18
+ 226               	.L17:
+ 227 00ee 0E94 0000 		call I2C_Write_Register
+ 228               	.LVL27:
+ 229               	.L13:
+ 230               	.LM29:
+ 231 00f2 0C33      		cpi r16,lo8(60)
+ 232 00f4 00F4      		brsh .L14
+ 233               	.LM30:
+ 234 00f6 802F      		mov r24,r16
+ 235 00f8 6AE0      		ldi r22,lo8(10)
+ 236 00fa 0E94 0000 		call __udivmodqi4
+ 237 00fe 282F      		mov r18,r24
+ 238 0100 30E0      		ldi r19,lo8(0)
+ 239               	.LVL28:
+ 240 0102 F4E0      		ldi r31,4
+ 241 0104 220F      	1:	lsl r18
+ 242 0106 331F      		rol r19
+ 243 0108 FA95      		dec r31
+ 244 010a 01F4      		brne 1b
+ 245 010c 802F      		mov r24,r16
+ 246 010e 0E94 0000 		call __udivmodqi4
+ 247 0112 922B      		or r25,r18
+ 248 0114 81E0      		ldi r24,lo8(1)
+ 249 0116 692F      		mov r22,r25
+ 250 0118 0E94 0000 		call I2C_Write_Register
+ 251               	.LVL29:
+ 252               	.L14:
+ 253               	.LM31:
+ 254 011c 8BE3      		ldi r24,lo8(59)
+ 255 011e 8F15      		cp r24,r15
+ 256 0120 00F0      		brlo .L16
+ 257               	.LM32:
+ 258 0122 8F2D      		mov r24,r15
+ 259 0124 6AE0      		ldi r22,lo8(10)
+ 260 0126 0E94 0000 		call __udivmodqi4
+ 261 012a 282F      		mov r18,r24
+ 262 012c 30E0      		ldi r19,lo8(0)
+ 263               	.LVL30:
+ 264 012e E4E0      		ldi r30,4
+ 265 0130 220F      	1:	lsl r18
+ 266 0132 331F      		rol r19
+ 267 0134 EA95      		dec r30
+ 268 0136 01F4      		brne 1b
+ 269 0138 8F2D      		mov r24,r15
+ 270 013a 0E94 0000 		call __udivmodqi4
+ 271 013e 922B      		or r25,r18
+ 272 0140 80E0      		ldi r24,lo8(0)
+ 273 0142 692F      		mov r22,r25
+ 274 0144 0E94 0000 		call I2C_Write_Register
+ 275               	.LVL31:
+ 276               	.L16:
+ 277               	/* epilogue start */
+ 278               	.LM33:
+ 279 0148 1F91      		pop r17
+ 280               	.LVL32:
+ 281 014a 0F91      		pop r16
+ 282               	.LVL33:
+ 283 014c FF90      		pop r15
+ 284               	.LVL34:
+ 285 014e 0895      		ret
+ 286               	.LFE10:
+ 288               	.global	RTC_Set_12H_PM
+ 290               	RTC_Set_12H_PM:
+ 291               	.LFB9:
+ 292               	.LM34:
+ 293               	/* prologue: function */
+ 294               	/* frame size = 0 */
+ 295               	.LM35:
+ 296 0150 82E0      		ldi r24,lo8(2)
+ 297 0152 60E6      		ldi r22,lo8(96)
+ 298 0154 0E94 0000 		call I2C_Write_Register
+ 299               	/* epilogue start */
+ 300               	.LM36:
+ 301 0158 0895      		ret
+ 302               	.LFE9:
+ 304               	.global	RTC_Set_12H_AM
+ 306               	RTC_Set_12H_AM:
+ 307               	.LFB8:
+ 308               	.LM37:
+ 309               	/* prologue: function */
+ 310               	/* frame size = 0 */
+ 311               	.LM38:
+ 312 015a 82E0      		ldi r24,lo8(2)
+ 313 015c 60E4      		ldi r22,lo8(64)
+ 314 015e 0E94 0000 		call I2C_Write_Register
+ 315               	/* epilogue start */
+ 316               	.LM39:
+ 317 0162 0895      		ret
+ 318               	.LFE8:
+ 320               	.global	RTC_Set_24H_AM
+ 322               	RTC_Set_24H_AM:
+ 323               	.LFB7:
+ 324               	.LM40:
+ 325               	/* prologue: function */
+ 326               	/* frame size = 0 */
+ 327               	.LM41:
+ 328 0164 82E0      		ldi r24,lo8(2)
+ 329 0166 60E0      		ldi r22,lo8(0)
+ 330 0168 0E94 0000 		call I2C_Write_Register
+ 331               	/* epilogue start */
+ 332               	.LM42:
+ 333 016c 0895      		ret
+ 334               	.LFE7:
+ 336               	.global	RTC_Init
+ 338               	RTC_Init:
+ 339               	.LFB6:
+ 340               	.LM43:
+ 341               	/* prologue: function */
+ 342               	/* frame size = 0 */
+ 343               	.LM44:
+ 344 016e 0E94 0000 		call I2C_Init
+ 345               	/* epilogue start */
+ 346               	.LM45:
+ 347 0172 0895      		ret
+ 348               	.LFE6:
+ 438               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 rtc.c
+C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:2      *ABS*:0000003f __SREG__
+C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:3      *ABS*:0000003e __SP_H__
+C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:4      *ABS*:0000003d __SP_L__
+C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:5      *ABS*:00000034 __CCP__
+C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:18     .text:00000000 RTC_Get_Sec
+C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:56     .text:00000026 RTC_Get_Min
+C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:94     .text:0000004c RTC_Get_Hr
+C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:151    .text:00000092 RTC_Get_AmPm
+C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:176    .text:000000a8 RTC_Set_Time
+C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:290    .text:00000150 RTC_Set_12H_PM
+C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:306    .text:0000015a RTC_Set_12H_AM
+C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:322    .text:00000164 RTC_Set_24H_AM
+C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:338    .text:0000016e RTC_Init
+
+UNDEFINED SYMBOLS
+I2C_Read_Register
+__udivmodqi4
+I2C_Write_Register
+I2C_Init

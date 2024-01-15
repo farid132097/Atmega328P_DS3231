@@ -1,0 +1,3100 @@
+
+main.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000028  00800100  00000dba  00000e4e  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000dba  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          0000002f  00800128  00800128  00000e76  2**0
+                  ALLOC
+  3 .debug_aranges 00000080  00000000  00000000  00000e76  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_pubnames 00000871  00000000  00000000  00000ef6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00001c5d  00000000  00000000  00001767  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000657  00000000  00000000  000033c4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00001508  00000000  00000000  00003a1b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000620  00000000  00000000  00004f24  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000842  00000000  00000000  00005544  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000be7  00000000  00000000  00005d86  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000180  00000000  00000000  0000696d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   8:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  10:	0c 94 a4 05 	jmp	0xb48	; 0xb48 <__vector_4>
+  14:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  1c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  2c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  38:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  40:	0c 94 e3 05 	jmp	0xbc6	; 0xbc6 <__vector_16>
+  44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  48:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  4c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  50:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  54:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  58:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  5c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  60:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  64:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	ea eb       	ldi	r30, 0xBA	; 186
+  7c:	fd e0       	ldi	r31, 0x0D	; 13
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <.do_copy_data_start>
+
+00000080 <.do_copy_data_loop>:
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+
+00000084 <.do_copy_data_start>:
+  84:	a8 32       	cpi	r26, 0x28	; 40
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <.do_copy_data_loop>
+
+0000008a <__do_clear_bss>:
+  8a:	11 e0       	ldi	r17, 0x01	; 1
+  8c:	a8 e2       	ldi	r26, 0x28	; 40
+  8e:	b1 e0       	ldi	r27, 0x01	; 1
+  90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
+
+00000092 <.do_clear_bss_loop>:
+  92:	1d 92       	st	X+, r1
+
+00000094 <.do_clear_bss_start>:
+  94:	a7 35       	cpi	r26, 0x57	; 87
+  96:	b1 07       	cpc	r27, r17
+  98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
+  9a:	0e 94 53 00 	call	0xa6	; 0xa6 <main>
+  9e:	0c 94 db 06 	jmp	0xdb6	; 0xdb6 <_exit>
+
+000000a2 <__bad_interrupt>:
+  a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000a6 <main>:
+#include <util/delay.h>
+#include "debug.h"
+#include "i2c.h"
+#include "rtc.h"
+
+int main(void){
+  a6:	cf 93       	push	r28
+  a8:	df 93       	push	r29
+
+  DDRD  |= (1<<4);
+  aa:	54 9a       	sbi	0x0a, 4	; 10
+  PORTD &=~(1<<4);
+  ac:	5c 98       	cbi	0x0b, 4	; 11
+  
+  RTC_Init();
+  ae:	0e 94 aa 06 	call	0xd54	; 0xd54 <RTC_Init>
+  debug_init();
+  b2:	0e 94 9d 05 	call	0xb3a	; 0xb3a <debug_init>
+  debug_tx_text_nl("Debug Started");
+  b6:	80 e0       	ldi	r24, 0x00	; 0
+  b8:	91 e0       	ldi	r25, 0x01	; 1
+  ba:	0e 94 16 04 	call	0x82c	; 0x82c <debug_tx_text_nl>
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+  be:	cc e2       	ldi	r28, 0x2C	; 44
+  c0:	d1 e0       	ldi	r29, 0x01	; 1
+  //RTC_Set_12H_AM();
+  //RTC_Set_Time(11,59,30);
+  
+  while(1){
+    
+	debug_tx_number_cm(RTC_Get_Hr());
+  c2:	0e 94 19 06 	call	0xc32	; 0xc32 <RTC_Get_Hr>
+  c6:	90 e0       	ldi	r25, 0x00	; 0
+  c8:	a0 e0       	ldi	r26, 0x00	; 0
+  ca:	b0 e0       	ldi	r27, 0x00	; 0
+  cc:	bc 01       	movw	r22, r24
+  ce:	cd 01       	movw	r24, r26
+  d0:	0e 94 9d 04 	call	0x93a	; 0x93a <debug_tx_number_cm>
+	debug_tx_number_cm(RTC_Get_Min());
+  d4:	0e 94 06 06 	call	0xc0c	; 0xc0c <RTC_Get_Min>
+  d8:	90 e0       	ldi	r25, 0x00	; 0
+  da:	a0 e0       	ldi	r26, 0x00	; 0
+  dc:	b0 e0       	ldi	r27, 0x00	; 0
+  de:	bc 01       	movw	r22, r24
+  e0:	cd 01       	movw	r24, r26
+  e2:	0e 94 9d 04 	call	0x93a	; 0x93a <debug_tx_number_cm>
+	debug_tx_number_sp(RTC_Get_Sec());
+  e6:	0e 94 f3 05 	call	0xbe6	; 0xbe6 <RTC_Get_Sec>
+  ea:	90 e0       	ldi	r25, 0x00	; 0
+  ec:	a0 e0       	ldi	r26, 0x00	; 0
+  ee:	b0 e0       	ldi	r27, 0x00	; 0
+  f0:	bc 01       	movw	r22, r24
+  f2:	cd 01       	movw	r24, r26
+  f4:	0e 94 98 04 	call	0x930	; 0x930 <debug_tx_number_sp>
+	if(RTC_Get_AmPm()){
+  f8:	0e 94 3c 06 	call	0xc78	; 0xc78 <RTC_Get_AmPm>
+  fc:	88 23       	and	r24, r24
+  fe:	19 f0       	breq	.+6      	; 0x106 <main+0x60>
+	  debug_tx_text_nl("PM");
+ 100:	8e e0       	ldi	r24, 0x0E	; 14
+ 102:	91 e0       	ldi	r25, 0x01	; 1
+ 104:	02 c0       	rjmp	.+4      	; 0x10a <main+0x64>
+	}else{
+	  debug_tx_text_nl("AM");
+ 106:	81 e1       	ldi	r24, 0x11	; 17
+ 108:	91 e0       	ldi	r25, 0x01	; 1
+ 10a:	0e 94 16 04 	call	0x82c	; 0x82c <debug_tx_text_nl>
+ 10e:	88 e8       	ldi	r24, 0x88	; 136
+ 110:	93 e1       	ldi	r25, 0x13	; 19
+ 112:	fe 01       	movw	r30, r28
+ 114:	31 97       	sbiw	r30, 0x01	; 1
+ 116:	f1 f7       	brne	.-4      	; 0x114 <main+0x6e>
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 118:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 11a:	99 f2       	breq	.-90     	; 0xc2 <main+0x1c>
+ 11c:	fa cf       	rjmp	.-12     	; 0x112 <main+0x6c>
+
+0000011e <I2C_Struct_Init>:
+}i2c_t;
+
+i2c_t I2C;
+
+void I2C_Struct_Init(void){
+  I2C.WriteAddr=0x00;
+ 11e:	10 92 28 01 	sts	0x0128, r1
+  I2C.ReadAddr=0x00;
+ 122:	10 92 29 01 	sts	0x0129, r1
+}
+ 126:	08 95       	ret
+
+00000128 <I2C_Half_Bit_Delay>:
+    can be achieved.
+*/
+void
+_delay_loop_1(uint8_t __count)
+{
+	__asm__ volatile (
+ 128:	80 e5       	ldi	r24, 0x50	; 80
+ 12a:	8a 95       	dec	r24
+ 12c:	f1 f7       	brne	.-4      	; 0x12a <I2C_Half_Bit_Delay+0x2>
+
+void I2C_Half_Bit_Delay(void){
+  _delay_us(20);
+}
+ 12e:	08 95       	ret
+
+00000130 <I2C_Bit_Delay>:
+ 130:	80 ea       	ldi	r24, 0xA0	; 160
+ 132:	8a 95       	dec	r24
+ 134:	f1 f7       	brne	.-4      	; 0x132 <I2C_Bit_Delay+0x2>
+
+void I2C_Bit_Delay(void){
+  _delay_us(40);
+}
+ 136:	08 95       	ret
+
+00000138 <I2C_Guard_Delay>:
+ 138:	88 e0       	ldi	r24, 0x08	; 8
+ 13a:	8a 95       	dec	r24
+ 13c:	f1 f7       	brne	.-4      	; 0x13a <I2C_Guard_Delay+0x2>
+
+void I2C_Guard_Delay(void){
+  _delay_us(2);
+}
+ 13e:	08 95       	ret
+
+00000140 <I2C_SCL_Set_DD>:
+
+void I2C_SCL_Set_DD(uint8_t state){
+  if(state==1){
+ 140:	81 30       	cpi	r24, 0x01	; 1
+ 142:	11 f4       	brne	.+4      	; 0x148 <I2C_SCL_Set_DD+0x8>
+    I2C_SCL_DDR |=  (1<<I2C_SCL_bp);
+ 144:	3d 9a       	sbi	0x07, 5	; 7
+ 146:	08 95       	ret
+  }else{
+    I2C_SCL_DDR &=~ (1<<I2C_SCL_bp);
+ 148:	3d 98       	cbi	0x07, 5	; 7
+ 14a:	08 95       	ret
+
+0000014c <I2C_SCL_Set_Output_LL>:
+  }
+}
+
+void I2C_SCL_Set_Output_LL(uint8_t state){
+  if(state==1){
+ 14c:	81 30       	cpi	r24, 0x01	; 1
+ 14e:	11 f4       	brne	.+4      	; 0x154 <I2C_SCL_Set_Output_LL+0x8>
+    I2C_SCL_PORT |=  (1<<I2C_SCL_bp);
+ 150:	45 9a       	sbi	0x08, 5	; 8
+ 152:	08 95       	ret
+  }else{
+    I2C_SCL_PORT &=~ (1<<I2C_SCL_bp);
+ 154:	45 98       	cbi	0x08, 5	; 8
+ 156:	08 95       	ret
+
+00000158 <I2C_SCL_Set_Output>:
+  }
+}
+
+void I2C_SCL_Set_Output(uint8_t state){
+  if(state==1){
+ 158:	81 30       	cpi	r24, 0x01	; 1
+ 15a:	19 f4       	brne	.+6      	; 0x162 <I2C_SCL_Set_Output+0xa>
+  }
+}
+
+void I2C_SCL_Set_Output_LL(uint8_t state){
+  if(state==1){
+    I2C_SCL_PORT |=  (1<<I2C_SCL_bp);
+ 15c:	45 9a       	sbi	0x08, 5	; 8
+
+void I2C_SCL_Set_DD(uint8_t state){
+  if(state==1){
+    I2C_SCL_DDR |=  (1<<I2C_SCL_bp);
+  }else{
+    I2C_SCL_DDR &=~ (1<<I2C_SCL_bp);
+ 15e:	3d 98       	cbi	0x07, 5	; 7
+ 160:	08 95       	ret
+
+void I2C_SCL_Set_Output_LL(uint8_t state){
+  if(state==1){
+    I2C_SCL_PORT |=  (1<<I2C_SCL_bp);
+  }else{
+    I2C_SCL_PORT &=~ (1<<I2C_SCL_bp);
+ 162:	45 98       	cbi	0x08, 5	; 8
+  _delay_us(2);
+}
+
+void I2C_SCL_Set_DD(uint8_t state){
+  if(state==1){
+    I2C_SCL_DDR |=  (1<<I2C_SCL_bp);
+ 164:	3d 9a       	sbi	0x07, 5	; 7
+ 166:	08 95       	ret
+
+00000168 <I2C_SCL_Get_State>:
+	I2C_SCL_Set_DD(1);
+  }
+}
+
+uint8_t I2C_SCL_Get_State(void){
+  if(I2C_SCL_PIN & (1<<I2C_SCL_bp)){
+ 168:	86 b1       	in	r24, 0x06	; 6
+ 16a:	90 e0       	ldi	r25, 0x00	; 0
+ 16c:	25 e0       	ldi	r18, 0x05	; 5
+ 16e:	96 95       	lsr	r25
+ 170:	87 95       	ror	r24
+ 172:	2a 95       	dec	r18
+ 174:	e1 f7       	brne	.-8      	; 0x16e <I2C_SCL_Get_State+0x6>
+    return 1;
+  }else{
+    return 0;
+  }
+}
+ 176:	81 70       	andi	r24, 0x01	; 1
+ 178:	08 95       	ret
+
+0000017a <I2C_SDA_Set_DD>:
+
+void I2C_SDA_Set_DD(uint8_t state){
+  if(state==1){
+ 17a:	81 30       	cpi	r24, 0x01	; 1
+ 17c:	11 f4       	brne	.+4      	; 0x182 <I2C_SDA_Set_DD+0x8>
+    I2C_SDA_DDR |=  (1<<I2C_SDA_bp);
+ 17e:	3c 9a       	sbi	0x07, 4	; 7
+ 180:	08 95       	ret
+  }else{
+    I2C_SDA_DDR &=~ (1<<I2C_SDA_bp);
+ 182:	3c 98       	cbi	0x07, 4	; 7
+ 184:	08 95       	ret
+
+00000186 <I2C_SDA_Set_Output_LL>:
+  }
+}
+
+void I2C_SDA_Set_Output_LL(uint8_t state){
+  if(state==1){
+ 186:	81 30       	cpi	r24, 0x01	; 1
+ 188:	11 f4       	brne	.+4      	; 0x18e <I2C_SDA_Set_Output_LL+0x8>
+    I2C_SDA_PORT |=  (1<<I2C_SDA_bp);
+ 18a:	44 9a       	sbi	0x08, 4	; 8
+ 18c:	08 95       	ret
+  }else{
+    I2C_SDA_PORT &=~ (1<<I2C_SDA_bp);
+ 18e:	44 98       	cbi	0x08, 4	; 8
+ 190:	08 95       	ret
+
+00000192 <I2C_SDA_Set_Output>:
+  }
+}
+
+void I2C_SDA_Set_Output(uint8_t state){
+  if(state==1){
+ 192:	81 30       	cpi	r24, 0x01	; 1
+ 194:	19 f4       	brne	.+6      	; 0x19c <I2C_SDA_Set_Output+0xa>
+  }
+}
+
+void I2C_SDA_Set_Output_LL(uint8_t state){
+  if(state==1){
+    I2C_SDA_PORT |=  (1<<I2C_SDA_bp);
+ 196:	44 9a       	sbi	0x08, 4	; 8
+
+void I2C_SDA_Set_DD(uint8_t state){
+  if(state==1){
+    I2C_SDA_DDR |=  (1<<I2C_SDA_bp);
+  }else{
+    I2C_SDA_DDR &=~ (1<<I2C_SDA_bp);
+ 198:	3c 98       	cbi	0x07, 4	; 7
+ 19a:	08 95       	ret
+
+void I2C_SDA_Set_Output_LL(uint8_t state){
+  if(state==1){
+    I2C_SDA_PORT |=  (1<<I2C_SDA_bp);
+  }else{
+    I2C_SDA_PORT &=~ (1<<I2C_SDA_bp);
+ 19c:	44 98       	cbi	0x08, 4	; 8
+  }
+}
+
+void I2C_SDA_Set_DD(uint8_t state){
+  if(state==1){
+    I2C_SDA_DDR |=  (1<<I2C_SDA_bp);
+ 19e:	3c 9a       	sbi	0x07, 4	; 7
+ 1a0:	08 95       	ret
+
+000001a2 <I2C_SDA_Get_State>:
+	I2C_SDA_Set_DD(1);
+  }
+}
+
+uint8_t I2C_SDA_Get_State(void){
+  if(I2C_SDA_PIN & (1<<I2C_SDA_bp)){
+ 1a2:	86 b1       	in	r24, 0x06	; 6
+ 1a4:	90 e0       	ldi	r25, 0x00	; 0
+ 1a6:	34 e0       	ldi	r19, 0x04	; 4
+ 1a8:	96 95       	lsr	r25
+ 1aa:	87 95       	ror	r24
+ 1ac:	3a 95       	dec	r19
+ 1ae:	e1 f7       	brne	.-8      	; 0x1a8 <I2C_SDA_Get_State+0x6>
+    return 1;
+  }else{
+    return 0;
+  }
+}
+ 1b0:	81 70       	andi	r24, 0x01	; 1
+ 1b2:	08 95       	ret
+
+000001b4 <I2C_SCL_Reset_State>:
+
+void I2C_SCL_Set_DD(uint8_t state){
+  if(state==1){
+    I2C_SCL_DDR |=  (1<<I2C_SCL_bp);
+  }else{
+    I2C_SCL_DDR &=~ (1<<I2C_SCL_bp);
+ 1b4:	3d 98       	cbi	0x07, 5	; 7
+  }
+}
+
+void I2C_SCL_Reset_State(void){
+  I2C_SCL_Set_DD(0);
+  I2C_SCL_Set_Output(0);
+ 1b6:	80 e0       	ldi	r24, 0x00	; 0
+ 1b8:	0e 94 ac 00 	call	0x158	; 0x158 <I2C_SCL_Set_Output>
+}
+ 1bc:	08 95       	ret
+
+000001be <I2C_SDA_Reset_State>:
+
+void I2C_SDA_Set_DD(uint8_t state){
+  if(state==1){
+    I2C_SDA_DDR |=  (1<<I2C_SDA_bp);
+  }else{
+    I2C_SDA_DDR &=~ (1<<I2C_SDA_bp);
+ 1be:	3c 98       	cbi	0x07, 4	; 7
+  I2C_SCL_Set_Output(0);
+}
+
+void I2C_SDA_Reset_State(void){
+  I2C_SDA_Set_DD(0);
+  I2C_SDA_Set_Output(0);
+ 1c0:	80 e0       	ldi	r24, 0x00	; 0
+ 1c2:	0e 94 c9 00 	call	0x192	; 0x192 <I2C_SDA_Set_Output>
+}
+ 1c6:	08 95       	ret
+
+000001c8 <I2C_GPIO_Init>:
+  _delay_us(2);
+}
+
+void I2C_SCL_Set_DD(uint8_t state){
+  if(state==1){
+    I2C_SCL_DDR |=  (1<<I2C_SCL_bp);
+ 1c8:	3d 9a       	sbi	0x07, 5	; 7
+
+void I2C_SDA_Set_DD(uint8_t state){
+  if(state==1){
+    I2C_SDA_DDR |=  (1<<I2C_SDA_bp);
+  }else{
+    I2C_SDA_DDR &=~ (1<<I2C_SDA_bp);
+ 1ca:	3c 98       	cbi	0x07, 4	; 7
+}
+
+void I2C_GPIO_Init(void){
+  I2C_SCL_Set_DD(1);
+  I2C_SDA_Set_DD(0);
+  I2C_SCL_Set_Output(1);
+ 1cc:	81 e0       	ldi	r24, 0x01	; 1
+ 1ce:	0e 94 ac 00 	call	0x158	; 0x158 <I2C_SCL_Set_Output>
+  I2C_SDA_Set_Output(1);
+ 1d2:	81 e0       	ldi	r24, 0x01	; 1
+ 1d4:	0e 94 c9 00 	call	0x192	; 0x192 <I2C_SDA_Set_Output>
+}
+ 1d8:	08 95       	ret
+
+000001da <I2C_Start>:
+
+void I2C_Start(void){
+ 1da:	1f 93       	push	r17
+  I2C_SCL_Set_Output(1);
+ 1dc:	81 e0       	ldi	r24, 0x01	; 1
+ 1de:	0e 94 ac 00 	call	0x158	; 0x158 <I2C_SCL_Set_Output>
+  I2C_SDA_Set_Output(1);
+ 1e2:	81 e0       	ldi	r24, 0x01	; 1
+ 1e4:	0e 94 c9 00 	call	0x192	; 0x192 <I2C_SDA_Set_Output>
+ 1e8:	10 e5       	ldi	r17, 0x50	; 80
+ 1ea:	81 2f       	mov	r24, r17
+ 1ec:	8a 95       	dec	r24
+ 1ee:	f1 f7       	brne	.-4      	; 0x1ec <I2C_Start+0x12>
+  I2C_Half_Bit_Delay();
+  
+  I2C_SDA_Set_Output(0);
+ 1f0:	80 e0       	ldi	r24, 0x00	; 0
+ 1f2:	0e 94 c9 00 	call	0x192	; 0x192 <I2C_SDA_Set_Output>
+ 1f6:	81 2f       	mov	r24, r17
+ 1f8:	8a 95       	dec	r24
+ 1fa:	f1 f7       	brne	.-4      	; 0x1f8 <I2C_Start+0x1e>
+  I2C_Half_Bit_Delay();
+  
+  I2C_SCL_Set_Output(0);
+ 1fc:	80 e0       	ldi	r24, 0x00	; 0
+ 1fe:	0e 94 ac 00 	call	0x158	; 0x158 <I2C_SCL_Set_Output>
+ 202:	1a 95       	dec	r17
+ 204:	f1 f7       	brne	.-4      	; 0x202 <I2C_Start+0x28>
+  I2C_Half_Bit_Delay();
+}
+ 206:	1f 91       	pop	r17
+ 208:	08 95       	ret
+
+0000020a <I2C_Stop>:
+
+void I2C_Stop(void){
+ 20a:	1f 93       	push	r17
+  I2C_SCL_Set_Output(0);
+ 20c:	80 e0       	ldi	r24, 0x00	; 0
+ 20e:	0e 94 ac 00 	call	0x158	; 0x158 <I2C_SCL_Set_Output>
+  I2C_SDA_Set_Output(0);
+ 212:	80 e0       	ldi	r24, 0x00	; 0
+ 214:	0e 94 c9 00 	call	0x192	; 0x192 <I2C_SDA_Set_Output>
+ 218:	10 e5       	ldi	r17, 0x50	; 80
+ 21a:	81 2f       	mov	r24, r17
+ 21c:	8a 95       	dec	r24
+ 21e:	f1 f7       	brne	.-4      	; 0x21c <I2C_Stop+0x12>
+  I2C_Half_Bit_Delay();
+  
+  I2C_SCL_Set_Output(1);
+ 220:	81 e0       	ldi	r24, 0x01	; 1
+ 222:	0e 94 ac 00 	call	0x158	; 0x158 <I2C_SCL_Set_Output>
+ 226:	81 2f       	mov	r24, r17
+ 228:	8a 95       	dec	r24
+ 22a:	f1 f7       	brne	.-4      	; 0x228 <I2C_Stop+0x1e>
+  I2C_Half_Bit_Delay();
+  
+  I2C_SDA_Set_Output(1);
+ 22c:	81 e0       	ldi	r24, 0x01	; 1
+ 22e:	0e 94 c9 00 	call	0x192	; 0x192 <I2C_SDA_Set_Output>
+ 232:	1a 95       	dec	r17
+ 234:	f1 f7       	brne	.-4      	; 0x232 <I2C_Stop+0x28>
+  I2C_Half_Bit_Delay();
+}
+ 236:	1f 91       	pop	r17
+ 238:	08 95       	ret
+
+0000023a <I2C_Data_Send>:
+
+void I2C_Data_Send(uint8_t data){
+ 23a:	ef 92       	push	r14
+ 23c:	ff 92       	push	r15
+ 23e:	0f 93       	push	r16
+ 240:	1f 93       	push	r17
+ 242:	08 2f       	mov	r16, r24
+ 244:	10 e0       	ldi	r17, 0x00	; 0
+ 246:	50 e5       	ldi	r21, 0x50	; 80
+ 248:	f5 2e       	mov	r15, r21
+  for(uint8_t i=0;i<8;i++){
+    if( data & 0x80){
+ 24a:	48 e0       	ldi	r20, 0x08	; 8
+ 24c:	e4 2e       	mov	r14, r20
+ 24e:	07 ff       	sbrs	r16, 7
+ 250:	02 c0       	rjmp	.+4      	; 0x256 <I2C_Data_Send+0x1c>
+	  I2C_SDA_Set_Output(1);
+ 252:	81 e0       	ldi	r24, 0x01	; 1
+ 254:	01 c0       	rjmp	.+2      	; 0x258 <I2C_Data_Send+0x1e>
+	}else{
+	  I2C_SDA_Set_Output(0);
+ 256:	80 e0       	ldi	r24, 0x00	; 0
+ 258:	0e 94 c9 00 	call	0x192	; 0x192 <I2C_SDA_Set_Output>
+ 25c:	8f 2d       	mov	r24, r15
+ 25e:	8a 95       	dec	r24
+ 260:	f1 f7       	brne	.-4      	; 0x25e <I2C_Data_Send+0x24>
+	}
+	I2C_Half_Bit_Delay();
+	I2C_SCL_Set_Output(1);
+ 262:	81 e0       	ldi	r24, 0x01	; 1
+ 264:	0e 94 ac 00 	call	0x158	; 0x158 <I2C_SCL_Set_Output>
+ 268:	8f 2d       	mov	r24, r15
+ 26a:	8a 95       	dec	r24
+ 26c:	f1 f7       	brne	.-4      	; 0x26a <I2C_Data_Send+0x30>
+	I2C_Half_Bit_Delay();
+	I2C_SCL_Set_Output(0);
+ 26e:	80 e0       	ldi	r24, 0x00	; 0
+ 270:	0e 94 ac 00 	call	0x158	; 0x158 <I2C_SCL_Set_Output>
+ 274:	8e 2d       	mov	r24, r14
+ 276:	8a 95       	dec	r24
+ 278:	f1 f7       	brne	.-4      	; 0x276 <I2C_Data_Send+0x3c>
+  I2C_SDA_Set_Output(1);
+  I2C_Half_Bit_Delay();
+}
+
+void I2C_Data_Send(uint8_t data){
+  for(uint8_t i=0;i<8;i++){
+ 27a:	1f 5f       	subi	r17, 0xFF	; 255
+ 27c:	18 30       	cpi	r17, 0x08	; 8
+ 27e:	11 f0       	breq	.+4      	; 0x284 <I2C_Data_Send+0x4a>
+	I2C_Half_Bit_Delay();
+	I2C_SCL_Set_Output(1);
+	I2C_Half_Bit_Delay();
+	I2C_SCL_Set_Output(0);
+	I2C_Guard_Delay();
+	data<<=1;
+ 280:	00 0f       	add	r16, r16
+ 282:	e5 cf       	rjmp	.-54     	; 0x24e <I2C_Data_Send+0x14>
+  }
+}
+ 284:	1f 91       	pop	r17
+ 286:	0f 91       	pop	r16
+ 288:	ff 90       	pop	r15
+ 28a:	ef 90       	pop	r14
+ 28c:	08 95       	ret
+
+0000028e <I2C_Data_Receive>:
+
+uint8_t I2C_Data_Receive(void){
+ 28e:	ff 92       	push	r15
+ 290:	0f 93       	push	r16
+ 292:	1f 93       	push	r17
+  uint8_t data=0;
+  I2C_SDA_Set_Output(1);
+ 294:	81 e0       	ldi	r24, 0x01	; 1
+ 296:	0e 94 c9 00 	call	0x192	; 0x192 <I2C_SDA_Set_Output>
+ 29a:	00 e0       	ldi	r16, 0x00	; 0
+ 29c:	10 e0       	ldi	r17, 0x00	; 0
+ 29e:	60 e5       	ldi	r22, 0x50	; 80
+ 2a0:	f6 2e       	mov	r15, r22
+  for(uint8_t i=0;i<8;i++){
+    data<<=1;
+ 2a2:	11 0f       	add	r17, r17
+ 2a4:	8f 2d       	mov	r24, r15
+ 2a6:	8a 95       	dec	r24
+ 2a8:	f1 f7       	brne	.-4      	; 0x2a6 <I2C_Data_Receive+0x18>
+	I2C_Half_Bit_Delay();
+	I2C_SCL_Set_Output(1);
+ 2aa:	81 e0       	ldi	r24, 0x01	; 1
+ 2ac:	0e 94 ac 00 	call	0x158	; 0x158 <I2C_SCL_Set_Output>
+	I2C_SDA_Set_DD(1);
+  }
+}
+
+uint8_t I2C_SDA_Get_State(void){
+  if(I2C_SDA_PIN & (1<<I2C_SDA_bp)){
+ 2b0:	34 99       	sbic	0x06, 4	; 6
+  for(uint8_t i=0;i<8;i++){
+    data<<=1;
+	I2C_Half_Bit_Delay();
+	I2C_SCL_Set_Output(1);
+	if(I2C_SDA_Get_State()){
+	  data|=0x01;
+ 2b2:	11 60       	ori	r17, 0x01	; 1
+ 2b4:	8f 2d       	mov	r24, r15
+ 2b6:	8a 95       	dec	r24
+ 2b8:	f1 f7       	brne	.-4      	; 0x2b6 <I2C_Data_Receive+0x28>
+	}
+	I2C_Half_Bit_Delay();
+	I2C_SCL_Set_Output(0);
+ 2ba:	80 e0       	ldi	r24, 0x00	; 0
+ 2bc:	0e 94 ac 00 	call	0x158	; 0x158 <I2C_SCL_Set_Output>
+}
+
+uint8_t I2C_Data_Receive(void){
+  uint8_t data=0;
+  I2C_SDA_Set_Output(1);
+  for(uint8_t i=0;i<8;i++){
+ 2c0:	0f 5f       	subi	r16, 0xFF	; 255
+ 2c2:	08 30       	cpi	r16, 0x08	; 8
+ 2c4:	71 f7       	brne	.-36     	; 0x2a2 <I2C_Data_Receive+0x14>
+ 2c6:	80 e5       	ldi	r24, 0x50	; 80
+ 2c8:	8a 95       	dec	r24
+ 2ca:	f1 f7       	brne	.-4      	; 0x2c8 <I2C_Data_Receive+0x3a>
+	}
+	I2C_Half_Bit_Delay();
+	I2C_SCL_Set_Output(0);
+  }
+  I2C_Half_Bit_Delay();
+  I2C_SCL_Set_Output(1);
+ 2cc:	81 e0       	ldi	r24, 0x01	; 1
+ 2ce:	0e 94 ac 00 	call	0x158	; 0x158 <I2C_SCL_Set_Output>
+  return data;
+}
+ 2d2:	81 2f       	mov	r24, r17
+ 2d4:	1f 91       	pop	r17
+ 2d6:	0f 91       	pop	r16
+ 2d8:	ff 90       	pop	r15
+ 2da:	08 95       	ret
+
+000002dc <I2C_Set_Ack>:
+
+void I2C_Set_Ack(void){
+ 2dc:	1f 93       	push	r17
+  I2C_SDA_Set_Output(0);
+ 2de:	80 e0       	ldi	r24, 0x00	; 0
+ 2e0:	0e 94 c9 00 	call	0x192	; 0x192 <I2C_SDA_Set_Output>
+ 2e4:	10 e5       	ldi	r17, 0x50	; 80
+ 2e6:	81 2f       	mov	r24, r17
+ 2e8:	8a 95       	dec	r24
+ 2ea:	f1 f7       	brne	.-4      	; 0x2e8 <I2C_Set_Ack+0xc>
+  I2C_Half_Bit_Delay();
+  I2C_SCL_Set_Output(1);
+ 2ec:	81 e0       	ldi	r24, 0x01	; 1
+ 2ee:	0e 94 ac 00 	call	0x158	; 0x158 <I2C_SCL_Set_Output>
+ 2f2:	1a 95       	dec	r17
+ 2f4:	f1 f7       	brne	.-4      	; 0x2f2 <I2C_Set_Ack+0x16>
+  I2C_Half_Bit_Delay();
+  I2C_SCL_Set_Output(0);
+ 2f6:	80 e0       	ldi	r24, 0x00	; 0
+ 2f8:	0e 94 ac 00 	call	0x158	; 0x158 <I2C_SCL_Set_Output>
+}
+ 2fc:	1f 91       	pop	r17
+ 2fe:	08 95       	ret
+
+00000300 <I2C_Set_Nack>:
+
+void I2C_Set_Nack(void){
+ 300:	1f 93       	push	r17
+  I2C_SDA_Set_Output(1);
+ 302:	81 e0       	ldi	r24, 0x01	; 1
+ 304:	0e 94 c9 00 	call	0x192	; 0x192 <I2C_SDA_Set_Output>
+ 308:	10 e5       	ldi	r17, 0x50	; 80
+ 30a:	81 2f       	mov	r24, r17
+ 30c:	8a 95       	dec	r24
+ 30e:	f1 f7       	brne	.-4      	; 0x30c <I2C_Set_Nack+0xc>
+  I2C_Half_Bit_Delay();
+  I2C_SCL_Set_Output(1);
+ 310:	81 e0       	ldi	r24, 0x01	; 1
+ 312:	0e 94 ac 00 	call	0x158	; 0x158 <I2C_SCL_Set_Output>
+ 316:	1a 95       	dec	r17
+ 318:	f1 f7       	brne	.-4      	; 0x316 <I2C_Set_Nack+0x16>
+  I2C_Half_Bit_Delay();
+  I2C_SCL_Set_Output(0);
+ 31a:	80 e0       	ldi	r24, 0x00	; 0
+ 31c:	0e 94 ac 00 	call	0x158	; 0x158 <I2C_SCL_Set_Output>
+}
+ 320:	1f 91       	pop	r17
+ 322:	08 95       	ret
+
+00000324 <I2C_Get_Ack>:
+
+uint8_t I2C_Get_Ack(void){
+ 324:	0f 93       	push	r16
+ 326:	1f 93       	push	r17
+  uint8_t ack=0;
+  I2C_SDA_Set_Output(1);
+ 328:	81 e0       	ldi	r24, 0x01	; 1
+ 32a:	0e 94 c9 00 	call	0x192	; 0x192 <I2C_SDA_Set_Output>
+ 32e:	00 e5       	ldi	r16, 0x50	; 80
+ 330:	80 2f       	mov	r24, r16
+ 332:	8a 95       	dec	r24
+ 334:	f1 f7       	brne	.-4      	; 0x332 <I2C_Get_Ack+0xe>
+  I2C_Half_Bit_Delay();
+  I2C_SCL_Set_Output(1);
+ 336:	81 e0       	ldi	r24, 0x01	; 1
+ 338:	0e 94 ac 00 	call	0x158	; 0x158 <I2C_SCL_Set_Output>
+	I2C_SDA_Set_DD(1);
+  }
+}
+
+uint8_t I2C_SDA_Get_State(void){
+  if(I2C_SDA_PIN & (1<<I2C_SDA_bp)){
+ 33c:	16 b1       	in	r17, 0x06	; 6
+ 33e:	0a 95       	dec	r16
+ 340:	f1 f7       	brne	.-4      	; 0x33e <I2C_Get_Ack+0x1a>
+  I2C_SDA_Set_Output(1);
+  I2C_Half_Bit_Delay();
+  I2C_SCL_Set_Output(1);
+  ack=I2C_SDA_Get_State();
+  I2C_Half_Bit_Delay();
+  I2C_SCL_Set_Output(0);
+ 342:	80 e0       	ldi	r24, 0x00	; 0
+ 344:	0e 94 ac 00 	call	0x158	; 0x158 <I2C_SCL_Set_Output>
+ 348:	88 e0       	ldi	r24, 0x08	; 8
+ 34a:	8a 95       	dec	r24
+ 34c:	f1 f7       	brne	.-4      	; 0x34a <I2C_Get_Ack+0x26>
+ 34e:	12 95       	swap	r17
+ 350:	1f 70       	andi	r17, 0x0F	; 15
+ 352:	10 95       	com	r17
+  if(ack==0){
+    return 1;
+  }else{
+    return 0;
+  }
+}
+ 354:	81 2f       	mov	r24, r17
+ 356:	81 70       	andi	r24, 0x01	; 1
+ 358:	1f 91       	pop	r17
+ 35a:	0f 91       	pop	r16
+ 35c:	08 95       	ret
+
+0000035e <I2C_Send_Device_Address>:
+
+uint8_t I2C_Send_Device_Address(uint8_t address){
+ 35e:	1f 93       	push	r17
+ 360:	18 2f       	mov	r17, r24
+  uint8_t ack=0;
+  I2C_Start();
+ 362:	0e 94 ed 00 	call	0x1da	; 0x1da <I2C_Start>
+  I2C_Data_Send(address);
+ 366:	81 2f       	mov	r24, r17
+ 368:	0e 94 1d 01 	call	0x23a	; 0x23a <I2C_Data_Send>
+  ack = I2C_Get_Ack();
+ 36c:	0e 94 92 01 	call	0x324	; 0x324 <I2C_Get_Ack>
+ 370:	18 2f       	mov	r17, r24
+  I2C_Stop();
+ 372:	0e 94 05 01 	call	0x20a	; 0x20a <I2C_Stop>
+  return ack;
+}
+ 376:	81 2f       	mov	r24, r17
+ 378:	1f 91       	pop	r17
+ 37a:	08 95       	ret
+
+0000037c <I2C_Get_Device_Address>:
+
+uint8_t I2C_Get_Device_Address(void){
+ 37c:	1f 93       	push	r17
+ 37e:	10 e0       	ldi	r17, 0x00	; 0
+  uint8_t sts=0;
+  for(uint8_t i=0;i<255;i++){
+	sts = I2C_Send_Device_Address(i);
+ 380:	81 2f       	mov	r24, r17
+ 382:	0e 94 af 01 	call	0x35e	; 0x35e <I2C_Send_Device_Address>
+	if(sts==1){
+ 386:	81 30       	cpi	r24, 0x01	; 1
+ 388:	11 f4       	brne	.+4      	; 0x38e <I2C_Get_Device_Address+0x12>
+ 38a:	81 2f       	mov	r24, r17
+ 38c:	03 c0       	rjmp	.+6      	; 0x394 <I2C_Get_Device_Address+0x18>
+  return ack;
+}
+
+uint8_t I2C_Get_Device_Address(void){
+  uint8_t sts=0;
+  for(uint8_t i=0;i<255;i++){
+ 38e:	1f 5f       	subi	r17, 0xFF	; 255
+ 390:	1f 3f       	cpi	r17, 0xFF	; 255
+ 392:	b1 f7       	brne	.-20     	; 0x380 <I2C_Get_Device_Address+0x4>
+	  sts=i;
+	  break;
+	}
+  }
+  return sts;
+}
+ 394:	1f 91       	pop	r17
+ 396:	08 95       	ret
+
+00000398 <I2C_Read_Register>:
+
+uint8_t I2C_Read_Register(uint8_t reg){
+ 398:	df 92       	push	r13
+ 39a:	ef 92       	push	r14
+ 39c:	ff 92       	push	r15
+ 39e:	0f 93       	push	r16
+ 3a0:	1f 93       	push	r17
+ 3a2:	18 2f       	mov	r17, r24
+  uint8_t sts=0,data=0;
+  I2C_Start();
+ 3a4:	0e 94 ed 00 	call	0x1da	; 0x1da <I2C_Start>
+  I2C_Data_Send(I2C.WriteAddr);
+ 3a8:	80 91 28 01 	lds	r24, 0x0128
+ 3ac:	0e 94 1d 01 	call	0x23a	; 0x23a <I2C_Data_Send>
+  sts |= I2C_Get_Ack()<<0;
+ 3b0:	0e 94 92 01 	call	0x324	; 0x324 <I2C_Get_Ack>
+ 3b4:	e8 2e       	mov	r14, r24
+  I2C_Data_Send(reg);
+ 3b6:	81 2f       	mov	r24, r17
+ 3b8:	0e 94 1d 01 	call	0x23a	; 0x23a <I2C_Data_Send>
+  sts |= I2C_Get_Ack()<<1;
+ 3bc:	0e 94 92 01 	call	0x324	; 0x324 <I2C_Get_Ack>
+ 3c0:	f8 2e       	mov	r15, r24
+  I2C_Stop();
+ 3c2:	0e 94 05 01 	call	0x20a	; 0x20a <I2C_Stop>
+  I2C_Start();
+ 3c6:	0e 94 ed 00 	call	0x1da	; 0x1da <I2C_Start>
+  I2C_Data_Send(I2C.ReadAddr);
+ 3ca:	80 91 29 01 	lds	r24, 0x0129
+ 3ce:	0e 94 1d 01 	call	0x23a	; 0x23a <I2C_Data_Send>
+  sts |= I2C_Get_Ack()<<2;
+ 3d2:	0e 94 92 01 	call	0x324	; 0x324 <I2C_Get_Ack>
+ 3d6:	18 2f       	mov	r17, r24
+  data = I2C_Data_Receive();
+ 3d8:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_Data_Receive>
+ 3dc:	d8 2e       	mov	r13, r24
+  sts |= I2C_Get_Ack()<<3;
+ 3de:	0e 94 92 01 	call	0x324	; 0x324 <I2C_Get_Ack>
+ 3e2:	08 2f       	mov	r16, r24
+  I2C_Stop();
+ 3e4:	0e 94 05 01 	call	0x20a	; 0x20a <I2C_Stop>
+  if(sts == 0x07){
+ 3e8:	ff 0c       	add	r15, r15
+ 3ea:	11 0f       	add	r17, r17
+ 3ec:	11 0f       	add	r17, r17
+ 3ee:	1f 29       	or	r17, r15
+ 3f0:	1e 29       	or	r17, r14
+ 3f2:	00 0f       	add	r16, r16
+ 3f4:	00 0f       	add	r16, r16
+ 3f6:	00 0f       	add	r16, r16
+ 3f8:	01 2b       	or	r16, r17
+ 3fa:	07 30       	cpi	r16, 0x07	; 7
+ 3fc:	11 f0       	breq	.+4      	; 0x402 <I2C_Read_Register+0x6a>
+ 3fe:	8f ef       	ldi	r24, 0xFF	; 255
+ 400:	01 c0       	rjmp	.+2      	; 0x404 <I2C_Read_Register+0x6c>
+ 402:	8d 2d       	mov	r24, r13
+    sts = data;
+  }else{
+    sts = 0xFF;
+  }
+  return sts;
+}
+ 404:	1f 91       	pop	r17
+ 406:	0f 91       	pop	r16
+ 408:	ff 90       	pop	r15
+ 40a:	ef 90       	pop	r14
+ 40c:	df 90       	pop	r13
+ 40e:	08 95       	ret
+
+00000410 <I2C_Write_Register>:
+
+void I2C_Write_Register(uint8_t reg, uint8_t val){
+ 410:	0f 93       	push	r16
+ 412:	1f 93       	push	r17
+ 414:	18 2f       	mov	r17, r24
+ 416:	06 2f       	mov	r16, r22
+  uint8_t sts=0,data=0;
+  I2C_Start();
+ 418:	0e 94 ed 00 	call	0x1da	; 0x1da <I2C_Start>
+  I2C_Data_Send(I2C.WriteAddr);
+ 41c:	80 91 28 01 	lds	r24, 0x0128
+ 420:	0e 94 1d 01 	call	0x23a	; 0x23a <I2C_Data_Send>
+  sts |= I2C_Get_Ack()<<0;
+ 424:	0e 94 92 01 	call	0x324	; 0x324 <I2C_Get_Ack>
+  I2C_Data_Send(reg);
+ 428:	81 2f       	mov	r24, r17
+ 42a:	0e 94 1d 01 	call	0x23a	; 0x23a <I2C_Data_Send>
+  sts |= I2C_Get_Ack()<<1;
+ 42e:	0e 94 92 01 	call	0x324	; 0x324 <I2C_Get_Ack>
+
+  I2C_Data_Send(val);
+ 432:	80 2f       	mov	r24, r16
+ 434:	0e 94 1d 01 	call	0x23a	; 0x23a <I2C_Data_Send>
+  sts |= I2C_Get_Ack()<<2;
+ 438:	0e 94 92 01 	call	0x324	; 0x324 <I2C_Get_Ack>
+  I2C_Stop();
+ 43c:	0e 94 05 01 	call	0x20a	; 0x20a <I2C_Stop>
+  if(sts == 0x07){
+    sts = data;
+  }else{
+    sts = 0xFF;
+  }
+}
+ 440:	1f 91       	pop	r17
+ 442:	0f 91       	pop	r16
+ 444:	08 95       	ret
+
+00000446 <I2C_Init>:
+}i2c_t;
+
+i2c_t I2C;
+
+void I2C_Struct_Init(void){
+  I2C.WriteAddr=0x00;
+ 446:	10 92 28 01 	sts	0x0128, r1
+  I2C.ReadAddr=0x00;
+ 44a:	10 92 29 01 	sts	0x0129, r1
+  }
+}
+ 
+void I2C_Init(void){
+  I2C_Struct_Init();
+  I2C_GPIO_Init();
+ 44e:	0e 94 e4 00 	call	0x1c8	; 0x1c8 <I2C_GPIO_Init>
+ 452:	88 ee       	ldi	r24, 0xE8	; 232
+ 454:	93 e0       	ldi	r25, 0x03	; 3
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 456:	2c e2       	ldi	r18, 0x2C	; 44
+ 458:	31 e0       	ldi	r19, 0x01	; 1
+ 45a:	f9 01       	movw	r30, r18
+ 45c:	31 97       	sbiw	r30, 0x01	; 1
+ 45e:	f1 f7       	brne	.-4      	; 0x45c <I2C_Init+0x16>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 460:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 462:	d9 f7       	brne	.-10     	; 0x45a <I2C_Init+0x14>
+  _delay_ms(100);
+  I2C.WriteAddr = I2C_Get_Device_Address();
+ 464:	0e 94 be 01 	call	0x37c	; 0x37c <I2C_Get_Device_Address>
+ 468:	80 93 28 01 	sts	0x0128, r24
+  I2C.ReadAddr = I2C.WriteAddr+1;
+ 46c:	8f 5f       	subi	r24, 0xFF	; 255
+ 46e:	80 93 29 01 	sts	0x0129, r24
+}
+ 472:	08 95       	ret
+
+00000474 <debug_struct_init>:
+}debug_t;
+
+debug_t debug;
+
+void debug_struct_init(void){
+  debug.error=0;
+ 474:	10 92 2a 01 	sts	0x012A, r1
+  debug.datareg=0;
+ 478:	10 92 2b 01 	sts	0x012B, r1
+  debug.databsy=1;
+ 47c:	81 e0       	ldi	r24, 0x01	; 1
+ 47e:	80 93 2c 01 	sts	0x012C, r24
+ 482:	80 e0       	ldi	r24, 0x00	; 0
+ 484:	90 e0       	ldi	r25, 0x00	; 0
+  for(uint8_t i=0;i<DEBUG_RX_BUF_SIZE;i++){
+    debug.buf[i]=0;
+ 486:	fc 01       	movw	r30, r24
+ 488:	e6 5d       	subi	r30, 0xD6	; 214
+ 48a:	fe 4f       	sbci	r31, 0xFE	; 254
+ 48c:	13 82       	std	Z+3, r1	; 0x03
+ 48e:	01 96       	adiw	r24, 0x01	; 1
+
+void debug_struct_init(void){
+  debug.error=0;
+  debug.datareg=0;
+  debug.databsy=1;
+  for(uint8_t i=0;i<DEBUG_RX_BUF_SIZE;i++){
+ 490:	80 32       	cpi	r24, 0x20	; 32
+ 492:	91 05       	cpc	r25, r1
+ 494:	c1 f7       	brne	.-16     	; 0x486 <debug_struct_init+0x12>
+    debug.buf[i]=0;
+  }
+  debug.bufindex=0;
+ 496:	10 92 4d 01 	sts	0x014D, r1
+ 49a:	ee e4       	ldi	r30, 0x4E	; 78
+ 49c:	f1 e0       	ldi	r31, 0x01	; 1
+  for(uint8_t i=0;i<8;i++){
+    debug.digits[i]=0;
+ 49e:	11 92       	st	Z+, r1
+  debug.databsy=1;
+  for(uint8_t i=0;i<DEBUG_RX_BUF_SIZE;i++){
+    debug.buf[i]=0;
+  }
+  debug.bufindex=0;
+  for(uint8_t i=0;i<8;i++){
+ 4a0:	81 e0       	ldi	r24, 0x01	; 1
+ 4a2:	e6 35       	cpi	r30, 0x56	; 86
+ 4a4:	f8 07       	cpc	r31, r24
+ 4a6:	d9 f7       	brne	.-10     	; 0x49e <debug_struct_init+0x2a>
+    debug.digits[i]=0;
+  }
+  debug.input_num_digits=0;
+ 4a8:	10 82       	st	Z, r1
+}
+ 4aa:	08 95       	ret
+
+000004ac <debug_timings_init>:
+
+void debug_timings_init(void){
+  #ifdef DEBUG_USE_TIMER0
+  TCCR0A=0x00;
+ 4ac:	14 bc       	out	0x24, r1	; 36
+  TCCR0B=0x00;
+ 4ae:	15 bc       	out	0x25, r1	; 37
+  TIMSK0=0x00;
+ 4b0:	10 92 6e 00 	sts	0x006E, r1
+  TIFR0 =0xff;
+ 4b4:	8f ef       	ldi	r24, 0xFF	; 255
+ 4b6:	85 bb       	out	0x15, r24	; 21
+  sei();
+  #define ISR_PCINT_VECT PCINT0_vect
+  #endif
+  
+  #ifdef DEBUG_RX_DDRC
+  PCICR |=(1<<PCIE1);
+ 4b8:	e8 e6       	ldi	r30, 0x68	; 104
+ 4ba:	f0 e0       	ldi	r31, 0x00	; 0
+ 4bc:	80 81       	ld	r24, Z
+ 4be:	82 60       	ori	r24, 0x02	; 2
+ 4c0:	80 83       	st	Z, r24
+  PCMSK1|=(1<<DEBUG_RX_bp);
+ 4c2:	ec e6       	ldi	r30, 0x6C	; 108
+ 4c4:	f0 e0       	ldi	r31, 0x00	; 0
+ 4c6:	80 81       	ld	r24, Z
+ 4c8:	80 64       	ori	r24, 0x40	; 64
+ 4ca:	80 83       	st	Z, r24
+  PCIFR |=(1<<PCIF1);
+ 4cc:	d9 9a       	sbi	0x1b, 1	; 27
+  sei();
+ 4ce:	78 94       	sei
+  PCMSK2|=(1<<DEBUG_RX_bp);
+  PCIFR |=(1<<PCIF2);
+  sei();
+  #define ISR_PCINT_VECT PCINT2_vect
+  #endif
+}
+ 4d0:	08 95       	ret
+
+000004d2 <debug_timer_start>:
+
+void debug_timer_start(void){
+  #ifdef DEBUG_USE_TIMER0
+  TIFR0 =0xff;
+ 4d2:	8f ef       	ldi	r24, 0xFF	; 255
+ 4d4:	85 bb       	out	0x15, r24	; 21
+  TIMSK0=0x00;
+ 4d6:	ee e6       	ldi	r30, 0x6E	; 110
+ 4d8:	f0 e0       	ldi	r31, 0x00	; 0
+ 4da:	10 82       	st	Z, r1
+  TCNT0 =200;
+ 4dc:	88 ec       	ldi	r24, 0xC8	; 200
+ 4de:	86 bd       	out	0x26, r24	; 38
+  TCCR0B=(1<<CS02);
+ 4e0:	84 e0       	ldi	r24, 0x04	; 4
+ 4e2:	85 bd       	out	0x25, r24	; 37
+  TIFR0 =(1<<TOV0);
+ 4e4:	81 e0       	ldi	r24, 0x01	; 1
+ 4e6:	85 bb       	out	0x15, r24	; 21
+  TIMSK0=(1<<TOIE0);
+ 4e8:	80 83       	st	Z, r24
+  TCCR2B=(1<<CS22);
+  TIFR2 =(1<<TOV2);
+  TIMSK2=(1<<TOIE2);
+  #define TIMER_OVF_VECT TIMER2_OVF_vect
+  #endif
+}
+ 4ea:	08 95       	ret
+
+000004ec <debug_timer_stop>:
+
+void debug_timer_stop(void){
+  #ifdef DEBUG_USE_TIMER0
+  TIMSK0=0;
+ 4ec:	10 92 6e 00 	sts	0x006E, r1
+  TCCR0B=0;
+ 4f0:	15 bc       	out	0x25, r1	; 37
+  TCNT0 =0;
+ 4f2:	16 bc       	out	0x26, r1	; 38
+  #ifdef DEBUG_USE_TIMER2
+  TIMSK2=0;
+  TCCR2B=0;
+  TCNT2 =0;
+  #endif
+}
+ 4f4:	08 95       	ret
+
+000004f6 <debug_gpio_init>:
+
+void debug_gpio_init(void){
+  DEBUG_TX_DDR |= (1<<DEBUG_TX_bp);
+ 4f6:	55 9a       	sbi	0x0a, 5	; 10
+  DEBUG_TX_PORT|= (1<<DEBUG_TX_bp);
+ 4f8:	5d 9a       	sbi	0x0b, 5	; 11
+  DEBUG_RX_DDR &=~(1<<DEBUG_RX_bp);
+ 4fa:	3e 98       	cbi	0x07, 6	; 7
+  DEBUG_RX_PORT|= (1<<DEBUG_RX_bp);
+ 4fc:	46 9a       	sbi	0x08, 6	; 8
+  
+  #ifdef DEBUG_GPIO_SWITCH_DEBUGGING
+  DEBUG_TEST_DDR|=(1<<DEBUG_TEST_bp);
+  DEBUG_TEST_PORT&=~(1<<DEBUG_TEST_bp);
+  #endif
+}
+ 4fe:	08 95       	ret
+
+00000500 <debug_tx_high>:
+
+void debug_tx_high(void){
+  DEBUG_TX_PORT|= (1<<DEBUG_TX_bp);
+ 500:	5d 9a       	sbi	0x0b, 5	; 11
+}
+ 502:	08 95       	ret
+
+00000504 <debug_tx_low>:
+
+void debug_tx_low(void){
+  DEBUG_TX_PORT&=~(1<<DEBUG_TX_bp);
+ 504:	5d 98       	cbi	0x0b, 5	; 11
+}
+ 506:	08 95       	ret
+
+00000508 <debug_tx_set>:
+
+void debug_tx_set(uint8_t pin_state){
+  if(pin_state==1){
+ 508:	81 30       	cpi	r24, 0x01	; 1
+ 50a:	11 f4       	brne	.+4      	; 0x510 <debug_tx_set+0x8>
+  DEBUG_TEST_PORT&=~(1<<DEBUG_TEST_bp);
+  #endif
+}
+
+void debug_tx_high(void){
+  DEBUG_TX_PORT|= (1<<DEBUG_TX_bp);
+ 50c:	5d 9a       	sbi	0x0b, 5	; 11
+ 50e:	08 95       	ret
+}
+
+void debug_tx_low(void){
+  DEBUG_TX_PORT&=~(1<<DEBUG_TX_bp);
+ 510:	5d 98       	cbi	0x0b, 5	; 11
+ 512:	08 95       	ret
+
+00000514 <debug_rx_get>:
+}
+
+
+
+uint8_t debug_rx_get(void){
+  if(DEBUG_RX_PIN & (1<<DEBUG_RX_bp)){
+ 514:	86 b1       	in	r24, 0x06	; 6
+ 516:	90 e0       	ldi	r25, 0x00	; 0
+ 518:	26 e0       	ldi	r18, 0x06	; 6
+ 51a:	96 95       	lsr	r25
+ 51c:	87 95       	ror	r24
+ 51e:	2a 95       	dec	r18
+ 520:	e1 f7       	brne	.-8      	; 0x51a <debug_rx_get+0x6>
+    return 1;
+  }else{
+    return 0;
+  }
+}
+ 522:	81 70       	andi	r24, 0x01	; 1
+ 524:	08 95       	ret
+
+00000526 <debug_delay>:
+
+
+
+////////////////////delay related functions//////////////////
+
+void debug_delay(uint16_t val){
+ 526:	9c 01       	movw	r18, r24
+  #ifdef DEBUG_USE_DELAY
+  _delay_us(val);
+  #endif
+  
+  #ifdef DEBUG_USE_TIMER0
+  TCNT0=0;
+ 528:	16 bc       	out	0x26, r1	; 38
+	
+	#ifdef DEBUG_BAUD_RATE_19200
+	#endif
+	
+	#ifdef DEBUG_BAUD_RATE_38400
+	TCCR0B=(1<<CS00);
+ 52a:	81 e0       	ldi	r24, 0x01	; 1
+ 52c:	85 bd       	out	0x25, r24	; 37
+	while(TCNT0<50){}
+ 52e:	86 b5       	in	r24, 0x26	; 38
+ 530:	82 33       	cpi	r24, 0x32	; 50
+ 532:	e8 f3       	brcs	.-6      	; 0x52e <debug_delay+0x8>
+    TCNT0=0;
+ 534:	16 bc       	out	0x26, r1	; 38
+	#endif
+  
+  while(TCNT0<val){}
+ 536:	86 b5       	in	r24, 0x26	; 38
+ 538:	90 e0       	ldi	r25, 0x00	; 0
+ 53a:	82 17       	cp	r24, r18
+ 53c:	93 07       	cpc	r25, r19
+ 53e:	d8 f3       	brcs	.-10     	; 0x536 <debug_delay+0x10>
+  TCCR0B=0;
+ 540:	15 bc       	out	0x25, r1	; 37
+  TCNT2=0;
+  TCCR2B=(1<<CS20);
+  while(TCNT2<val){}
+  TCCR2B=0;
+  #endif
+}
+ 542:	08 95       	ret
+
+00000544 <debug_delay_index_0>:
+    #ifdef DEBUG_BAUD_RATE_19200
+    debug_delay(TIM0_BAUD_19200[0]);
+    #endif
+	
+    #ifdef DEBUG_BAUD_RATE_38400
+    debug_delay(TIM0_BAUD_38400[0]);
+ 544:	80 91 22 01 	lds	r24, 0x0122
+ 548:	90 91 23 01 	lds	r25, 0x0123
+ 54c:	0e 94 93 02 	call	0x526	; 0x526 <debug_delay>
+	
+    #ifdef DEBUG_BAUD_RATE_38400
+    debug_delay(TIM2_BAUD_38400[0]);
+    #endif
+  #endif
+}
+ 550:	08 95       	ret
+
+00000552 <debug_delay_index_1>:
+    #ifdef DEBUG_BAUD_RATE_19200
+    debug_delay(TIM0_BAUD_19200[1]);
+    #endif
+	
+    #ifdef DEBUG_BAUD_RATE_38400
+    debug_delay(TIM0_BAUD_38400[1]);
+ 552:	80 91 24 01 	lds	r24, 0x0124
+ 556:	90 91 25 01 	lds	r25, 0x0125
+ 55a:	0e 94 93 02 	call	0x526	; 0x526 <debug_delay>
+	
+    #ifdef DEBUG_BAUD_RATE_38400
+    debug_delay(TIM2_BAUD_38400[1]);
+    #endif
+  #endif
+}
+ 55e:	08 95       	ret
+
+00000560 <debug_delay_index_2>:
+    #ifdef DEBUG_BAUD_RATE_19200
+    debug_delay(TIM0_BAUD_19200[2]);
+    #endif
+	
+    #ifdef DEBUG_BAUD_RATE_38400
+    debug_delay(TIM0_BAUD_38400[2]);
+ 560:	80 91 26 01 	lds	r24, 0x0126
+ 564:	90 91 27 01 	lds	r25, 0x0127
+ 568:	0e 94 93 02 	call	0x526	; 0x526 <debug_delay>
+	
+    #ifdef DEBUG_BAUD_RATE_38400
+    debug_delay(TIM2_BAUD_38400[2]);
+    #endif
+  #endif
+}
+ 56c:	08 95       	ret
+
+0000056e <debug_tx_byte>:
+
+
+
+
+//////////////////tx-rx functions//////////////////
+void debug_tx_byte(uint8_t val){
+ 56e:	df 92       	push	r13
+ 570:	ef 92       	push	r14
+ 572:	ff 92       	push	r15
+ 574:	0f 93       	push	r16
+ 576:	1f 93       	push	r17
+ 578:	df 93       	push	r29
+ 57a:	cf 93       	push	r28
+ 57c:	cd b7       	in	r28, 0x3d	; 61
+ 57e:	de b7       	in	r29, 0x3e	; 62
+ 580:	2a 97       	sbiw	r28, 0x0a	; 10
+ 582:	0f b6       	in	r0, 0x3f	; 63
+ 584:	f8 94       	cli
+ 586:	de bf       	out	0x3e, r29	; 62
+ 588:	0f be       	out	0x3f, r0	; 63
+ 58a:	cd bf       	out	0x3d, r28	; 61
+  uint8_t buf[10]={0,0,0,0,0,0,0,0,0,1};
+ 58c:	fe 01       	movw	r30, r28
+ 58e:	31 96       	adiw	r30, 0x01	; 1
+ 590:	9a e0       	ldi	r25, 0x0A	; 10
+ 592:	df 01       	movw	r26, r30
+ 594:	1d 92       	st	X+, r1
+ 596:	9a 95       	dec	r25
+ 598:	e9 f7       	brne	.-6      	; 0x594 <debug_tx_byte+0x26>
+ 59a:	91 e0       	ldi	r25, 0x01	; 1
+ 59c:	9a 87       	std	Y+10, r25	; 0x0a
+ 59e:	fe 01       	movw	r30, r28
+ 5a0:	32 96       	adiw	r30, 0x02	; 2
+ 5a2:	20 e0       	ldi	r18, 0x00	; 0
+ 5a4:	30 e0       	ldi	r19, 0x00	; 0
+  for(uint8_t i=0;i<8;i++){
+    if(val & (1<<i)){
+ 5a6:	48 2f       	mov	r20, r24
+ 5a8:	50 e0       	ldi	r21, 0x00	; 0
+	  buf[i+1]=1;
+ 5aa:	61 e0       	ldi	r22, 0x01	; 1
+
+//////////////////tx-rx functions//////////////////
+void debug_tx_byte(uint8_t val){
+  uint8_t buf[10]={0,0,0,0,0,0,0,0,0,1};
+  for(uint8_t i=0;i<8;i++){
+    if(val & (1<<i)){
+ 5ac:	ca 01       	movw	r24, r20
+ 5ae:	02 2e       	mov	r0, r18
+ 5b0:	02 c0       	rjmp	.+4      	; 0x5b6 <debug_tx_byte+0x48>
+ 5b2:	95 95       	asr	r25
+ 5b4:	87 95       	ror	r24
+ 5b6:	0a 94       	dec	r0
+ 5b8:	e2 f7       	brpl	.-8      	; 0x5b2 <debug_tx_byte+0x44>
+ 5ba:	80 ff       	sbrs	r24, 0
+ 5bc:	02 c0       	rjmp	.+4      	; 0x5c2 <debug_tx_byte+0x54>
+	  buf[i+1]=1;
+ 5be:	60 83       	st	Z, r22
+ 5c0:	01 c0       	rjmp	.+2      	; 0x5c4 <debug_tx_byte+0x56>
+	}else{
+	  buf[i+1]=0;
+ 5c2:	10 82       	st	Z, r1
+ 5c4:	2f 5f       	subi	r18, 0xFF	; 255
+ 5c6:	3f 4f       	sbci	r19, 0xFF	; 255
+ 5c8:	31 96       	adiw	r30, 0x01	; 1
+
+
+//////////////////tx-rx functions//////////////////
+void debug_tx_byte(uint8_t val){
+  uint8_t buf[10]={0,0,0,0,0,0,0,0,0,1};
+  for(uint8_t i=0;i<8;i++){
+ 5ca:	28 30       	cpi	r18, 0x08	; 8
+ 5cc:	31 05       	cpc	r19, r1
+ 5ce:	71 f7       	brne	.-36     	; 0x5ac <debug_tx_byte+0x3e>
+	  buf[i+1]=1;
+	}else{
+	  buf[i+1]=0;
+	}
+  }
+  uint8_t sreg=SREG;
+ 5d0:	df b6       	in	r13, 0x3f	; 63
+  cli();
+ 5d2:	f8 94       	cli
+ 5d4:	8e 01       	movw	r16, r28
+ 5d6:	0f 5f       	subi	r16, 0xFF	; 255
+ 5d8:	1f 4f       	sbci	r17, 0xFF	; 255
+  for(uint8_t i=0;i<10;i++){
+ 5da:	3b e0       	ldi	r19, 0x0B	; 11
+ 5dc:	e3 2e       	mov	r14, r19
+ 5de:	f1 2c       	mov	r15, r1
+ 5e0:	ec 0e       	add	r14, r28
+ 5e2:	fd 1e       	adc	r15, r29
+void debug_tx_low(void){
+  DEBUG_TX_PORT&=~(1<<DEBUG_TX_bp);
+}
+
+void debug_tx_set(uint8_t pin_state){
+  if(pin_state==1){
+ 5e4:	f8 01       	movw	r30, r16
+ 5e6:	80 81       	ld	r24, Z
+ 5e8:	81 30       	cpi	r24, 0x01	; 1
+ 5ea:	11 f4       	brne	.+4      	; 0x5f0 <debug_tx_byte+0x82>
+  DEBUG_TEST_PORT&=~(1<<DEBUG_TEST_bp);
+  #endif
+}
+
+void debug_tx_high(void){
+  DEBUG_TX_PORT|= (1<<DEBUG_TX_bp);
+ 5ec:	5d 9a       	sbi	0x0b, 5	; 11
+ 5ee:	01 c0       	rjmp	.+2      	; 0x5f2 <debug_tx_byte+0x84>
+}
+
+void debug_tx_low(void){
+  DEBUG_TX_PORT&=~(1<<DEBUG_TX_bp);
+ 5f0:	5d 98       	cbi	0x0b, 5	; 11
+  uint8_t sreg=SREG;
+  cli();
+  for(uint8_t i=0;i<10;i++){
+    debug_tx_set(buf[i]);
+	
+	debug_delay_index_0();    //tx one bit
+ 5f2:	0e 94 a2 02 	call	0x544	; 0x544 <debug_delay_index_0>
+ 5f6:	0f 5f       	subi	r16, 0xFF	; 255
+ 5f8:	1f 4f       	sbci	r17, 0xFF	; 255
+	  buf[i+1]=0;
+	}
+  }
+  uint8_t sreg=SREG;
+  cli();
+  for(uint8_t i=0;i<10;i++){
+ 5fa:	0e 15       	cp	r16, r14
+ 5fc:	1f 05       	cpc	r17, r15
+ 5fe:	91 f7       	brne	.-28     	; 0x5e4 <debug_tx_byte+0x76>
+    debug_tx_set(buf[i]);
+	
+	debug_delay_index_0();    //tx one bit
+  }
+  SREG=sreg;
+ 600:	df be       	out	0x3f, r13	; 63
+}
+ 602:	2a 96       	adiw	r28, 0x0a	; 10
+ 604:	0f b6       	in	r0, 0x3f	; 63
+ 606:	f8 94       	cli
+ 608:	de bf       	out	0x3e, r29	; 62
+ 60a:	0f be       	out	0x3f, r0	; 63
+ 60c:	cd bf       	out	0x3d, r28	; 61
+ 60e:	cf 91       	pop	r28
+ 610:	df 91       	pop	r29
+ 612:	1f 91       	pop	r17
+ 614:	0f 91       	pop	r16
+ 616:	ff 90       	pop	r15
+ 618:	ef 90       	pop	r14
+ 61a:	df 90       	pop	r13
+ 61c:	08 95       	ret
+
+0000061e <debug_rx_byte>:
+
+uint8_t debug_rx_byte(void){
+ 61e:	ff 92       	push	r15
+ 620:	0f 93       	push	r16
+ 622:	1f 93       	push	r17
+}
+
+
+
+uint8_t debug_rx_get(void){
+  if(DEBUG_RX_PIN & (1<<DEBUG_RX_bp)){
+ 624:	36 9b       	sbis	0x06, 6	; 6
+ 626:	21 c0       	rjmp	.+66     	; 0x66a <debug_rx_byte+0x4c>
+	#ifdef DEBUG_GPIO_SWITCH_DEBUGGING
+	DEBUG_TEST_PORT|=(1<<DEBUG_TEST_bp);
+    DEBUG_TEST_PORT&=~(1<<DEBUG_TEST_bp);
+    #endif
+  }else{
+    debug.error=0x02;
+ 628:	82 e0       	ldi	r24, 0x02	; 2
+ 62a:	17 c0       	rjmp	.+46     	; 0x65a <debug_rx_byte+0x3c>
+	DEBUG_TEST_PORT|=(1<<DEBUG_TEST_bp);
+    DEBUG_TEST_PORT&=~(1<<DEBUG_TEST_bp);
+    #endif
+	st=debug_rx_get();
+	for(uint8_t i=0;i<8;i++){
+	  debug_delay_index_1();
+ 62c:	0e 94 a9 02 	call	0x552	; 0x552 <debug_delay_index_1>
+}
+
+
+
+uint8_t debug_rx_get(void){
+  if(DEBUG_RX_PIN & (1<<DEBUG_RX_bp)){
+ 630:	36 99       	sbic	0x06, 6	; 6
+	  #ifdef DEBUG_GPIO_SWITCH_DEBUGGING
+	  DEBUG_TEST_PORT|=(1<<DEBUG_TEST_bp);
+      DEBUG_TEST_PORT&=~(1<<DEBUG_TEST_bp);
+      #endif
+	  if(debug_rx_get()){
+	    val|=0x80;
+ 632:	00 68       	ori	r16, 0x80	; 128
+	  }else{
+	    dval|=0x80;
+	  }
+	  if(i<7){
+ 634:	17 30       	cpi	r17, 0x07	; 7
+ 636:	09 f0       	breq	.+2      	; 0x63a <debug_rx_byte+0x1c>
+	    val>>=1;
+ 638:	06 95       	lsr	r16
+	#ifdef DEBUG_GPIO_SWITCH_DEBUGGING
+	DEBUG_TEST_PORT|=(1<<DEBUG_TEST_bp);
+    DEBUG_TEST_PORT&=~(1<<DEBUG_TEST_bp);
+    #endif
+	st=debug_rx_get();
+	for(uint8_t i=0;i<8;i++){
+ 63a:	1f 5f       	subi	r17, 0xFF	; 255
+ 63c:	18 30       	cpi	r17, 0x08	; 8
+ 63e:	b1 f7       	brne	.-20     	; 0x62c <debug_rx_byte+0xe>
+	  }
+	  if(i<7){
+	    val>>=1;
+	  }
+	}
+	debug_delay_index_1();
+ 640:	0e 94 a9 02 	call	0x552	; 0x552 <debug_delay_index_1>
+}
+
+
+
+uint8_t debug_rx_get(void){
+  if(DEBUG_RX_PIN & (1<<DEBUG_RX_bp)){
+ 644:	86 b1       	in	r24, 0x06	; 6
+	#ifdef DEBUG_GPIO_SWITCH_DEBUGGING
+	DEBUG_TEST_PORT|=(1<<DEBUG_TEST_bp);
+    DEBUG_TEST_PORT&=~(1<<DEBUG_TEST_bp);
+    #endif
+	sp=debug_rx_get();
+	if( (st==0) && (sp==1) ){
+ 646:	f6 fc       	sbrc	r15, 6
+ 648:	07 c0       	rjmp	.+14     	; 0x658 <debug_rx_byte+0x3a>
+ 64a:	86 ff       	sbrs	r24, 6
+ 64c:	05 c0       	rjmp	.+10     	; 0x658 <debug_rx_byte+0x3a>
+	  debug.datareg=val;
+ 64e:	00 93 2b 01 	sts	0x012B, r16
+	  debug.error=0x00;
+ 652:	10 92 2a 01 	sts	0x012A, r1
+ 656:	03 c0       	rjmp	.+6      	; 0x65e <debug_rx_byte+0x40>
+	}else{
+	  debug.error=0x01;
+ 658:	81 e0       	ldi	r24, 0x01	; 1
+ 65a:	80 93 2a 01 	sts	0x012A, r24
+    DEBUG_TEST_PORT&=~(1<<DEBUG_TEST_bp);
+    #endif
+  }else{
+    debug.error=0x02;
+  }
+  return debug.datareg;
+ 65e:	80 91 2b 01 	lds	r24, 0x012B
+}
+ 662:	1f 91       	pop	r17
+ 664:	0f 91       	pop	r16
+ 666:	ff 90       	pop	r15
+ 668:	08 95       	ret
+}
+
+uint8_t debug_rx_byte(void){
+  if(debug_rx_get()==0){
+    uint8_t val=0, dval=0, st=1, sp=0;
+	debug_delay_index_2();    //half bit
+ 66a:	0e 94 b0 02 	call	0x560	; 0x560 <debug_delay_index_2>
+}
+
+
+
+uint8_t debug_rx_get(void){
+  if(DEBUG_RX_PIN & (1<<DEBUG_RX_bp)){
+ 66e:	f6 b0       	in	r15, 0x06	; 6
+ 670:	00 e0       	ldi	r16, 0x00	; 0
+ 672:	10 e0       	ldi	r17, 0x00	; 0
+ 674:	db cf       	rjmp	.-74     	; 0x62c <debug_rx_byte+0xe>
+
+00000676 <debug_rx_byte_get>:
+  }
+  return debug.datareg;
+}
+
+uint8_t debug_rx_byte_get(void){
+  return debug.datareg;
+ 676:	80 91 2b 01 	lds	r24, 0x012B
+}
+ 67a:	08 95       	ret
+
+0000067c <debug_rx_byte_clear>:
+
+void debug_rx_byte_clear(void){
+  debug.datareg=0;
+ 67c:	10 92 2b 01 	sts	0x012B, r1
+}
+ 680:	08 95       	ret
+
+00000682 <debug_rx_byte_set>:
+
+void debug_rx_byte_set(uint8_t val){
+  debug.datareg=val;
+ 682:	80 93 2b 01 	sts	0x012B, r24
+}
+ 686:	08 95       	ret
+
+00000688 <debug_tx_hex>:
+
+
+
+///////////////////////hex and bin data tx///////////////////////
+
+void debug_tx_hex(uint32_t val){
+ 688:	bf 92       	push	r11
+ 68a:	cf 92       	push	r12
+ 68c:	df 92       	push	r13
+ 68e:	ef 92       	push	r14
+ 690:	ff 92       	push	r15
+ 692:	0f 93       	push	r16
+ 694:	1f 93       	push	r17
+ 696:	cf 93       	push	r28
+ 698:	df 93       	push	r29
+ 69a:	7b 01       	movw	r14, r22
+ 69c:	8c 01       	movw	r16, r24
+  uint16_t hex_digit, index=0, loop_counter=0;
+  if(val <= 0xFF){
+ 69e:	8f ef       	ldi	r24, 0xFF	; 255
+ 6a0:	e8 16       	cp	r14, r24
+ 6a2:	f1 04       	cpc	r15, r1
+ 6a4:	01 05       	cpc	r16, r1
+ 6a6:	11 05       	cpc	r17, r1
+ 6a8:	09 f0       	breq	.+2      	; 0x6ac <debug_tx_hex+0x24>
+ 6aa:	30 f4       	brcc	.+12     	; 0x6b8 <debug_tx_hex+0x30>
+ 6ac:	c8 e0       	ldi	r28, 0x08	; 8
+ 6ae:	d0 e0       	ldi	r29, 0x00	; 0
+ 6b0:	62 e0       	ldi	r22, 0x02	; 2
+ 6b2:	c6 2e       	mov	r12, r22
+ 6b4:	d1 2c       	mov	r13, r1
+ 6b6:	14 c0       	rjmp	.+40     	; 0x6e0 <debug_tx_hex+0x58>
+    index=8;
+    loop_counter=2;
+  }else if(val <= 0xFFFF){
+ 6b8:	80 e0       	ldi	r24, 0x00	; 0
+ 6ba:	e8 16       	cp	r14, r24
+ 6bc:	80 e0       	ldi	r24, 0x00	; 0
+ 6be:	f8 06       	cpc	r15, r24
+ 6c0:	81 e0       	ldi	r24, 0x01	; 1
+ 6c2:	08 07       	cpc	r16, r24
+ 6c4:	80 e0       	ldi	r24, 0x00	; 0
+ 6c6:	18 07       	cpc	r17, r24
+ 6c8:	30 f0       	brcs	.+12     	; 0x6d6 <debug_tx_hex+0x4e>
+ 6ca:	c0 e2       	ldi	r28, 0x20	; 32
+ 6cc:	d0 e0       	ldi	r29, 0x00	; 0
+ 6ce:	58 e0       	ldi	r21, 0x08	; 8
+ 6d0:	c5 2e       	mov	r12, r21
+ 6d2:	d1 2c       	mov	r13, r1
+ 6d4:	05 c0       	rjmp	.+10     	; 0x6e0 <debug_tx_hex+0x58>
+ 6d6:	c0 e1       	ldi	r28, 0x10	; 16
+ 6d8:	d0 e0       	ldi	r29, 0x00	; 0
+ 6da:	44 e0       	ldi	r20, 0x04	; 4
+ 6dc:	c4 2e       	mov	r12, r20
+ 6de:	d1 2c       	mov	r13, r1
+    loop_counter=4;     
+  }else{
+    index=32;
+    loop_counter=8;
+  }
+  debug_tx_byte('0');
+ 6e0:	80 e3       	ldi	r24, 0x30	; 48
+ 6e2:	0e 94 b7 02 	call	0x56e	; 0x56e <debug_tx_byte>
+  debug_tx_byte('x');
+ 6e6:	88 e7       	ldi	r24, 0x78	; 120
+ 6e8:	0e 94 b7 02 	call	0x56e	; 0x56e <debug_tx_byte>
+ 6ec:	bb 24       	eor	r11, r11
+ 6ee:	17 c0       	rjmp	.+46     	; 0x71e <debug_tx_hex+0x96>
+	for(uint8_t i=0;i<loop_counter;i++){
+	  index-=4;
+ 6f0:	24 97       	sbiw	r28, 0x04	; 4
+	  hex_digit=(uint8_t)((val>>index) & 0x0F);
+ 6f2:	d8 01       	movw	r26, r16
+ 6f4:	c7 01       	movw	r24, r14
+ 6f6:	0c 2e       	mov	r0, r28
+ 6f8:	04 c0       	rjmp	.+8      	; 0x702 <debug_tx_hex+0x7a>
+ 6fa:	b6 95       	lsr	r27
+ 6fc:	a7 95       	ror	r26
+ 6fe:	97 95       	ror	r25
+ 700:	87 95       	ror	r24
+ 702:	0a 94       	dec	r0
+ 704:	d2 f7       	brpl	.-12     	; 0x6fa <debug_tx_hex+0x72>
+ 706:	90 e0       	ldi	r25, 0x00	; 0
+ 708:	8f 70       	andi	r24, 0x0F	; 15
+ 70a:	90 70       	andi	r25, 0x00	; 0
+	  if(hex_digit>9){
+ 70c:	8a 30       	cpi	r24, 0x0A	; 10
+ 70e:	91 05       	cpc	r25, r1
+ 710:	10 f0       	brcs	.+4      	; 0x716 <debug_tx_hex+0x8e>
+	    hex_digit+=55;
+ 712:	c7 96       	adiw	r24, 0x37	; 55
+ 714:	01 c0       	rjmp	.+2      	; 0x718 <debug_tx_hex+0x90>
+	  }else {
+	    hex_digit+=48;
+ 716:	c0 96       	adiw	r24, 0x30	; 48
+	  }
+	  debug_tx_byte((uint8_t)hex_digit);
+ 718:	0e 94 b7 02 	call	0x56e	; 0x56e <debug_tx_byte>
+    index=32;
+    loop_counter=8;
+  }
+  debug_tx_byte('0');
+  debug_tx_byte('x');
+	for(uint8_t i=0;i<loop_counter;i++){
+ 71c:	b3 94       	inc	r11
+ 71e:	8b 2d       	mov	r24, r11
+ 720:	90 e0       	ldi	r25, 0x00	; 0
+ 722:	8c 15       	cp	r24, r12
+ 724:	9d 05       	cpc	r25, r13
+ 726:	20 f3       	brcs	.-56     	; 0x6f0 <debug_tx_hex+0x68>
+	  }else {
+	    hex_digit+=48;
+	  }
+	  debug_tx_byte((uint8_t)hex_digit);
+	}
+}
+ 728:	df 91       	pop	r29
+ 72a:	cf 91       	pop	r28
+ 72c:	1f 91       	pop	r17
+ 72e:	0f 91       	pop	r16
+ 730:	ff 90       	pop	r15
+ 732:	ef 90       	pop	r14
+ 734:	df 90       	pop	r13
+ 736:	cf 90       	pop	r12
+ 738:	bf 90       	pop	r11
+ 73a:	08 95       	ret
+
+0000073c <debug_tx_bin>:
+
+void debug_tx_bin(uint32_t val){
+ 73c:	af 92       	push	r10
+ 73e:	bf 92       	push	r11
+ 740:	cf 92       	push	r12
+ 742:	df 92       	push	r13
+ 744:	ef 92       	push	r14
+ 746:	ff 92       	push	r15
+ 748:	0f 93       	push	r16
+ 74a:	1f 93       	push	r17
+ 74c:	cf 93       	push	r28
+ 74e:	df 93       	push	r29
+ 750:	7b 01       	movw	r14, r22
+ 752:	8c 01       	movw	r16, r24
+  uint8_t loop_counter=0;
+  if(val <= 0xFF){
+ 754:	6f 3f       	cpi	r22, 0xFF	; 255
+ 756:	71 05       	cpc	r23, r1
+ 758:	81 05       	cpc	r24, r1
+ 75a:	91 05       	cpc	r25, r1
+ 75c:	09 f0       	breq	.+2      	; 0x760 <debug_tx_bin+0x24>
+ 75e:	18 f4       	brcc	.+6      	; 0x766 <debug_tx_bin+0x2a>
+ 760:	f7 e0       	ldi	r31, 0x07	; 7
+ 762:	df 2e       	mov	r13, r31
+ 764:	0d c0       	rjmp	.+26     	; 0x780 <debug_tx_bin+0x44>
+    loop_counter=7;
+  }else if(val <= 0xFFFF){
+ 766:	60 30       	cpi	r22, 0x00	; 0
+ 768:	30 e0       	ldi	r19, 0x00	; 0
+ 76a:	73 07       	cpc	r23, r19
+ 76c:	31 e0       	ldi	r19, 0x01	; 1
+ 76e:	83 07       	cpc	r24, r19
+ 770:	30 e0       	ldi	r19, 0x00	; 0
+ 772:	93 07       	cpc	r25, r19
+ 774:	18 f0       	brcs	.+6      	; 0x77c <debug_tx_bin+0x40>
+ 776:	ef e1       	ldi	r30, 0x1F	; 31
+ 778:	de 2e       	mov	r13, r30
+ 77a:	02 c0       	rjmp	.+4      	; 0x780 <debug_tx_bin+0x44>
+ 77c:	7f e0       	ldi	r23, 0x0F	; 15
+ 77e:	d7 2e       	mov	r13, r23
+    loop_counter=15;     
+  }else{
+    loop_counter=31;
+  }
+  
+  debug_tx_byte('0');
+ 780:	80 e3       	ldi	r24, 0x30	; 48
+ 782:	0e 94 b7 02 	call	0x56e	; 0x56e <debug_tx_byte>
+  debug_tx_byte('b');
+ 786:	82 e6       	ldi	r24, 0x62	; 98
+ 788:	0e 94 b7 02 	call	0x56e	; 0x56e <debug_tx_byte>
+ 78c:	c0 e0       	ldi	r28, 0x00	; 0
+ 78e:	d0 e0       	ldi	r29, 0x00	; 0
+	  }
+	  debug_tx_byte((uint8_t)hex_digit);
+	}
+}
+
+void debug_tx_bin(uint32_t val){
+ 790:	cd 2c       	mov	r12, r13
+ 792:	dd 24       	eor	r13, r13
+    loop_counter=31;
+  }
+  
+  debug_tx_byte('0');
+  debug_tx_byte('b');
+  for(int i=loop_counter; i>=0; i--){
+ 794:	56 01       	movw	r10, r12
+ 796:	08 94       	sec
+ 798:	a1 1c       	adc	r10, r1
+ 79a:	b1 1c       	adc	r11, r1
+    if( (val>>i) & 1){
+ 79c:	c6 01       	movw	r24, r12
+ 79e:	8c 1b       	sub	r24, r28
+ 7a0:	9d 0b       	sbc	r25, r29
+ 7a2:	a8 01       	movw	r20, r16
+ 7a4:	97 01       	movw	r18, r14
+ 7a6:	04 c0       	rjmp	.+8      	; 0x7b0 <debug_tx_bin+0x74>
+ 7a8:	56 95       	lsr	r21
+ 7aa:	47 95       	ror	r20
+ 7ac:	37 95       	ror	r19
+ 7ae:	27 95       	ror	r18
+ 7b0:	8a 95       	dec	r24
+ 7b2:	d2 f7       	brpl	.-12     	; 0x7a8 <debug_tx_bin+0x6c>
+ 7b4:	da 01       	movw	r26, r20
+ 7b6:	c9 01       	movw	r24, r18
+ 7b8:	81 70       	andi	r24, 0x01	; 1
+ 7ba:	90 70       	andi	r25, 0x00	; 0
+ 7bc:	89 2b       	or	r24, r25
+ 7be:	11 f0       	breq	.+4      	; 0x7c4 <debug_tx_bin+0x88>
+      debug_tx_byte( 49 );   
+ 7c0:	81 e3       	ldi	r24, 0x31	; 49
+ 7c2:	01 c0       	rjmp	.+2      	; 0x7c6 <debug_tx_bin+0x8a>
+    }else{
+      debug_tx_byte( 48 );         
+ 7c4:	80 e3       	ldi	r24, 0x30	; 48
+ 7c6:	0e 94 b7 02 	call	0x56e	; 0x56e <debug_tx_byte>
+ 7ca:	21 96       	adiw	r28, 0x01	; 1
+    loop_counter=31;
+  }
+  
+  debug_tx_byte('0');
+  debug_tx_byte('b');
+  for(int i=loop_counter; i>=0; i--){
+ 7cc:	ca 15       	cp	r28, r10
+ 7ce:	db 05       	cpc	r29, r11
+ 7d0:	29 f7       	brne	.-54     	; 0x79c <debug_tx_bin+0x60>
+      debug_tx_byte( 49 );   
+    }else{
+      debug_tx_byte( 48 );         
+    }
+  }
+}
+ 7d2:	df 91       	pop	r29
+ 7d4:	cf 91       	pop	r28
+ 7d6:	1f 91       	pop	r17
+ 7d8:	0f 91       	pop	r16
+ 7da:	ff 90       	pop	r15
+ 7dc:	ef 90       	pop	r14
+ 7de:	df 90       	pop	r13
+ 7e0:	cf 90       	pop	r12
+ 7e2:	bf 90       	pop	r11
+ 7e4:	af 90       	pop	r10
+ 7e6:	08 95       	ret
+
+000007e8 <debug_tx_nl>:
+
+
+/////////////////end char functions//////////////////////
+
+void debug_tx_nl(void){
+  debug_tx_byte('\r');
+ 7e8:	8d e0       	ldi	r24, 0x0D	; 13
+ 7ea:	0e 94 b7 02 	call	0x56e	; 0x56e <debug_tx_byte>
+  debug_tx_byte('\n');
+ 7ee:	8a e0       	ldi	r24, 0x0A	; 10
+ 7f0:	0e 94 b7 02 	call	0x56e	; 0x56e <debug_tx_byte>
+}
+ 7f4:	08 95       	ret
+
+000007f6 <debug_tx_sp>:
+
+void debug_tx_sp(void){
+  debug_tx_byte(' ');
+ 7f6:	80 e2       	ldi	r24, 0x20	; 32
+ 7f8:	0e 94 b7 02 	call	0x56e	; 0x56e <debug_tx_byte>
+}
+ 7fc:	08 95       	ret
+
+000007fe <debug_tx_cm>:
+
+void debug_tx_cm(void){
+  debug_tx_byte(',');
+ 7fe:	8c e2       	ldi	r24, 0x2C	; 44
+ 800:	0e 94 b7 02 	call	0x56e	; 0x56e <debug_tx_byte>
+}
+ 804:	08 95       	ret
+
+00000806 <debug_tx_text>:
+
+
+
+/////////////////tx text functions//////////////////////
+
+void debug_tx_text(char *str){
+ 806:	1f 93       	push	r17
+ 808:	cf 93       	push	r28
+ 80a:	df 93       	push	r29
+ 80c:	ec 01       	movw	r28, r24
+ 80e:	10 e0       	ldi	r17, 0x00	; 0
+ 810:	03 c0       	rjmp	.+6      	; 0x818 <debug_tx_text+0x12>
+    uint8_t i=0;
+    while(str[i]!='\0'){
+        debug_tx_byte(str[i]);
+ 812:	0e 94 b7 02 	call	0x56e	; 0x56e <debug_tx_byte>
+        i++;
+ 816:	1f 5f       	subi	r17, 0xFF	; 255
+
+/////////////////tx text functions//////////////////////
+
+void debug_tx_text(char *str){
+    uint8_t i=0;
+    while(str[i]!='\0'){
+ 818:	fe 01       	movw	r30, r28
+ 81a:	e1 0f       	add	r30, r17
+ 81c:	f1 1d       	adc	r31, r1
+ 81e:	80 81       	ld	r24, Z
+ 820:	88 23       	and	r24, r24
+ 822:	b9 f7       	brne	.-18     	; 0x812 <debug_tx_text+0xc>
+        debug_tx_byte(str[i]);
+        i++;
+    }
+}
+ 824:	df 91       	pop	r29
+ 826:	cf 91       	pop	r28
+ 828:	1f 91       	pop	r17
+ 82a:	08 95       	ret
+
+0000082c <debug_tx_text_nl>:
+
+void debug_tx_text_nl(char *str){
+  debug_tx_text(str);
+ 82c:	0e 94 03 04 	call	0x806	; 0x806 <debug_tx_text>
+  debug_tx_nl();
+ 830:	0e 94 f4 03 	call	0x7e8	; 0x7e8 <debug_tx_nl>
+}
+ 834:	08 95       	ret
+
+00000836 <debug_tx_text_sp>:
+
+void debug_tx_text_sp(char *str){
+  debug_tx_text(str);
+ 836:	0e 94 03 04 	call	0x806	; 0x806 <debug_tx_text>
+  debug_tx_sp();
+ 83a:	0e 94 fb 03 	call	0x7f6	; 0x7f6 <debug_tx_sp>
+}
+ 83e:	08 95       	ret
+
+00000840 <debug_tx_text_cm>:
+
+void debug_tx_text_cm(char *str){
+  debug_tx_text(str);
+ 840:	0e 94 03 04 	call	0x806	; 0x806 <debug_tx_text>
+  debug_tx_cm();
+ 844:	0e 94 ff 03 	call	0x7fe	; 0x7fe <debug_tx_cm>
+}
+ 848:	08 95       	ret
+
+0000084a <debug_determine_digit_numbers>:
+
+
+
+//////////////////number tx functions///////////////////
+
+void debug_determine_digit_numbers(uint32_t num){
+ 84a:	bf 92       	push	r11
+ 84c:	cf 92       	push	r12
+ 84e:	df 92       	push	r13
+ 850:	ef 92       	push	r14
+ 852:	ff 92       	push	r15
+ 854:	0f 93       	push	r16
+ 856:	1f 93       	push	r17
+ 858:	6b 01       	movw	r12, r22
+ 85a:	7c 01       	movw	r14, r24
+  uint8_t i=0;
+  if(num==0){
+ 85c:	61 15       	cp	r22, r1
+ 85e:	71 05       	cpc	r23, r1
+ 860:	81 05       	cpc	r24, r1
+ 862:	91 05       	cpc	r25, r1
+ 864:	31 f4       	brne	.+12     	; 0x872 <debug_determine_digit_numbers+0x28>
+    debug.digits[0]=0;
+ 866:	10 92 4e 01 	sts	0x014E, r1
+    debug.input_num_digits=1;
+ 86a:	81 e0       	ldi	r24, 0x01	; 1
+ 86c:	80 93 56 01 	sts	0x0156, r24
+ 870:	23 c0       	rjmp	.+70     	; 0x8b8 <debug_determine_digit_numbers+0x6e>
+ 872:	bb 24       	eor	r11, r11
+  }else{
+    while(num!=0){
+      debug.digits[i]=num%10;
+ 874:	0b 2d       	mov	r16, r11
+ 876:	10 e0       	ldi	r17, 0x00	; 0
+ 878:	06 5d       	subi	r16, 0xD6	; 214
+ 87a:	1e 4f       	sbci	r17, 0xFE	; 254
+ 87c:	c7 01       	movw	r24, r14
+ 87e:	b6 01       	movw	r22, r12
+ 880:	2a e0       	ldi	r18, 0x0A	; 10
+ 882:	30 e0       	ldi	r19, 0x00	; 0
+ 884:	40 e0       	ldi	r20, 0x00	; 0
+ 886:	50 e0       	ldi	r21, 0x00	; 0
+ 888:	0e 94 b9 06 	call	0xd72	; 0xd72 <__udivmodsi4>
+ 88c:	f8 01       	movw	r30, r16
+ 88e:	64 a3       	std	Z+36, r22	; 0x24
+      num/=10;
+ 890:	c7 01       	movw	r24, r14
+ 892:	b6 01       	movw	r22, r12
+ 894:	2a e0       	ldi	r18, 0x0A	; 10
+ 896:	30 e0       	ldi	r19, 0x00	; 0
+ 898:	40 e0       	ldi	r20, 0x00	; 0
+ 89a:	50 e0       	ldi	r21, 0x00	; 0
+ 89c:	0e 94 b9 06 	call	0xd72	; 0xd72 <__udivmodsi4>
+ 8a0:	c9 01       	movw	r24, r18
+ 8a2:	da 01       	movw	r26, r20
+ 8a4:	6c 01       	movw	r12, r24
+ 8a6:	7d 01       	movw	r14, r26
+      i++;
+ 8a8:	b3 94       	inc	r11
+  uint8_t i=0;
+  if(num==0){
+    debug.digits[0]=0;
+    debug.input_num_digits=1;
+  }else{
+    while(num!=0){
+ 8aa:	c1 14       	cp	r12, r1
+ 8ac:	d1 04       	cpc	r13, r1
+ 8ae:	e1 04       	cpc	r14, r1
+ 8b0:	f1 04       	cpc	r15, r1
+ 8b2:	01 f7       	brne	.-64     	; 0x874 <debug_determine_digit_numbers+0x2a>
+      debug.digits[i]=num%10;
+      num/=10;
+      i++;
+    }
+	debug.input_num_digits=i;
+ 8b4:	b0 92 56 01 	sts	0x0156, r11
+  }
+}
+ 8b8:	1f 91       	pop	r17
+ 8ba:	0f 91       	pop	r16
+ 8bc:	ff 90       	pop	r15
+ 8be:	ef 90       	pop	r14
+ 8c0:	df 90       	pop	r13
+ 8c2:	cf 90       	pop	r12
+ 8c4:	bf 90       	pop	r11
+ 8c6:	08 95       	ret
+
+000008c8 <debug_tx_number_digits>:
+
+void debug_tx_number_digits(void){
+ 8c8:	1f 93       	push	r17
+  for(uint8_t i=debug.input_num_digits; i>0; i--){
+ 8ca:	10 91 56 01 	lds	r17, 0x0156
+ 8ce:	09 c0       	rjmp	.+18     	; 0x8e2 <debug_tx_number_digits+0x1a>
+    uint8_t temp=i;
+    temp-=1;
+ 8d0:	11 50       	subi	r17, 0x01	; 1
+    temp=debug.digits[temp];
+ 8d2:	e1 2f       	mov	r30, r17
+ 8d4:	f0 e0       	ldi	r31, 0x00	; 0
+ 8d6:	e6 5d       	subi	r30, 0xD6	; 214
+ 8d8:	fe 4f       	sbci	r31, 0xFE	; 254
+ 8da:	84 a1       	ldd	r24, Z+36	; 0x24
+    temp+=48;
+    debug_tx_byte(temp);
+ 8dc:	80 5d       	subi	r24, 0xD0	; 208
+ 8de:	0e 94 b7 02 	call	0x56e	; 0x56e <debug_tx_byte>
+	debug.input_num_digits=i;
+  }
+}
+
+void debug_tx_number_digits(void){
+  for(uint8_t i=debug.input_num_digits; i>0; i--){
+ 8e2:	11 23       	and	r17, r17
+ 8e4:	a9 f7       	brne	.-22     	; 0x8d0 <debug_tx_number_digits+0x8>
+    temp-=1;
+    temp=debug.digits[temp];
+    temp+=48;
+    debug_tx_byte(temp);
+  }
+}
+ 8e6:	1f 91       	pop	r17
+ 8e8:	08 95       	ret
+
+000008ea <debug_tx_number>:
+
+void debug_tx_number(int32_t num){
+ 8ea:	ef 92       	push	r14
+ 8ec:	ff 92       	push	r15
+ 8ee:	0f 93       	push	r16
+ 8f0:	1f 93       	push	r17
+ 8f2:	7b 01       	movw	r14, r22
+ 8f4:	8c 01       	movw	r16, r24
+  if(num<0){
+ 8f6:	97 ff       	sbrs	r25, 7
+ 8f8:	0b c0       	rjmp	.+22     	; 0x910 <__stack+0x11>
+    debug_tx_byte('-');
+ 8fa:	8d e2       	ldi	r24, 0x2D	; 45
+ 8fc:	0e 94 b7 02 	call	0x56e	; 0x56e <debug_tx_byte>
+	num=-num;
+ 900:	10 95       	com	r17
+ 902:	00 95       	com	r16
+ 904:	f0 94       	com	r15
+ 906:	e0 94       	com	r14
+ 908:	e1 1c       	adc	r14, r1
+ 90a:	f1 1c       	adc	r15, r1
+ 90c:	01 1d       	adc	r16, r1
+ 90e:	11 1d       	adc	r17, r1
+  }
+  debug_determine_digit_numbers((uint32_t)num);
+ 910:	c8 01       	movw	r24, r16
+ 912:	b7 01       	movw	r22, r14
+ 914:	0e 94 25 04 	call	0x84a	; 0x84a <debug_determine_digit_numbers>
+  debug_tx_number_digits();
+ 918:	0e 94 64 04 	call	0x8c8	; 0x8c8 <debug_tx_number_digits>
+}
+ 91c:	1f 91       	pop	r17
+ 91e:	0f 91       	pop	r16
+ 920:	ff 90       	pop	r15
+ 922:	ef 90       	pop	r14
+ 924:	08 95       	ret
+
+00000926 <debug_tx_number_nl>:
+
+
+
+/////////////////////number with end functions/////////////
+void debug_tx_number_nl(int32_t num){
+  debug_tx_number(num);
+ 926:	0e 94 75 04 	call	0x8ea	; 0x8ea <debug_tx_number>
+  debug_tx_nl();
+ 92a:	0e 94 f4 03 	call	0x7e8	; 0x7e8 <debug_tx_nl>
+}
+ 92e:	08 95       	ret
+
+00000930 <debug_tx_number_sp>:
+
+void debug_tx_number_sp(int32_t num){
+  debug_tx_number(num);
+ 930:	0e 94 75 04 	call	0x8ea	; 0x8ea <debug_tx_number>
+  debug_tx_sp();
+ 934:	0e 94 fb 03 	call	0x7f6	; 0x7f6 <debug_tx_sp>
+}
+ 938:	08 95       	ret
+
+0000093a <debug_tx_number_cm>:
+
+void debug_tx_number_cm(int32_t num){
+  debug_tx_number(num);
+ 93a:	0e 94 75 04 	call	0x8ea	; 0x8ea <debug_tx_number>
+  debug_tx_text(",");
+ 93e:	84 e1       	ldi	r24, 0x14	; 20
+ 940:	91 e0       	ldi	r25, 0x01	; 1
+ 942:	0e 94 03 04 	call	0x806	; 0x806 <debug_tx_text>
+}
+ 946:	08 95       	ret
+
+00000948 <debug_tx_number_hex_nl>:
+
+
+///////////////hex number with end functions/////////////
+
+void debug_tx_number_hex_nl(int32_t num){
+  debug_tx_hex(num);
+ 948:	0e 94 44 03 	call	0x688	; 0x688 <debug_tx_hex>
+  debug_tx_nl();
+ 94c:	0e 94 f4 03 	call	0x7e8	; 0x7e8 <debug_tx_nl>
+}
+ 950:	08 95       	ret
+
+00000952 <debug_tx_number_hex_sp>:
+
+void debug_tx_number_hex_sp(int32_t num){
+  debug_tx_hex(num);
+ 952:	0e 94 44 03 	call	0x688	; 0x688 <debug_tx_hex>
+  debug_tx_sp();
+ 956:	0e 94 fb 03 	call	0x7f6	; 0x7f6 <debug_tx_sp>
+}
+ 95a:	08 95       	ret
+
+0000095c <debug_tx_number_hex_cm>:
+
+void debug_tx_number_hex_cm(int32_t num){
+  debug_tx_hex(num);
+ 95c:	0e 94 44 03 	call	0x688	; 0x688 <debug_tx_hex>
+  debug_tx_text(",");
+ 960:	84 e1       	ldi	r24, 0x14	; 20
+ 962:	91 e0       	ldi	r25, 0x01	; 1
+ 964:	0e 94 03 04 	call	0x806	; 0x806 <debug_tx_text>
+}
+ 968:	08 95       	ret
+
+0000096a <debug_tx_number_bin_nl>:
+
+
+///////////////bin number with end functions/////////////
+
+void debug_tx_number_bin_nl(int32_t num){
+  debug_tx_bin(num);
+ 96a:	0e 94 9e 03 	call	0x73c	; 0x73c <debug_tx_bin>
+  debug_tx_nl();
+ 96e:	0e 94 f4 03 	call	0x7e8	; 0x7e8 <debug_tx_nl>
+}
+ 972:	08 95       	ret
+
+00000974 <debug_tx_number_bin_sp>:
+
+void debug_tx_number_bin_sp(int32_t num){
+  debug_tx_bin(num);
+ 974:	0e 94 9e 03 	call	0x73c	; 0x73c <debug_tx_bin>
+  debug_tx_sp();
+ 978:	0e 94 fb 03 	call	0x7f6	; 0x7f6 <debug_tx_sp>
+}
+ 97c:	08 95       	ret
+
+0000097e <debug_tx_number_bin_cm>:
+
+void debug_tx_number_bin_cm(int32_t num){
+  debug_tx_bin(num);
+ 97e:	0e 94 9e 03 	call	0x73c	; 0x73c <debug_tx_bin>
+  debug_tx_text(",");
+ 982:	84 e1       	ldi	r24, 0x14	; 20
+ 984:	91 e0       	ldi	r25, 0x01	; 1
+ 986:	0e 94 03 04 	call	0x806	; 0x806 <debug_tx_text>
+}
+ 98a:	08 95       	ret
+
+0000098c <debug_tx_parameter_nl>:
+
+
+
+///////////////parameter & number with end functions/////////////
+
+void debug_tx_parameter_nl(char *name, int32_t num){
+ 98c:	ef 92       	push	r14
+ 98e:	ff 92       	push	r15
+ 990:	0f 93       	push	r16
+ 992:	1f 93       	push	r17
+ 994:	7a 01       	movw	r14, r20
+ 996:	8b 01       	movw	r16, r22
+  debug_tx_text(name);
+ 998:	0e 94 03 04 	call	0x806	; 0x806 <debug_tx_text>
+  debug_tx_sp();
+ 99c:	0e 94 fb 03 	call	0x7f6	; 0x7f6 <debug_tx_sp>
+  debug_tx_number_nl(num);
+ 9a0:	c8 01       	movw	r24, r16
+ 9a2:	b7 01       	movw	r22, r14
+ 9a4:	0e 94 93 04 	call	0x926	; 0x926 <debug_tx_number_nl>
+}
+ 9a8:	1f 91       	pop	r17
+ 9aa:	0f 91       	pop	r16
+ 9ac:	ff 90       	pop	r15
+ 9ae:	ef 90       	pop	r14
+ 9b0:	08 95       	ret
+
+000009b2 <debug_tx_parameter_sp>:
+
+void debug_tx_parameter_sp(char *name, int32_t num){
+ 9b2:	ef 92       	push	r14
+ 9b4:	ff 92       	push	r15
+ 9b6:	0f 93       	push	r16
+ 9b8:	1f 93       	push	r17
+ 9ba:	7a 01       	movw	r14, r20
+ 9bc:	8b 01       	movw	r16, r22
+  debug_tx_text(name);
+ 9be:	0e 94 03 04 	call	0x806	; 0x806 <debug_tx_text>
+  debug_tx_sp();
+ 9c2:	0e 94 fb 03 	call	0x7f6	; 0x7f6 <debug_tx_sp>
+  debug_tx_number_sp(num);
+ 9c6:	c8 01       	movw	r24, r16
+ 9c8:	b7 01       	movw	r22, r14
+ 9ca:	0e 94 98 04 	call	0x930	; 0x930 <debug_tx_number_sp>
+}
+ 9ce:	1f 91       	pop	r17
+ 9d0:	0f 91       	pop	r16
+ 9d2:	ff 90       	pop	r15
+ 9d4:	ef 90       	pop	r14
+ 9d6:	08 95       	ret
+
+000009d8 <debug_tx_parameter_cm>:
+
+void debug_tx_parameter_cm(char *name, int32_t num){
+ 9d8:	ef 92       	push	r14
+ 9da:	ff 92       	push	r15
+ 9dc:	0f 93       	push	r16
+ 9de:	1f 93       	push	r17
+ 9e0:	7a 01       	movw	r14, r20
+ 9e2:	8b 01       	movw	r16, r22
+  debug_tx_text(name);
+ 9e4:	0e 94 03 04 	call	0x806	; 0x806 <debug_tx_text>
+  debug_tx_sp();
+ 9e8:	0e 94 fb 03 	call	0x7f6	; 0x7f6 <debug_tx_sp>
+  debug_tx_number_cm(num);
+ 9ec:	c8 01       	movw	r24, r16
+ 9ee:	b7 01       	movw	r22, r14
+ 9f0:	0e 94 9d 04 	call	0x93a	; 0x93a <debug_tx_number_cm>
+}
+ 9f4:	1f 91       	pop	r17
+ 9f6:	0f 91       	pop	r16
+ 9f8:	ff 90       	pop	r15
+ 9fa:	ef 90       	pop	r14
+ 9fc:	08 95       	ret
+
+000009fe <debug_tx_parameter_hex_nl>:
+
+
+///////////parameter & hex number with end functions///////////
+
+void debug_tx_parameter_hex_nl(char *name, int32_t num){
+ 9fe:	ef 92       	push	r14
+ a00:	ff 92       	push	r15
+ a02:	0f 93       	push	r16
+ a04:	1f 93       	push	r17
+ a06:	7a 01       	movw	r14, r20
+ a08:	8b 01       	movw	r16, r22
+  debug_tx_text(name);
+ a0a:	0e 94 03 04 	call	0x806	; 0x806 <debug_tx_text>
+  debug_tx_sp();
+ a0e:	0e 94 fb 03 	call	0x7f6	; 0x7f6 <debug_tx_sp>
+  debug_tx_number_hex_nl(num);
+ a12:	c8 01       	movw	r24, r16
+ a14:	b7 01       	movw	r22, r14
+ a16:	0e 94 a4 04 	call	0x948	; 0x948 <debug_tx_number_hex_nl>
+}
+ a1a:	1f 91       	pop	r17
+ a1c:	0f 91       	pop	r16
+ a1e:	ff 90       	pop	r15
+ a20:	ef 90       	pop	r14
+ a22:	08 95       	ret
+
+00000a24 <debug_tx_parameter_hex_sp>:
+
+void debug_tx_parameter_hex_sp(char *name, int32_t num){
+ a24:	ef 92       	push	r14
+ a26:	ff 92       	push	r15
+ a28:	0f 93       	push	r16
+ a2a:	1f 93       	push	r17
+ a2c:	7a 01       	movw	r14, r20
+ a2e:	8b 01       	movw	r16, r22
+  debug_tx_text(name);
+ a30:	0e 94 03 04 	call	0x806	; 0x806 <debug_tx_text>
+  debug_tx_sp();
+ a34:	0e 94 fb 03 	call	0x7f6	; 0x7f6 <debug_tx_sp>
+  debug_tx_number_hex_sp(num);
+ a38:	c8 01       	movw	r24, r16
+ a3a:	b7 01       	movw	r22, r14
+ a3c:	0e 94 a9 04 	call	0x952	; 0x952 <debug_tx_number_hex_sp>
+}
+ a40:	1f 91       	pop	r17
+ a42:	0f 91       	pop	r16
+ a44:	ff 90       	pop	r15
+ a46:	ef 90       	pop	r14
+ a48:	08 95       	ret
+
+00000a4a <Debug_tx_parameter_hex_cm>:
+
+void Debug_tx_parameter_hex_cm(char *name, int32_t num){
+ a4a:	ef 92       	push	r14
+ a4c:	ff 92       	push	r15
+ a4e:	0f 93       	push	r16
+ a50:	1f 93       	push	r17
+ a52:	7a 01       	movw	r14, r20
+ a54:	8b 01       	movw	r16, r22
+  debug_tx_text(name);
+ a56:	0e 94 03 04 	call	0x806	; 0x806 <debug_tx_text>
+  debug_tx_sp();
+ a5a:	0e 94 fb 03 	call	0x7f6	; 0x7f6 <debug_tx_sp>
+  debug_tx_number_hex_cm(num);
+ a5e:	c8 01       	movw	r24, r16
+ a60:	b7 01       	movw	r22, r14
+ a62:	0e 94 ae 04 	call	0x95c	; 0x95c <debug_tx_number_hex_cm>
+}
+ a66:	1f 91       	pop	r17
+ a68:	0f 91       	pop	r16
+ a6a:	ff 90       	pop	r15
+ a6c:	ef 90       	pop	r14
+ a6e:	08 95       	ret
+
+00000a70 <debug_tx_parameter_bin_nl>:
+
+
+///////////parameter & bin number with end functions///////////
+
+void debug_tx_parameter_bin_nl(char *name, int32_t num){
+ a70:	ef 92       	push	r14
+ a72:	ff 92       	push	r15
+ a74:	0f 93       	push	r16
+ a76:	1f 93       	push	r17
+ a78:	7a 01       	movw	r14, r20
+ a7a:	8b 01       	movw	r16, r22
+  debug_tx_text(name);
+ a7c:	0e 94 03 04 	call	0x806	; 0x806 <debug_tx_text>
+  debug_tx_sp();
+ a80:	0e 94 fb 03 	call	0x7f6	; 0x7f6 <debug_tx_sp>
+  debug_tx_number_bin_nl(num);
+ a84:	c8 01       	movw	r24, r16
+ a86:	b7 01       	movw	r22, r14
+ a88:	0e 94 b5 04 	call	0x96a	; 0x96a <debug_tx_number_bin_nl>
+}
+ a8c:	1f 91       	pop	r17
+ a8e:	0f 91       	pop	r16
+ a90:	ff 90       	pop	r15
+ a92:	ef 90       	pop	r14
+ a94:	08 95       	ret
+
+00000a96 <debug_tx_parameter_bin_sp>:
+
+void debug_tx_parameter_bin_sp(char *name, int32_t num){
+ a96:	ef 92       	push	r14
+ a98:	ff 92       	push	r15
+ a9a:	0f 93       	push	r16
+ a9c:	1f 93       	push	r17
+ a9e:	7a 01       	movw	r14, r20
+ aa0:	8b 01       	movw	r16, r22
+  debug_tx_text(name);
+ aa2:	0e 94 03 04 	call	0x806	; 0x806 <debug_tx_text>
+  debug_tx_sp();
+ aa6:	0e 94 fb 03 	call	0x7f6	; 0x7f6 <debug_tx_sp>
+  debug_tx_number_bin_sp(num);
+ aaa:	c8 01       	movw	r24, r16
+ aac:	b7 01       	movw	r22, r14
+ aae:	0e 94 ba 04 	call	0x974	; 0x974 <debug_tx_number_bin_sp>
+}
+ ab2:	1f 91       	pop	r17
+ ab4:	0f 91       	pop	r16
+ ab6:	ff 90       	pop	r15
+ ab8:	ef 90       	pop	r14
+ aba:	08 95       	ret
+
+00000abc <Debug_tx_parameter_bin_cm>:
+
+void Debug_tx_parameter_bin_cm(char *name, int32_t num){
+ abc:	ef 92       	push	r14
+ abe:	ff 92       	push	r15
+ ac0:	0f 93       	push	r16
+ ac2:	1f 93       	push	r17
+ ac4:	7a 01       	movw	r14, r20
+ ac6:	8b 01       	movw	r16, r22
+  debug_tx_text(name);
+ ac8:	0e 94 03 04 	call	0x806	; 0x806 <debug_tx_text>
+  debug_tx_sp();
+ acc:	0e 94 fb 03 	call	0x7f6	; 0x7f6 <debug_tx_sp>
+  debug_tx_number_bin_cm(num);
+ ad0:	c8 01       	movw	r24, r16
+ ad2:	b7 01       	movw	r22, r14
+ ad4:	0e 94 bf 04 	call	0x97e	; 0x97e <debug_tx_number_bin_cm>
+}
+ ad8:	1f 91       	pop	r17
+ ada:	0f 91       	pop	r16
+ adc:	ff 90       	pop	r15
+ ade:	ef 90       	pop	r14
+ ae0:	08 95       	ret
+
+00000ae2 <debug_buf_get>:
+
+
+
+uint8_t debug_buf_get(uint8_t index){
+  return debug.buf[index];
+ ae2:	ea e2       	ldi	r30, 0x2A	; 42
+ ae4:	f1 e0       	ldi	r31, 0x01	; 1
+ ae6:	e8 0f       	add	r30, r24
+ ae8:	f1 1d       	adc	r31, r1
+ aea:	83 81       	ldd	r24, Z+3	; 0x03
+}
+ aec:	08 95       	ret
+
+00000aee <debug_buf_index_get>:
+
+uint8_t debug_buf_index_get(void){
+  return debug.bufindex;
+ aee:	80 91 4d 01 	lds	r24, 0x014D
+}
+ af2:	08 95       	ret
+
+00000af4 <debug_flush_buf>:
+
+void debug_flush_buf(void){
+ af4:	80 e0       	ldi	r24, 0x00	; 0
+ af6:	90 e0       	ldi	r25, 0x00	; 0
+  for(uint8_t i=0;i<DEBUG_RX_BUF_SIZE;i++){
+    debug.buf[i]=0;
+ af8:	fc 01       	movw	r30, r24
+ afa:	e6 5d       	subi	r30, 0xD6	; 214
+ afc:	fe 4f       	sbci	r31, 0xFE	; 254
+ afe:	13 82       	std	Z+3, r1	; 0x03
+ b00:	01 96       	adiw	r24, 0x01	; 1
+uint8_t debug_buf_index_get(void){
+  return debug.bufindex;
+}
+
+void debug_flush_buf(void){
+  for(uint8_t i=0;i<DEBUG_RX_BUF_SIZE;i++){
+ b02:	80 32       	cpi	r24, 0x20	; 32
+ b04:	91 05       	cpc	r25, r1
+ b06:	c1 f7       	brne	.-16     	; 0xaf8 <debug_flush_buf+0x4>
+    debug.buf[i]=0;
+  }
+  debug.bufindex=0;
+ b08:	10 92 4d 01 	sts	0x014D, r1
+}
+ b0c:	08 95       	ret
+
+00000b0e <debug_databsy_get>:
+
+uint8_t debug_databsy_get(void){
+  return debug.databsy;
+ b0e:	80 91 2c 01 	lds	r24, 0x012C
+}
+ b12:	08 95       	ret
+
+00000b14 <debug_data_available_rx_buf>:
+  }
+  debug.bufindex=0;
+}
+
+uint8_t debug_databsy_get(void){
+  return debug.databsy;
+ b14:	80 91 2c 01 	lds	r24, 0x012C
+}
+
+uint8_t debug_data_available_rx_buf(void){
+  if( (debug_databsy_get()==0) && (debug_buf_index_get()!=0) ){
+ b18:	88 23       	and	r24, r24
+ b1a:	11 f0       	breq	.+4      	; 0xb20 <debug_data_available_rx_buf+0xc>
+ b1c:	90 e0       	ldi	r25, 0x00	; 0
+ b1e:	08 c0       	rjmp	.+16     	; 0xb30 <debug_data_available_rx_buf+0x1c>
+uint8_t debug_buf_get(uint8_t index){
+  return debug.buf[index];
+}
+
+uint8_t debug_buf_index_get(void){
+  return debug.bufindex;
+ b20:	80 91 4d 01 	lds	r24, 0x014D
+ b24:	90 e0       	ldi	r25, 0x00	; 0
+ b26:	88 23       	and	r24, r24
+ b28:	09 f4       	brne	.+2      	; 0xb2c <debug_data_available_rx_buf+0x18>
+ b2a:	91 e0       	ldi	r25, 0x01	; 1
+ b2c:	81 e0       	ldi	r24, 0x01	; 1
+ b2e:	98 27       	eor	r25, r24
+  if( (debug_databsy_get()==0) && (debug_buf_index_get()!=0) ){
+    return 1;
+  }else{
+    return 0;
+  }
+}
+ b30:	89 2f       	mov	r24, r25
+ b32:	08 95       	ret
+
+00000b34 <debug_available_bytes_rx_buf>:
+uint8_t debug_buf_get(uint8_t index){
+  return debug.buf[index];
+}
+
+uint8_t debug_buf_index_get(void){
+  return debug.bufindex;
+ b34:	80 91 4d 01 	lds	r24, 0x014D
+  }
+}
+
+uint8_t debug_available_bytes_rx_buf(void){
+  return debug_buf_index_get();
+}
+ b38:	08 95       	ret
+
+00000b3a <debug_init>:
+
+void debug_init(void){
+  debug_struct_init();
+ b3a:	0e 94 3a 02 	call	0x474	; 0x474 <debug_struct_init>
+  debug_timings_init();
+ b3e:	0e 94 56 02 	call	0x4ac	; 0x4ac <debug_timings_init>
+  debug_gpio_init();
+ b42:	0e 94 7b 02 	call	0x4f6	; 0x4f6 <debug_gpio_init>
+}
+ b46:	08 95       	ret
+
+00000b48 <__vector_4>:
+
+
+ISR(ISR_PCINT_VECT){
+ b48:	1f 92       	push	r1
+ b4a:	0f 92       	push	r0
+ b4c:	0f b6       	in	r0, 0x3f	; 63
+ b4e:	0f 92       	push	r0
+ b50:	11 24       	eor	r1, r1
+ b52:	2f 93       	push	r18
+ b54:	3f 93       	push	r19
+ b56:	4f 93       	push	r20
+ b58:	5f 93       	push	r21
+ b5a:	6f 93       	push	r22
+ b5c:	7f 93       	push	r23
+ b5e:	8f 93       	push	r24
+ b60:	9f 93       	push	r25
+ b62:	af 93       	push	r26
+ b64:	bf 93       	push	r27
+ b66:	ef 93       	push	r30
+ b68:	ff 93       	push	r31
+  debug.databsy=1;
+ b6a:	81 e0       	ldi	r24, 0x01	; 1
+ b6c:	80 93 2c 01 	sts	0x012C, r24
+  uint8_t val=debug_rx_byte();
+ b70:	0e 94 0f 03 	call	0x61e	; 0x61e <debug_rx_byte>
+ b74:	98 2f       	mov	r25, r24
+  if(debug.error==0){
+ b76:	80 91 2a 01 	lds	r24, 0x012A
+ b7a:	88 23       	and	r24, r24
+ b7c:	99 f4       	brne	.+38     	; 0xba4 <__vector_4+0x5c>
+    debug.buf[debug.bufindex]=val;
+ b7e:	e0 91 4d 01 	lds	r30, 0x014D
+ b82:	f0 e0       	ldi	r31, 0x00	; 0
+ b84:	e6 5d       	subi	r30, 0xD6	; 214
+ b86:	fe 4f       	sbci	r31, 0xFE	; 254
+ b88:	93 83       	std	Z+3, r25	; 0x03
+	debug.bufindex++;
+ b8a:	80 91 4d 01 	lds	r24, 0x014D
+ b8e:	8f 5f       	subi	r24, 0xFF	; 255
+ b90:	80 93 4d 01 	sts	0x014D, r24
+	if(debug.bufindex>DEBUG_RX_BUF_SIZE){
+ b94:	80 91 4d 01 	lds	r24, 0x014D
+ b98:	81 32       	cpi	r24, 0x21	; 33
+ b9a:	10 f0       	brcs	.+4      	; 0xba0 <__vector_4+0x58>
+	  debug.bufindex=0;
+ b9c:	10 92 4d 01 	sts	0x014D, r1
+	}
+    debug_timer_start();
+ ba0:	0e 94 69 02 	call	0x4d2	; 0x4d2 <debug_timer_start>
+	#ifdef DEBUG_GPIO_SWITCH_DEBUGGING
+    DEBUG_TEST_PORT|= (1<<DEBUG_TEST_bp);
+    DEBUG_TEST_PORT&=~(1<<DEBUG_TEST_bp);
+    #endif
+  }
+}
+ ba4:	ff 91       	pop	r31
+ ba6:	ef 91       	pop	r30
+ ba8:	bf 91       	pop	r27
+ baa:	af 91       	pop	r26
+ bac:	9f 91       	pop	r25
+ bae:	8f 91       	pop	r24
+ bb0:	7f 91       	pop	r23
+ bb2:	6f 91       	pop	r22
+ bb4:	5f 91       	pop	r21
+ bb6:	4f 91       	pop	r20
+ bb8:	3f 91       	pop	r19
+ bba:	2f 91       	pop	r18
+ bbc:	0f 90       	pop	r0
+ bbe:	0f be       	out	0x3f, r0	; 63
+ bc0:	0f 90       	pop	r0
+ bc2:	1f 90       	pop	r1
+ bc4:	18 95       	reti
+
+00000bc6 <__vector_16>:
+
+ISR(TIMER_OVF_VECT){
+ bc6:	1f 92       	push	r1
+ bc8:	0f 92       	push	r0
+ bca:	0f b6       	in	r0, 0x3f	; 63
+ bcc:	0f 92       	push	r0
+ bce:	11 24       	eor	r1, r1
+  #endif
+}
+
+void debug_timer_stop(void){
+  #ifdef DEBUG_USE_TIMER0
+  TIMSK0=0;
+ bd0:	10 92 6e 00 	sts	0x006E, r1
+  TCCR0B=0;
+ bd4:	15 bc       	out	0x25, r1	; 37
+  TCNT0 =0;
+ bd6:	16 bc       	out	0x26, r1	; 38
+  debug_timer_stop();
+  #ifdef DEBUG_GPIO_SWITCH_DEBUGGING
+  DEBUG_TEST_PORT|= (1<<DEBUG_TEST_bp);
+  DEBUG_TEST_PORT&=~(1<<DEBUG_TEST_bp);
+  #endif
+  debug.databsy=0;
+ bd8:	10 92 2c 01 	sts	0x012C, r1
+}
+ bdc:	0f 90       	pop	r0
+ bde:	0f be       	out	0x3f, r0	; 63
+ be0:	0f 90       	pop	r0
+ be2:	1f 90       	pop	r1
+ be4:	18 95       	reti
+
+00000be6 <RTC_Get_Sec>:
+  return min;
+}
+
+uint8_t RTC_Get_Sec(void){
+  uint8_t tmp0=0, sec=0;
+  tmp0=I2C_Read_Register(0x00);
+ be6:	80 e0       	ldi	r24, 0x00	; 0
+ be8:	0e 94 cc 01 	call	0x398	; 0x398 <I2C_Read_Register>
+  sec = ((tmp0 & 0x70)>>4);
+  sec*= 10;
+ bec:	28 2f       	mov	r18, r24
+ bee:	30 e0       	ldi	r19, 0x00	; 0
+ bf0:	20 77       	andi	r18, 0x70	; 112
+ bf2:	30 70       	andi	r19, 0x00	; 0
+ bf4:	94 e0       	ldi	r25, 0x04	; 4
+ bf6:	35 95       	asr	r19
+ bf8:	27 95       	ror	r18
+ bfa:	9a 95       	dec	r25
+ bfc:	e1 f7       	brne	.-8      	; 0xbf6 <RTC_Get_Sec+0x10>
+ bfe:	9a e0       	ldi	r25, 0x0A	; 10
+ c00:	92 9f       	mul	r25, r18
+ c02:	90 2d       	mov	r25, r0
+ c04:	11 24       	eor	r1, r1
+ c06:	8f 70       	andi	r24, 0x0F	; 15
+  sec+= (tmp0 & 0x0F);
+  return sec;
+ c08:	89 0f       	add	r24, r25
+ c0a:	08 95       	ret
+
+00000c0c <RTC_Get_Min>:
+  return hr;
+}
+
+uint8_t RTC_Get_Min(void){
+  uint8_t tmp0=0, min=0;
+  tmp0=I2C_Read_Register(0x01);
+ c0c:	81 e0       	ldi	r24, 0x01	; 1
+ c0e:	0e 94 cc 01 	call	0x398	; 0x398 <I2C_Read_Register>
+  min = ((tmp0 & 0x70)>>4);
+  min*= 10;
+ c12:	28 2f       	mov	r18, r24
+ c14:	30 e0       	ldi	r19, 0x00	; 0
+ c16:	20 77       	andi	r18, 0x70	; 112
+ c18:	30 70       	andi	r19, 0x00	; 0
+ c1a:	44 e0       	ldi	r20, 0x04	; 4
+ c1c:	35 95       	asr	r19
+ c1e:	27 95       	ror	r18
+ c20:	4a 95       	dec	r20
+ c22:	e1 f7       	brne	.-8      	; 0xc1c <RTC_Get_Min+0x10>
+ c24:	9a e0       	ldi	r25, 0x0A	; 10
+ c26:	92 9f       	mul	r25, r18
+ c28:	90 2d       	mov	r25, r0
+ c2a:	11 24       	eor	r1, r1
+ c2c:	8f 70       	andi	r24, 0x0F	; 15
+  min+= (tmp0 & 0x0F);
+  return min;
+}
+ c2e:	89 0f       	add	r24, r25
+ c30:	08 95       	ret
+
+00000c32 <RTC_Get_Hr>:
+  }
+}
+
+uint8_t RTC_Get_Hr(void){
+  uint8_t tmp0=0, hr=0;
+  tmp0=I2C_Read_Register(0x02);
+ c32:	82 e0       	ldi	r24, 0x02	; 2
+ c34:	0e 94 cc 01 	call	0x398	; 0x398 <I2C_Read_Register>
+  if(tmp0 & (1<<6)){               //12H
+ c38:	28 2f       	mov	r18, r24
+ c3a:	30 e0       	ldi	r19, 0x00	; 0
+ c3c:	98 2f       	mov	r25, r24
+ c3e:	9f 70       	andi	r25, 0x0F	; 15
+ c40:	86 ff       	sbrs	r24, 6
+ c42:	0d c0       	rjmp	.+26     	; 0xc5e <RTC_Get_Hr+0x2c>
+    hr = ((tmp0 & (1<<4))>>4);
+	hr*= 10;
+ c44:	20 71       	andi	r18, 0x10	; 16
+ c46:	30 70       	andi	r19, 0x00	; 0
+ c48:	64 e0       	ldi	r22, 0x04	; 4
+ c4a:	35 95       	asr	r19
+ c4c:	27 95       	ror	r18
+ c4e:	6a 95       	dec	r22
+ c50:	e1 f7       	brne	.-8      	; 0xc4a <RTC_Get_Hr+0x18>
+ c52:	8a e0       	ldi	r24, 0x0A	; 10
+ c54:	82 9f       	mul	r24, r18
+ c56:	80 2d       	mov	r24, r0
+ c58:	11 24       	eor	r1, r1
+	hr+= (tmp0 & 0x0F);
+ c5a:	89 0f       	add	r24, r25
+ c5c:	08 95       	ret
+  }else{                           //24H
+    hr = (tmp0 & 0x30)>>4;
+    hr*= 10;
+ c5e:	20 73       	andi	r18, 0x30	; 48
+ c60:	30 70       	andi	r19, 0x00	; 0
+ c62:	54 e0       	ldi	r21, 0x04	; 4
+ c64:	35 95       	asr	r19
+ c66:	27 95       	ror	r18
+ c68:	5a 95       	dec	r21
+ c6a:	e1 f7       	brne	.-8      	; 0xc64 <RTC_Get_Hr+0x32>
+ c6c:	8a e0       	ldi	r24, 0x0A	; 10
+ c6e:	82 9f       	mul	r24, r18
+ c70:	80 2d       	mov	r24, r0
+ c72:	11 24       	eor	r1, r1
+	hr+= (tmp0 & 0x0F);
+ c74:	89 0f       	add	r24, r25
+  }
+  return hr;
+}
+ c76:	08 95       	ret
+
+00000c78 <RTC_Get_AmPm>:
+    //handle error
+  }
+}
+
+uint8_t RTC_Get_AmPm(void){        //0:AM, 1:PM
+  uint8_t tmp0=I2C_Read_Register(0x02);
+ c78:	82 e0       	ldi	r24, 0x02	; 2
+ c7a:	0e 94 cc 01 	call	0x398	; 0x398 <I2C_Read_Register>
+ c7e:	90 e0       	ldi	r25, 0x00	; 0
+ c80:	75 e0       	ldi	r23, 0x05	; 5
+ c82:	96 95       	lsr	r25
+ c84:	87 95       	ror	r24
+ c86:	7a 95       	dec	r23
+ c88:	e1 f7       	brne	.-8      	; 0xc82 <RTC_Get_AmPm+0xa>
+  if(tmp0 & (1<<5)){
+    return 1;
+  }else{
+    return 0;
+  }
+}
+ c8a:	81 70       	andi	r24, 0x01	; 1
+ c8c:	08 95       	ret
+
+00000c8e <RTC_Set_Time>:
+
+void RTC_Set_12H_PM(void){
+  I2C_Write_Register(0x02,0b01100000);
+}
+
+void RTC_Set_Time(uint8_t hr, uint8_t min, uint8_t sec){
+ c8e:	ff 92       	push	r15
+ c90:	0f 93       	push	r16
+ c92:	1f 93       	push	r17
+ c94:	18 2f       	mov	r17, r24
+ c96:	06 2f       	mov	r16, r22
+ c98:	f4 2e       	mov	r15, r20
+  uint8_t tmp0=0,tmp1=0,tmp2=0;
+  tmp0=I2C_Read_Register(0x02);
+ c9a:	82 e0       	ldi	r24, 0x02	; 2
+ c9c:	0e 94 cc 01 	call	0x398	; 0x398 <I2C_Read_Register>
+  tmp0&=0x60;
+ ca0:	38 2f       	mov	r19, r24
+ ca2:	30 76       	andi	r19, 0x60	; 96
+  tmp1=hr/10;
+ ca4:	81 2f       	mov	r24, r17
+ ca6:	6a e0       	ldi	r22, 0x0A	; 10
+ ca8:	0e 94 ad 06 	call	0xd5a	; 0xd5a <__udivmodqi4>
+ cac:	28 2f       	mov	r18, r24
+  tmp2=hr%10;
+ cae:	81 2f       	mov	r24, r17
+ cb0:	0e 94 ad 06 	call	0xd5a	; 0xd5a <__udivmodqi4>
+  if(tmp0 & (1<<6)){                    //12H Mode
+ cb4:	36 ff       	sbrs	r19, 6
+ cb6:	09 c0       	rjmp	.+18     	; 0xcca <RTC_Set_Time+0x3c>
+    if(hr<=12){
+ cb8:	1d 30       	cpi	r17, 0x0D	; 13
+ cba:	70 f4       	brcc	.+28     	; 0xcd8 <RTC_Set_Time+0x4a>
+	  I2C_Write_Register(0x02,tmp0|(tmp1<<4)|tmp2);
+ cbc:	39 2b       	or	r19, r25
+ cbe:	22 95       	swap	r18
+ cc0:	20 7f       	andi	r18, 0xF0	; 240
+ cc2:	32 2b       	or	r19, r18
+ cc4:	82 e0       	ldi	r24, 0x02	; 2
+ cc6:	63 2f       	mov	r22, r19
+ cc8:	05 c0       	rjmp	.+10     	; 0xcd4 <RTC_Set_Time+0x46>
+	}else{
+	  //handle error
+	}
+  }else{                               //24H 
+    tmp0&=0x40;
+	I2C_Write_Register(0x02,(tmp1<<4)|tmp2);
+ cca:	22 95       	swap	r18
+ ccc:	20 7f       	andi	r18, 0xF0	; 240
+ cce:	29 2b       	or	r18, r25
+ cd0:	82 e0       	ldi	r24, 0x02	; 2
+ cd2:	62 2f       	mov	r22, r18
+ cd4:	0e 94 08 02 	call	0x410	; 0x410 <I2C_Write_Register>
+  }
+  
+  tmp1=min/10;
+  tmp2=min%10;
+  if(min<=59){
+ cd8:	0c 33       	cpi	r16, 0x3C	; 60
+ cda:	98 f4       	brcc	.+38     	; 0xd02 <RTC_Set_Time+0x74>
+    I2C_Write_Register(0x01,(tmp1<<4)|tmp2);
+ cdc:	80 2f       	mov	r24, r16
+ cde:	6a e0       	ldi	r22, 0x0A	; 10
+ ce0:	0e 94 ad 06 	call	0xd5a	; 0xd5a <__udivmodqi4>
+ ce4:	28 2f       	mov	r18, r24
+ ce6:	30 e0       	ldi	r19, 0x00	; 0
+ ce8:	f4 e0       	ldi	r31, 0x04	; 4
+ cea:	22 0f       	add	r18, r18
+ cec:	33 1f       	adc	r19, r19
+ cee:	fa 95       	dec	r31
+ cf0:	e1 f7       	brne	.-8      	; 0xcea <RTC_Set_Time+0x5c>
+ cf2:	80 2f       	mov	r24, r16
+ cf4:	0e 94 ad 06 	call	0xd5a	; 0xd5a <__udivmodqi4>
+ cf8:	92 2b       	or	r25, r18
+ cfa:	81 e0       	ldi	r24, 0x01	; 1
+ cfc:	69 2f       	mov	r22, r25
+ cfe:	0e 94 08 02 	call	0x410	; 0x410 <I2C_Write_Register>
+    //handle error
+  }
+  
+  tmp1=sec/10;
+  tmp2=sec%10;
+  if(sec<=59){
+ d02:	8b e3       	ldi	r24, 0x3B	; 59
+ d04:	8f 15       	cp	r24, r15
+ d06:	98 f0       	brcs	.+38     	; 0xd2e <RTC_Set_Time+0xa0>
+    I2C_Write_Register(0x00,(tmp1<<4)|tmp2);
+ d08:	8f 2d       	mov	r24, r15
+ d0a:	6a e0       	ldi	r22, 0x0A	; 10
+ d0c:	0e 94 ad 06 	call	0xd5a	; 0xd5a <__udivmodqi4>
+ d10:	28 2f       	mov	r18, r24
+ d12:	30 e0       	ldi	r19, 0x00	; 0
+ d14:	e4 e0       	ldi	r30, 0x04	; 4
+ d16:	22 0f       	add	r18, r18
+ d18:	33 1f       	adc	r19, r19
+ d1a:	ea 95       	dec	r30
+ d1c:	e1 f7       	brne	.-8      	; 0xd16 <RTC_Set_Time+0x88>
+ d1e:	8f 2d       	mov	r24, r15
+ d20:	0e 94 ad 06 	call	0xd5a	; 0xd5a <__udivmodqi4>
+ d24:	92 2b       	or	r25, r18
+ d26:	80 e0       	ldi	r24, 0x00	; 0
+ d28:	69 2f       	mov	r22, r25
+ d2a:	0e 94 08 02 	call	0x410	; 0x410 <I2C_Write_Register>
+  }else{
+    //handle error
+  }
+}
+ d2e:	1f 91       	pop	r17
+ d30:	0f 91       	pop	r16
+ d32:	ff 90       	pop	r15
+ d34:	08 95       	ret
+
+00000d36 <RTC_Set_12H_PM>:
+void RTC_Set_12H_AM(void){
+  I2C_Write_Register(0x02,0b01000000);
+}
+
+void RTC_Set_12H_PM(void){
+  I2C_Write_Register(0x02,0b01100000);
+ d36:	82 e0       	ldi	r24, 0x02	; 2
+ d38:	60 e6       	ldi	r22, 0x60	; 96
+ d3a:	0e 94 08 02 	call	0x410	; 0x410 <I2C_Write_Register>
+}
+ d3e:	08 95       	ret
+
+00000d40 <RTC_Set_12H_AM>:
+void RTC_Set_24H_AM(void){
+  I2C_Write_Register(0x02,0b00000000);
+}
+
+void RTC_Set_12H_AM(void){
+  I2C_Write_Register(0x02,0b01000000);
+ d40:	82 e0       	ldi	r24, 0x02	; 2
+ d42:	60 e4       	ldi	r22, 0x40	; 64
+ d44:	0e 94 08 02 	call	0x410	; 0x410 <I2C_Write_Register>
+}
+ d48:	08 95       	ret
+
+00000d4a <RTC_Set_24H_AM>:
+void RTC_Init(void){
+  I2C_Init();  
+}
+
+void RTC_Set_24H_AM(void){
+  I2C_Write_Register(0x02,0b00000000);
+ d4a:	82 e0       	ldi	r24, 0x02	; 2
+ d4c:	60 e0       	ldi	r22, 0x00	; 0
+ d4e:	0e 94 08 02 	call	0x410	; 0x410 <I2C_Write_Register>
+}
+ d52:	08 95       	ret
+
+00000d54 <RTC_Init>:
+#include "rtc.h"
+
+
+
+void RTC_Init(void){
+  I2C_Init();  
+ d54:	0e 94 23 02 	call	0x446	; 0x446 <I2C_Init>
+}
+ d58:	08 95       	ret
+
+00000d5a <__udivmodqi4>:
+ d5a:	99 1b       	sub	r25, r25
+ d5c:	79 e0       	ldi	r23, 0x09	; 9
+ d5e:	04 c0       	rjmp	.+8      	; 0xd68 <__udivmodqi4_ep>
+
+00000d60 <__udivmodqi4_loop>:
+ d60:	99 1f       	adc	r25, r25
+ d62:	96 17       	cp	r25, r22
+ d64:	08 f0       	brcs	.+2      	; 0xd68 <__udivmodqi4_ep>
+ d66:	96 1b       	sub	r25, r22
+
+00000d68 <__udivmodqi4_ep>:
+ d68:	88 1f       	adc	r24, r24
+ d6a:	7a 95       	dec	r23
+ d6c:	c9 f7       	brne	.-14     	; 0xd60 <__udivmodqi4_loop>
+ d6e:	80 95       	com	r24
+ d70:	08 95       	ret
+
+00000d72 <__udivmodsi4>:
+ d72:	a1 e2       	ldi	r26, 0x21	; 33
+ d74:	1a 2e       	mov	r1, r26
+ d76:	aa 1b       	sub	r26, r26
+ d78:	bb 1b       	sub	r27, r27
+ d7a:	fd 01       	movw	r30, r26
+ d7c:	0d c0       	rjmp	.+26     	; 0xd98 <__udivmodsi4_ep>
+
+00000d7e <__udivmodsi4_loop>:
+ d7e:	aa 1f       	adc	r26, r26
+ d80:	bb 1f       	adc	r27, r27
+ d82:	ee 1f       	adc	r30, r30
+ d84:	ff 1f       	adc	r31, r31
+ d86:	a2 17       	cp	r26, r18
+ d88:	b3 07       	cpc	r27, r19
+ d8a:	e4 07       	cpc	r30, r20
+ d8c:	f5 07       	cpc	r31, r21
+ d8e:	20 f0       	brcs	.+8      	; 0xd98 <__udivmodsi4_ep>
+ d90:	a2 1b       	sub	r26, r18
+ d92:	b3 0b       	sbc	r27, r19
+ d94:	e4 0b       	sbc	r30, r20
+ d96:	f5 0b       	sbc	r31, r21
+
+00000d98 <__udivmodsi4_ep>:
+ d98:	66 1f       	adc	r22, r22
+ d9a:	77 1f       	adc	r23, r23
+ d9c:	88 1f       	adc	r24, r24
+ d9e:	99 1f       	adc	r25, r25
+ da0:	1a 94       	dec	r1
+ da2:	69 f7       	brne	.-38     	; 0xd7e <__udivmodsi4_loop>
+ da4:	60 95       	com	r22
+ da6:	70 95       	com	r23
+ da8:	80 95       	com	r24
+ daa:	90 95       	com	r25
+ dac:	9b 01       	movw	r18, r22
+ dae:	ac 01       	movw	r20, r24
+ db0:	bd 01       	movw	r22, r26
+ db2:	cf 01       	movw	r24, r30
+ db4:	08 95       	ret
+
+00000db6 <_exit>:
+ db6:	f8 94       	cli
+
+00000db8 <__stop_program>:
+ db8:	ff cf       	rjmp	.-2      	; 0xdb8 <__stop_program>
