@@ -3,7 +3,9 @@
 #include "i2c.h"
 #include "rtc.h"
 
+#define ENABLE_ERROR_HANDLER
 
+uint8_t RTC_Error=0;
 
 void RTC_Init(void){
   I2C_Init();  
@@ -60,6 +62,10 @@ void RTC_Set_Time(uint8_t hr, uint8_t min, uint8_t sec){
 	I2C_Write_Register(0x01,min_reg);
 	I2C_Write_Register(0x00,sec_reg);
   }
+  
+  #ifdef ENABLE_ERROR_HANDLER
+  RTC_Error=error;
+  #endif
 }
 
 void RTC_Set_Time_With_Format(uint8_t hr, uint8_t min, uint8_t sec, uint8_t hr_con, uint8_t AmPm){
@@ -85,7 +91,7 @@ uint8_t RTC_Get_AmPm(void){  //0:AM, 1:PM
 }
 
 uint8_t RTC_Get_Hr(void){
-  uint8_t tmp0=0, hr=0;
+  uint8_t tmp0=0, hr=0, error=0;
   tmp0=I2C_Read_Register(0x02);
   if(tmp0 & (1<<6)){           //12H
     hr = ((tmp0 & (1<<4))>>4);
@@ -96,23 +102,58 @@ uint8_t RTC_Get_Hr(void){
     hr*= 10;
 	hr+= (tmp0 & 0x0F);
   }
+  if((tmp0 & 0x40) && (hr>12)){
+    error=0x04;
+	hr=0;
+  }
+  
+  #ifdef ENABLE_ERROR_HANDLER
+  RTC_Error=error;
+  #endif
+  
   return hr;
 }
 
 uint8_t RTC_Get_Min(void){
-  uint8_t tmp0=0, min=0;
+  uint8_t tmp0=0, min=0, error=0;
   tmp0=I2C_Read_Register(0x01);
   min = ((tmp0 & 0x70)>>4);
   min*= 10;
   min+= (tmp0 & 0x0F);
+  if(min>59){
+    error=0x05;
+	min=0;
+  }
+  
+  #ifdef ENABLE_ERROR_HANDLER
+  RTC_Error=error;
+  #endif
+  
   return min;
 }
 
 uint8_t RTC_Get_Sec(void){
-  uint8_t tmp0=0, sec=0;
+  uint8_t tmp0=0, sec=0, error=0;
   tmp0=I2C_Read_Register(0x00);
   sec = ((tmp0 & 0x70)>>4);
   sec*= 10;
   sec+= (tmp0 & 0x0F);
+  if(sec>59){
+    error=0x06;
+	sec=0;
+  }
+  
+  #ifdef ENABLE_ERROR_HANDLER
+  RTC_Error=error;
+  #endif
+  
   return sec;
+}
+
+uint8_t RTC_Get_Error(void){
+  uint8_t error=0;
+  #ifdef ENABLE_ERROR_HANDLER
+  error=RTC_Error;
+  #endif
+  return error;
 }

@@ -10,3 +10,4 @@ uint8_t  RTC_Get_AmPm(void);
 uint8_t  RTC_Get_Hr(void);
 uint8_t  RTC_Get_Min(void);
 uint8_t  RTC_Get_Sec(void);
+uint8_t  RTC_Get_Error(void);
