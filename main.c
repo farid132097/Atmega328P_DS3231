@@ -13,8 +13,10 @@ int main(void){
   debug_init();
   debug_tx_text_nl("Debug Started");
   
-  //RTC_Set_12H_AM();
-  //RTC_Set_Time(11,59,30);
+  //arguments hr,min,sec, 12h/24h, Am/Pm
+  //12H:1, 24H:0
+  //PM :1, AM :0
+  //RTC_Set_Time_With_Format(11, 59, 0, 1, 0);
   
   while(1){
     

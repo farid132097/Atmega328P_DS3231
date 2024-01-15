@@ -9,7 +9,7 @@ void RTC_Init(void){
   I2C_Init();  
 }
 
-void RTC_Set_24H_AM(void){
+void RTC_Set_24H(void){
   I2C_Write_Register(0x02,0b00000000);
 }
 
@@ -55,6 +55,19 @@ void RTC_Set_Time(uint8_t hr, uint8_t min, uint8_t sec){
   }
 }
 
+void RTC_Set_Time_With_Format(uint8_t hr, uint8_t min, uint8_t sec, uint8_t hr_con, uint8_t AmPm){
+  if(hr_con==0){
+    RTC_Set_24H();
+  }else if(hr_con==1){
+    if(AmPm==0){
+	  RTC_Set_12H_AM();
+	}else if(AmPm==1){
+	  RTC_Set_12H_PM();
+	}
+  }
+  RTC_Set_Time( hr, min, sec);
+}
+  
 uint8_t RTC_Get_AmPm(void){        //0:AM, 1:PM
   uint8_t tmp0=I2C_Read_Register(0x02);
   if(tmp0 & (1<<5)){

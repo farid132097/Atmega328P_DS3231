@@ -8,7 +8,7 @@
   15               	.Ltext0:
   16               	.global	RTC_Get_Sec
   18               	RTC_Get_Sec:
-  19               	.LFB14:
+  19               	.LFB15:
   20               	.LM1:
   21               	/* prologue: function */
   22               	/* frame size = 0 */
@@ -41,10 +41,10 @@
   49               	.LVL6:
   50               	/* epilogue start */
   51 0024 0895      		ret
-  52               	.LFE14:
+  52               	.LFE15:
   54               	.global	RTC_Get_Min
   56               	RTC_Get_Min:
-  57               	.LFB13:
+  57               	.LFB14:
   58               	.LM5:
   59               	/* prologue: function */
   60               	/* frame size = 0 */
@@ -77,10 +77,10 @@
   87               	.LVL13:
   88               	/* epilogue start */
   89 004a 0895      		ret
-  90               	.LFE13:
+  90               	.LFE14:
   92               	.global	RTC_Get_Hr
   94               	RTC_Get_Hr:
-  95               	.LFB12:
+  95               	.LFB13:
   96               	.LM9:
   97               	/* prologue: function */
   98               	/* frame size = 0 */
@@ -132,10 +132,10 @@
  144               	.LVL19:
  145               	.LM16:
  146 0090 0895      		ret
- 147               	.LFE12:
+ 147               	.LFE13:
  149               	.global	RTC_Get_AmPm
  151               	RTC_Get_AmPm:
- 152               	.LFB11:
+ 152               	.LFB12:
  153               	.LM17:
  154               	/* prologue: function */
  155               	/* frame size = 0 */
@@ -155,7 +155,7 @@
  169               	.LVL22:
  170               	/* epilogue start */
  171 00a6 0895      		ret
- 172               	.LFE11:
+ 172               	.LFE12:
  174               	.global	RTC_Set_Time
  176               	RTC_Set_Time:
  177               	.LFB10:
@@ -296,8 +296,8 @@
  316               	.LM39:
  317 0162 0895      		ret
  318               	.LFE8:
- 320               	.global	RTC_Set_24H_AM
- 322               	RTC_Set_24H_AM:
+ 320               	.global	RTC_Set_24H
+ 322               	RTC_Set_24H:
  323               	.LFB7:
  324               	.LM40:
  325               	/* prologue: function */
@@ -310,36 +310,115 @@
  332               	.LM42:
  333 016c 0895      		ret
  334               	.LFE7:
- 336               	.global	RTC_Init
- 338               	RTC_Init:
- 339               	.LFB6:
+ 336               	.global	RTC_Set_Time_With_Format
+ 338               	RTC_Set_Time_With_Format:
+ 339               	.LFB11:
  340               	.LM43:
- 341               	/* prologue: function */
- 342               	/* frame size = 0 */
- 343               	.LM44:
- 344 016e 0E94 0000 		call I2C_Init
- 345               	/* epilogue start */
- 346               	.LM45:
- 347 0172 0895      		ret
- 348               	.LFE6:
- 438               	.Letext0:
+ 341               	.LVL35:
+ 342 016e EF92      		push r14
+ 343 0170 FF92      		push r15
+ 344 0172 0F93      		push r16
+ 345               	.LVL36:
+ 346 0174 1F93      		push r17
+ 347               	/* prologue: function */
+ 348               	/* frame size = 0 */
+ 349 0176 182F      		mov r17,r24
+ 350 0178 F62E      		mov r15,r22
+ 351 017a E42E      		mov r14,r20
+ 352               	.LM44:
+ 353 017c 2223      		tst r18
+ 354 017e 01F4      		brne .L25
+ 355               	.LVL37:
+ 356               	.LBB8:
+ 357               	.LBB9:
+ 358               	.LM45:
+ 359 0180 82E0      		ldi r24,lo8(2)
+ 360 0182 60E0      		ldi r22,lo8(0)
+ 361 0184 00C0      		rjmp .L29
+ 362               	.LVL38:
+ 363               	.L25:
+ 364               	.LBE9:
+ 365               	.LBE8:
+ 366               	.LM46:
+ 367 0186 2130      		cpi r18,lo8(1)
+ 368 0188 01F4      		brne .L26
+ 369               	.LM47:
+ 370 018a 0023      		tst r16
+ 371               	.LVL39:
+ 372 018c 01F4      		brne .L27
+ 373               	.LBB10:
+ 374               	.LBB11:
+ 375               	.LM48:
+ 376 018e 82E0      		ldi r24,lo8(2)
+ 377 0190 60E4      		ldi r22,lo8(64)
+ 378 0192 00C0      		rjmp .L29
+ 379               	.LVL40:
+ 380               	.L27:
+ 381               	.LBE11:
+ 382               	.LBE10:
+ 383               	.LM49:
+ 384 0194 0130      		cpi r16,lo8(1)
+ 385 0196 01F4      		brne .L26
+ 386               	.LBB12:
+ 387               	.LBB13:
+ 388               	.LM50:
+ 389 0198 82E0      		ldi r24,lo8(2)
+ 390 019a 60E6      		ldi r22,lo8(96)
+ 391               	.L29:
+ 392 019c 0E94 0000 		call I2C_Write_Register
+ 393               	.LVL41:
+ 394               	.L26:
+ 395               	.LBE13:
+ 396               	.LBE12:
+ 397               	.LM51:
+ 398 01a0 812F      		mov r24,r17
+ 399 01a2 6F2D      		mov r22,r15
+ 400 01a4 4E2D      		mov r20,r14
+ 401 01a6 0E94 0000 		call RTC_Set_Time
+ 402               	.LVL42:
+ 403               	/* epilogue start */
+ 404               	.LM52:
+ 405 01aa 1F91      		pop r17
+ 406               	.LVL43:
+ 407 01ac 0F91      		pop r16
+ 408               	.LVL44:
+ 409 01ae FF90      		pop r15
+ 410               	.LVL45:
+ 411 01b0 EF90      		pop r14
+ 412               	.LVL46:
+ 413 01b2 0895      		ret
+ 414               	.LFE11:
+ 416               	.global	RTC_Init
+ 418               	RTC_Init:
+ 419               	.LFB6:
+ 420               	.LM53:
+ 421               	/* prologue: function */
+ 422               	/* frame size = 0 */
+ 423               	.LM54:
+ 424 01b4 0E94 0000 		call I2C_Init
+ 425               	/* epilogue start */
+ 426               	.LM55:
+ 427 01b8 0895      		ret
+ 428               	.LFE6:
+ 526               	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 rtc.c
-C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:2      *ABS*:0000003f __SREG__
-C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:3      *ABS*:0000003e __SP_H__
-C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:4      *ABS*:0000003d __SP_L__
-C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:5      *ABS*:00000034 __CCP__
-C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:6      *ABS*:00000000 __tmp_reg__
-C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:7      *ABS*:00000001 __zero_reg__
-C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:18     .text:00000000 RTC_Get_Sec
-C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:56     .text:00000026 RTC_Get_Min
-C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:94     .text:0000004c RTC_Get_Hr
-C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:151    .text:00000092 RTC_Get_AmPm
-C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:176    .text:000000a8 RTC_Set_Time
-C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:290    .text:00000150 RTC_Set_12H_PM
-C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:306    .text:0000015a RTC_Set_12H_AM
-C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:322    .text:00000164 RTC_Set_24H_AM
-C:\Users\FARIDU~1\AppData\Local\Temp/cch1qTvQ.s:338    .text:0000016e RTC_Init
+C:\Users\FARIDU~1\AppData\Local\Temp/ccMfp0Lg.s:2      *ABS*:0000003f __SREG__
+C:\Users\FARIDU~1\AppData\Local\Temp/ccMfp0Lg.s:3      *ABS*:0000003e __SP_H__
+C:\Users\FARIDU~1\AppData\Local\Temp/ccMfp0Lg.s:4      *ABS*:0000003d __SP_L__
+C:\Users\FARIDU~1\AppData\Local\Temp/ccMfp0Lg.s:5      *ABS*:00000034 __CCP__
+C:\Users\FARIDU~1\AppData\Local\Temp/ccMfp0Lg.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\FARIDU~1\AppData\Local\Temp/ccMfp0Lg.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\FARIDU~1\AppData\Local\Temp/ccMfp0Lg.s:18     .text:00000000 RTC_Get_Sec
+C:\Users\FARIDU~1\AppData\Local\Temp/ccMfp0Lg.s:56     .text:00000026 RTC_Get_Min
+C:\Users\FARIDU~1\AppData\Local\Temp/ccMfp0Lg.s:94     .text:0000004c RTC_Get_Hr
+C:\Users\FARIDU~1\AppData\Local\Temp/ccMfp0Lg.s:151    .text:00000092 RTC_Get_AmPm
+C:\Users\FARIDU~1\AppData\Local\Temp/ccMfp0Lg.s:176    .text:000000a8 RTC_Set_Time
+C:\Users\FARIDU~1\AppData\Local\Temp/ccMfp0Lg.s:290    .text:00000150 RTC_Set_12H_PM
+C:\Users\FARIDU~1\AppData\Local\Temp/ccMfp0Lg.s:306    .text:0000015a RTC_Set_12H_AM
+C:\Users\FARIDU~1\AppData\Local\Temp/ccMfp0Lg.s:322    .text:00000164 RTC_Set_24H
+C:\Users\FARIDU~1\AppData\Local\Temp/ccMfp0Lg.s:338    .text:0000016e RTC_Set_Time_With_Format
+C:\Users\FARIDU~1\AppData\Local\Temp/ccMfp0Lg.s:418    .text:000001b4 RTC_Init
 
 UNDEFINED SYMBOLS
 I2C_Read_Register
