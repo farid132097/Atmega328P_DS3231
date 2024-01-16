@@ -131,7 +131,7 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0xe60
+.text           0x00000000      0xfd6
  *(.vectors)
  .vectors       0x00000000       0x68 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
                 0x00000000                __vectors
@@ -211,127 +211,132 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                 0x000000a2                __vector_10
                 0x000000a2                __vector_18
                 0x000000a2                __vector_20
- .text          0x000000a6       0x78 main.o
+ .text          0x000000a6       0xc2 main.o
                 0x000000a6                main
- .text          0x0000011e      0x356 i2c.o
-                0x000001be                I2C_SDA_Reset_State
-                0x00000130                I2C_Bit_Delay
-                0x00000138                I2C_Guard_Delay
-                0x0000014c                I2C_SCL_Set_Output_LL
-                0x00000192                I2C_SDA_Set_Output
-                0x0000037c                I2C_Get_Device_Address
-                0x00000158                I2C_SCL_Set_Output
-                0x00000324                I2C_Get_Ack
-                0x00000300                I2C_Set_Nack
-                0x0000011e                I2C_Struct_Init
-                0x00000446                I2C_Init
-                0x000001b4                I2C_SCL_Reset_State
-                0x000002dc                I2C_Set_Ack
-                0x000001a2                I2C_SDA_Get_State
-                0x00000186                I2C_SDA_Set_Output_LL
-                0x00000168                I2C_SCL_Get_State
-                0x0000035e                I2C_Send_Device_Address
-                0x0000017a                I2C_SDA_Set_DD
-                0x00000410                I2C_Write_Register
-                0x00000140                I2C_SCL_Set_DD
-                0x000001c8                I2C_GPIO_Init
-                0x000001da                I2C_Start
-                0x00000128                I2C_Half_Bit_Delay
-                0x00000398                I2C_Read_Register
-                0x0000020a                I2C_Stop
-                0x0000023a                I2C_Data_Send
-                0x0000028e                I2C_Data_Receive
- .text          0x00000474      0x772 debug.o
-                0x00000552                debug_delay_index_1
-                0x00000a70                debug_tx_parameter_bin_nl
-                0x0000096a                debug_tx_number_bin_nl
-                0x0000093a                debug_tx_number_cm
-                0x00000abc                Debug_tx_parameter_bin_cm
-                0x00000840                debug_tx_text_cm
-                0x0000084a                debug_determine_digit_numbers
-                0x00000474                debug_struct_init
-                0x000004ec                debug_timer_stop
-                0x00000b34                debug_available_bytes_rx_buf
-                0x00000948                debug_tx_number_hex_nl
-                0x00000ae2                debug_buf_get
-                0x0000061e                debug_rx_byte
-                0x00000af4                debug_flush_buf
-                0x00000aee                debug_buf_index_get
-                0x0000095c                debug_tx_number_hex_cm
-                0x0000098c                debug_tx_parameter_nl
-                0x00000930                debug_tx_number_sp
-                0x0000082c                debug_tx_text_nl
-                0x00000508                debug_tx_set
-                0x00000a4a                Debug_tx_parameter_hex_cm
-                0x00000806                debug_tx_text
-                0x00000974                debug_tx_number_bin_sp
-                0x00000504                debug_tx_low
-                0x000004d2                debug_timer_start
-                0x000009d8                debug_tx_parameter_cm
-                0x0000067c                debug_rx_byte_clear
-                0x00000544                debug_delay_index_0
-                0x000008ea                debug_tx_number
-                0x00000682                debug_rx_byte_set
-                0x0000073c                debug_tx_bin
-                0x00000526                debug_delay
-                0x00000b48                __vector_4
-                0x00000560                debug_delay_index_2
-                0x000007f6                debug_tx_sp
-                0x00000b3a                debug_init
-                0x000004f6                debug_gpio_init
-                0x00000836                debug_tx_text_sp
-                0x000007e8                debug_tx_nl
-                0x00000500                debug_tx_high
-                0x00000926                debug_tx_number_nl
-                0x000009b2                debug_tx_parameter_sp
-                0x00000a24                debug_tx_parameter_hex_sp
-                0x0000056e                debug_tx_byte
-                0x0000097e                debug_tx_number_bin_cm
-                0x00000952                debug_tx_number_hex_sp
-                0x00000a96                debug_tx_parameter_bin_sp
-                0x000007fe                debug_tx_cm
-                0x00000b0e                debug_databsy_get
-                0x000009fe                debug_tx_parameter_hex_nl
-                0x00000688                debug_tx_hex
-                0x00000b14                debug_data_available_rx_buf
-                0x00000676                debug_rx_byte_get
-                0x000004ac                debug_timings_init
-                0x00000bc6                __vector_16
-                0x000008c8                debug_tx_number_digits
-                0x00000514                debug_rx_get
- .text          0x00000be6      0x21a rtc.o
-                0x00000cd2                RTC_Write
-                0x00000c40                RTC_Get_Min
-                0x00000da6                RTC_Set_12H_AM
-                0x00000c78                RTC_Get_Hr
-                0x00000c02                RTC_Read
-                0x00000be6                RTC_Get_Error
-                0x00000ccc                RTC_Init
-                0x00000d9c                RTC_Set_12H_PM
-                0x00000c08                RTC_Get_Sec
-                0x00000db0                RTC_Set_24H
-                0x00000dba                RTC_Set_Time_With_Format
-                0x00000cd8                RTC_Set_Time
-                0x00000bec                RTC_Get_AmPm
- .text          0x00000e00        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodqi4.o)
- .text          0x00000e00        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
- .text          0x00000e00        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text          0x00000e00        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
- .text          0x00000e00        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
-                0x00000e00                . = ALIGN (0x2)
+ .text          0x00000168      0x356 i2c.o
+                0x00000208                I2C_SDA_Reset_State
+                0x0000017a                I2C_Bit_Delay
+                0x00000182                I2C_Guard_Delay
+                0x00000196                I2C_SCL_Set_Output_LL
+                0x000001dc                I2C_SDA_Set_Output
+                0x000003c6                I2C_Get_Device_Address
+                0x000001a2                I2C_SCL_Set_Output
+                0x0000036e                I2C_Get_Ack
+                0x0000034a                I2C_Set_Nack
+                0x00000168                I2C_Struct_Init
+                0x00000490                I2C_Init
+                0x000001fe                I2C_SCL_Reset_State
+                0x00000326                I2C_Set_Ack
+                0x000001ec                I2C_SDA_Get_State
+                0x000001d0                I2C_SDA_Set_Output_LL
+                0x000001b2                I2C_SCL_Get_State
+                0x000003a8                I2C_Send_Device_Address
+                0x000001c4                I2C_SDA_Set_DD
+                0x0000045a                I2C_Write_Register
+                0x0000018a                I2C_SCL_Set_DD
+                0x00000212                I2C_GPIO_Init
+                0x00000224                I2C_Start
+                0x00000172                I2C_Half_Bit_Delay
+                0x000003e2                I2C_Read_Register
+                0x00000254                I2C_Stop
+                0x00000284                I2C_Data_Send
+                0x000002d8                I2C_Data_Receive
+ .text          0x000004be      0x772 debug.o
+                0x0000059c                debug_delay_index_1
+                0x00000aba                debug_tx_parameter_bin_nl
+                0x000009b4                debug_tx_number_bin_nl
+                0x00000984                debug_tx_number_cm
+                0x00000b06                Debug_tx_parameter_bin_cm
+                0x0000088a                debug_tx_text_cm
+                0x00000894                debug_determine_digit_numbers
+                0x000004be                debug_struct_init
+                0x00000536                debug_timer_stop
+                0x00000b7e                debug_available_bytes_rx_buf
+                0x00000992                debug_tx_number_hex_nl
+                0x00000b2c                debug_buf_get
+                0x00000668                debug_rx_byte
+                0x00000b3e                debug_flush_buf
+                0x00000b38                debug_buf_index_get
+                0x000009a6                debug_tx_number_hex_cm
+                0x000009d6                debug_tx_parameter_nl
+                0x0000097a                debug_tx_number_sp
+                0x00000876                debug_tx_text_nl
+                0x00000552                debug_tx_set
+                0x00000a94                Debug_tx_parameter_hex_cm
+                0x00000850                debug_tx_text
+                0x000009be                debug_tx_number_bin_sp
+                0x0000054e                debug_tx_low
+                0x0000051c                debug_timer_start
+                0x00000a22                debug_tx_parameter_cm
+                0x000006c6                debug_rx_byte_clear
+                0x0000058e                debug_delay_index_0
+                0x00000934                debug_tx_number
+                0x000006cc                debug_rx_byte_set
+                0x00000786                debug_tx_bin
+                0x00000570                debug_delay
+                0x00000b92                __vector_4
+                0x000005aa                debug_delay_index_2
+                0x00000840                debug_tx_sp
+                0x00000b84                debug_init
+                0x00000540                debug_gpio_init
+                0x00000880                debug_tx_text_sp
+                0x00000832                debug_tx_nl
+                0x0000054a                debug_tx_high
+                0x00000970                debug_tx_number_nl
+                0x000009fc                debug_tx_parameter_sp
+                0x00000a6e                debug_tx_parameter_hex_sp
+                0x000005b8                debug_tx_byte
+                0x000009c8                debug_tx_number_bin_cm
+                0x0000099c                debug_tx_number_hex_sp
+                0x00000ae0                debug_tx_parameter_bin_sp
+                0x00000848                debug_tx_cm
+                0x00000b58                debug_databsy_get
+                0x00000a48                debug_tx_parameter_hex_nl
+                0x000006d2                debug_tx_hex
+                0x00000b5e                debug_data_available_rx_buf
+                0x000006c0                debug_rx_byte_get
+                0x000004f6                debug_timings_init
+                0x00000c10                __vector_16
+                0x00000912                debug_tx_number_digits
+                0x0000055e                debug_rx_get
+ .text          0x00000c30      0x346 rtc.o
+                0x00000d72                RTC_Write
+                0x00000d78                RTC_Set_Date
+                0x00000cfc                RTC_Get_Min
+                0x00000f1c                RTC_Set_12H_AM
+                0x00000ca8                RTC_Get_Hr
+                0x00000c4c                RTC_Read
+                0x00000c30                RTC_Get_Error
+                0x00000d6c                RTC_Init
+                0x00000c52                RTC_Get_Year
+                0x00000f12                RTC_Set_12H_PM
+                0x00000d34                RTC_Get_Sec
+                0x00000f26                RTC_Set_24H
+                0x00000f30                RTC_Set_Time_With_Format
+                0x00000e4e                RTC_Set_Time
+                0x00000c8c                RTC_Get_Date
+                0x00000c9a                RTC_Get_Day
+                0x00000c36                RTC_Get_AmPm
+                0x00000c7e                RTC_Get_Month
+ .text          0x00000f76        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodqi4.o)
+ .text          0x00000f76        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+ .text          0x00000f76        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text          0x00000f76        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text          0x00000f76        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                0x00000f76                . = ALIGN (0x2)
  *(.text.*)
- .text.libgcc   0x00000e00       0x18 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodqi4.o)
-                0x00000e00                __udivmodqi4
- .text.libgcc   0x00000e18       0x44 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
-                0x00000e18                __udivmodsi4
- .text.libgcc   0x00000e5c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x00000e5c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
- .text.libgcc   0x00000e5c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
-                0x00000e5c                . = ALIGN (0x2)
+ .text.libgcc   0x00000f76       0x18 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodqi4.o)
+                0x00000f76                __udivmodqi4
+ .text.libgcc   0x00000f8e       0x44 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                0x00000f8e                __udivmodsi4
+ .text.libgcc   0x00000fd2        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x00000fd2        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x00000fd2        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                0x00000fd2                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000e5c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x00000e5c                exit
-                0x00000e5c                _exit
+ .fini9         0x00000fd2        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x00000fd2                exit
+                0x00000fd2                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -350,11 +355,11 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000e5c        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000fd2        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000e60                _etext = .
+                0x00000fd6                _etext = .
 
-.data           0x00800100       0x28 load address 0x00000e60
+.data           0x00800100       0x28 load address 0x00000fd6
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800100        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
@@ -399,8 +404,8 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  COMMON         0x0080012b       0x2d debug.o
                 0x0080012b                debug
                 0x00800158                PROVIDE (__bss_end, .)
-                0x00000e60                __data_load_start = LOADADDR (.data)
-                0x00000e88                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000fd6                __data_load_start = LOADADDR (.data)
+                0x00000ffe                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800158        0x0
                 0x00800158                PROVIDE (__noinit_start, .)
@@ -470,7 +475,7 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                 0x00000060       0x20 rtc.o
 
 .debug_pubnames
-                0x00000000      0x8c6
+                0x00000000      0x91b
  *(.debug_pubnames)
  .debug_pubnames
                 0x00000000       0x1b main.o
@@ -479,38 +484,38 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  .debug_pubnames
                 0x00000260      0x568 debug.o
  .debug_pubnames
-                0x000007c8       0xfe rtc.o
+                0x000007c8      0x153 rtc.o
 
-.debug_info     0x00000000     0x1fbd
+.debug_info     0x00000000     0x2278
  *(.debug_info)
  .debug_info    0x00000000      0x10d main.o
  .debug_info    0x0000010d      0xd01 i2c.o
  .debug_info    0x00000e0e      0xc54 debug.o
- .debug_info    0x00001a62      0x55b rtc.o
+ .debug_info    0x00001a62      0x816 rtc.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev   0x00000000      0x6f0
+.debug_abbrev   0x00000000      0x75d
  *(.debug_abbrev)
  .debug_abbrev  0x00000000       0xb2 main.o
  .debug_abbrev  0x000000b2      0x258 i2c.o
  .debug_abbrev  0x0000030a      0x288 debug.o
- .debug_abbrev  0x00000592      0x15e rtc.o
+ .debug_abbrev  0x00000592      0x1cb rtc.o
 
-.debug_line     0x00000000     0x160b
+.debug_line     0x00000000     0x177b
  *(.debug_line)
- .debug_line    0x00000000      0x164 main.o
- .debug_line    0x00000164      0x716 i2c.o
- .debug_line    0x0000087a      0xa9c debug.o
- .debug_line    0x00001316      0x2f5 rtc.o
+ .debug_line    0x00000000      0x184 main.o
+ .debug_line    0x00000184      0x716 i2c.o
+ .debug_line    0x0000089a      0xa9c debug.o
+ .debug_line    0x00001336      0x445 rtc.o
 
-.debug_frame    0x00000000      0x660
+.debug_frame    0x00000000      0x6b0
  *(.debug_frame)
  .debug_frame   0x00000000       0x20 main.o
  .debug_frame   0x00000020      0x1c0 i2c.o
  .debug_frame   0x000001e0      0x3a0 debug.o
- .debug_frame   0x00000580       0xe0 rtc.o
+ .debug_frame   0x00000580      0x130 rtc.o
 
-.debug_str      0x00000000      0x8a6
+.debug_str      0x00000000      0x913
  *(.debug_str)
  .debug_str     0x00000000       0xca main.o
                                  0xfe (size before relaxing)
@@ -518,15 +523,15 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                                 0x308 (size before relaxing)
  .debug_str     0x000002da      0x4e0 debug.o
                                 0x5ba (size before relaxing)
- .debug_str     0x000007ba       0xec rtc.o
-                                0x1b3 (size before relaxing)
+ .debug_str     0x000007ba      0x159 rtc.o
+                                0x229 (size before relaxing)
 
-.debug_loc      0x00000000      0xdab
+.debug_loc      0x00000000      0xed3
  *(.debug_loc)
  .debug_loc     0x00000000       0x50 main.o
  .debug_loc     0x00000050      0x2f3 i2c.o
  .debug_loc     0x00000343      0x767 debug.o
- .debug_loc     0x00000aaa      0x301 rtc.o
+ .debug_loc     0x00000aaa      0x429 rtc.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -577,12 +582,20 @@ I2C_Write_Register                                i2c.o
 RTC_Error                                         rtc.o
 RTC_Get_AmPm                                      rtc.o
                                                   main.o
+RTC_Get_Date                                      rtc.o
+                                                  main.o
+RTC_Get_Day                                       rtc.o
+                                                  main.o
 RTC_Get_Error                                     rtc.o
 RTC_Get_Hr                                        rtc.o
                                                   main.o
 RTC_Get_Min                                       rtc.o
                                                   main.o
+RTC_Get_Month                                     rtc.o
+                                                  main.o
 RTC_Get_Sec                                       rtc.o
+                                                  main.o
+RTC_Get_Year                                      rtc.o
                                                   main.o
 RTC_Init                                          rtc.o
                                                   main.o
@@ -590,6 +603,7 @@ RTC_Read                                          rtc.o
 RTC_Set_12H_AM                                    rtc.o
 RTC_Set_12H_PM                                    rtc.o
 RTC_Set_24H                                       rtc.o
+RTC_Set_Date                                      rtc.o
 RTC_Set_Time                                      rtc.o
 RTC_Set_Time_With_Format                          rtc.o
 RTC_Write                                         rtc.o

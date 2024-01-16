@@ -51,7 +51,7 @@
   56               	.LBE13:
   57               	.LBE12:
   58               	.LM8:
-  59 001c 0E94 0000 		call RTC_Get_Hr
+  59 001c 0E94 0000 		call RTC_Get_Year
   60               	.LVL1:
   61 0020 90E0      		ldi r25,lo8(0)
   62 0022 A0E0      		ldi r26,lo8(0)
@@ -60,7 +60,7 @@
   65 0028 CD01      		movw r24,r26
   66 002a 0E94 0000 		call debug_tx_number_cm
   67               	.LM9:
-  68 002e 0E94 0000 		call RTC_Get_Min
+  68 002e 0E94 0000 		call RTC_Get_Month
   69 0032 90E0      		ldi r25,lo8(0)
   70 0034 A0E0      		ldi r26,lo8(0)
   71 0036 B0E0      		ldi r27,hi8(0)
@@ -68,70 +68,107 @@
   73 003a CD01      		movw r24,r26
   74 003c 0E94 0000 		call debug_tx_number_cm
   75               	.LM10:
-  76 0040 0E94 0000 		call RTC_Get_Sec
+  76 0040 0E94 0000 		call RTC_Get_Date
   77 0044 90E0      		ldi r25,lo8(0)
   78 0046 A0E0      		ldi r26,lo8(0)
   79 0048 B0E0      		ldi r27,hi8(0)
   80 004a BC01      		movw r22,r24
   81 004c CD01      		movw r24,r26
-  82 004e 0E94 0000 		call debug_tx_number_sp
+  82 004e 0E94 0000 		call debug_tx_number_cm
   83               	.LM11:
-  84 0052 0E94 0000 		call RTC_Get_AmPm
-  85 0056 8823      		tst r24
-  86 0058 01F0      		breq .L2
-  87               	.LM12:
-  88 005a 80E0      		ldi r24,lo8(.LC1)
-  89 005c 90E0      		ldi r25,hi8(.LC1)
-  90 005e 00C0      		rjmp .L8
-  91               	.L2:
-  92               	.LM13:
-  93 0060 80E0      		ldi r24,lo8(.LC2)
-  94 0062 90E0      		ldi r25,hi8(.LC2)
-  95               	.L8:
-  96 0064 0E94 0000 		call debug_tx_text_nl
-  97 0068 88E8      		ldi r24,lo8(5000)
-  98 006a 93E1      		ldi r25,hi8(5000)
-  99               	.LVL2:
- 100               	.L6:
- 101               	.LBB19:
- 102               	.LBB18:
- 103               	.LBB17:
- 104               	.LBB16:
- 105               	.LM14:
- 106 006c FE01      		movw r30,r28
- 107               	/* #APP */
- 108               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 109 006e 3197      		1: sbiw r30,1
- 110 0070 01F4      		brne 1b
- 111               	 ;  0 "" 2
- 112               	/* #NOAPP */
- 113               	.LBE16:
- 114               	.LBE17:
+  84 0052 0E94 0000 		call RTC_Get_Day
+  85 0056 90E0      		ldi r25,lo8(0)
+  86 0058 A0E0      		ldi r26,lo8(0)
+  87 005a B0E0      		ldi r27,hi8(0)
+  88 005c BC01      		movw r22,r24
+  89 005e CD01      		movw r24,r26
+  90 0060 0E94 0000 		call debug_tx_number_cm
+  91               	.LM12:
+  92 0064 0E94 0000 		call RTC_Get_Hr
+  93 0068 90E0      		ldi r25,lo8(0)
+  94 006a A0E0      		ldi r26,lo8(0)
+  95 006c B0E0      		ldi r27,hi8(0)
+  96 006e BC01      		movw r22,r24
+  97 0070 CD01      		movw r24,r26
+  98 0072 0E94 0000 		call debug_tx_number_cm
+  99               	.LM13:
+ 100 0076 0E94 0000 		call RTC_Get_Min
+ 101 007a 90E0      		ldi r25,lo8(0)
+ 102 007c A0E0      		ldi r26,lo8(0)
+ 103 007e B0E0      		ldi r27,hi8(0)
+ 104 0080 BC01      		movw r22,r24
+ 105 0082 CD01      		movw r24,r26
+ 106 0084 0E94 0000 		call debug_tx_number_cm
+ 107               	.LM14:
+ 108 0088 0E94 0000 		call RTC_Get_Sec
+ 109 008c 90E0      		ldi r25,lo8(0)
+ 110 008e A0E0      		ldi r26,lo8(0)
+ 111 0090 B0E0      		ldi r27,hi8(0)
+ 112 0092 BC01      		movw r22,r24
+ 113 0094 CD01      		movw r24,r26
+ 114 0096 0E94 0000 		call debug_tx_number_sp
  115               	.LM15:
- 116 0072 0197      		sbiw r24,1
- 117               	.LM16:
- 118 0074 01F0      		breq .L4
- 119 0076 00C0      		rjmp .L6
- 120               	.LBE18:
- 121               	.LBE19:
- 122               	.LFE6:
- 148               	.Letext0:
+ 116 009a 0E94 0000 		call RTC_Get_AmPm
+ 117 009e 8823      		tst r24
+ 118 00a0 01F0      		breq .L2
+ 119               	.LM16:
+ 120 00a2 80E0      		ldi r24,lo8(.LC1)
+ 121 00a4 90E0      		ldi r25,hi8(.LC1)
+ 122 00a6 00C0      		rjmp .L8
+ 123               	.L2:
+ 124               	.LM17:
+ 125 00a8 80E0      		ldi r24,lo8(.LC2)
+ 126 00aa 90E0      		ldi r25,hi8(.LC2)
+ 127               	.L8:
+ 128 00ac 0E94 0000 		call debug_tx_text_nl
+ 129 00b0 88E8      		ldi r24,lo8(5000)
+ 130 00b2 93E1      		ldi r25,hi8(5000)
+ 131               	.LVL2:
+ 132               	.L6:
+ 133               	.LBB19:
+ 134               	.LBB18:
+ 135               	.LBB17:
+ 136               	.LBB16:
+ 137               	.LM18:
+ 138 00b4 FE01      		movw r30,r28
+ 139               	/* #APP */
+ 140               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 141 00b6 3197      		1: sbiw r30,1
+ 142 00b8 01F4      		brne 1b
+ 143               	 ;  0 "" 2
+ 144               	/* #NOAPP */
+ 145               	.LBE16:
+ 146               	.LBE17:
+ 147               	.LM19:
+ 148 00ba 0197      		sbiw r24,1
+ 149               	.LM20:
+ 150 00bc 01F4      		brne .+2
+ 151 00be 00C0      		rjmp .L4
+ 152 00c0 00C0      		rjmp .L6
+ 153               	.LBE18:
+ 154               	.LBE19:
+ 155               	.LFE6:
+ 181               	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\FARIDU~1\AppData\Local\Temp/ccwCvrfH.s:2      *ABS*:0000003f __SREG__
-C:\Users\FARIDU~1\AppData\Local\Temp/ccwCvrfH.s:3      *ABS*:0000003e __SP_H__
-C:\Users\FARIDU~1\AppData\Local\Temp/ccwCvrfH.s:4      *ABS*:0000003d __SP_L__
-C:\Users\FARIDU~1\AppData\Local\Temp/ccwCvrfH.s:5      *ABS*:00000034 __CCP__
-C:\Users\FARIDU~1\AppData\Local\Temp/ccwCvrfH.s:6      *ABS*:00000000 __tmp_reg__
-C:\Users\FARIDU~1\AppData\Local\Temp/ccwCvrfH.s:7      *ABS*:00000001 __zero_reg__
-C:\Users\FARIDU~1\AppData\Local\Temp/ccwCvrfH.s:26     .text:00000000 main
+C:\Users\FARIDU~1\AppData\Local\Temp/cc905fcx.s:2      *ABS*:0000003f __SREG__
+C:\Users\FARIDU~1\AppData\Local\Temp/cc905fcx.s:3      *ABS*:0000003e __SP_H__
+C:\Users\FARIDU~1\AppData\Local\Temp/cc905fcx.s:4      *ABS*:0000003d __SP_L__
+C:\Users\FARIDU~1\AppData\Local\Temp/cc905fcx.s:5      *ABS*:00000034 __CCP__
+C:\Users\FARIDU~1\AppData\Local\Temp/cc905fcx.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\FARIDU~1\AppData\Local\Temp/cc905fcx.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\FARIDU~1\AppData\Local\Temp/cc905fcx.s:26     .text:00000000 main
 
 UNDEFINED SYMBOLS
 RTC_Init
 debug_init
 debug_tx_text_nl
-RTC_Get_Hr
+RTC_Get_Year
 debug_tx_number_cm
+RTC_Get_Month
+RTC_Get_Date
+RTC_Get_Day
+RTC_Get_Hr
 RTC_Get_Min
 RTC_Get_Sec
 debug_tx_number_sp
