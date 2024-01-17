@@ -111,17 +111,17 @@ void RTC_Set_Date(uint8_t day, uint8_t date, uint8_t mon, uint16_t year){
   uint8_t day_reg=0, date_reg=0, mon_reg=0, year_reg=0;
   
   //write day
-  if((day>=1) && (day<=7)){
+  if( (day>=1) && (day<=7) ){
 	day_reg=day;
   }else{
     error=0x04;
   }
   
-  
-  //write mon
-  tmp0 = date/10;
-  tmp1 = date%10;
-  tmp1+= (tmp0*10);
+  //write date
+  tmp0  = date/10;
+  tmp0<<=4;
+  tmp1  = date%10;
+  tmp1 |= tmp0;
   if( ((mon==1)||(mon==3)||(mon==5)||(mon==7)||(mon==8)||(mon==10)||(mon==12)) && ((date>=1) && (date<=31)) ){
     date_reg=tmp1;
   }
@@ -147,6 +147,15 @@ void RTC_Set_Date(uint8_t day, uint8_t date, uint8_t mon, uint16_t year){
     error=0x05;
   }
   
+  if( (mon>=1) && (mon<=12) ){
+    tmp0  = mon/10;
+    tmp0<<=4;
+    tmp1  = mon%10;
+    tmp1 |= tmp0;
+	date_reg = tmp1;
+  }else{
+    error=0x06;
+  }
   
   //write year
   if(year<=9999){
@@ -154,11 +163,12 @@ void RTC_Set_Date(uint8_t day, uint8_t date, uint8_t mon, uint16_t year){
       year/=100;
     }
     tmp0 = date/10;
+	tmp0<<=4;
     tmp1 = date%10;
-	tmp1+= (tmp0*10);
-	RTC_Write(0x05,tmp1);
+	tmp1|= tmp0;
+	tmp1 = year_reg;
   }else{
-    error=0x06;
+    error=0x07;
   }
   
   
@@ -271,7 +281,7 @@ uint8_t RTC_Get_Day(void){
 uint8_t RTC_Get_Date(void){
   uint8_t tmp0=0, date=0, error=0;
   tmp0=RTC_Read(0x04);
-  date = ((tmp0 & 0x03)>>4);
+  date = ((tmp0 & 0x30)>>4);
   date*= 10;
   date+= (tmp0 & 0x0F);
   if((date<1) && (date>31)){
@@ -290,7 +300,7 @@ uint8_t RTC_Get_Date(void){
 uint8_t RTC_Get_Month(void){
   uint8_t tmp0=0, mon=0, error=0;
   tmp0=RTC_Read(0x05);
-  mon = ((tmp0 & 0x01)>>4);
+  mon = ((tmp0 & 0x10)>>4);
   mon*= 10;
   mon+= (tmp0 & 0x0F);
   if((mon<1) && (mon>12)){
